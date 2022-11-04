@@ -145,15 +145,15 @@
   resolved "https://registry.npm.taobao.org/@interactjs/utils/download/@interactjs/utils-1.10.11.tgz"
   integrity sha1-k50PEo36lsZzJ2zKPrfzE9ktqr8=
 
-"@lauxinyi/box-editor@^1.1.40":
-  version "1.1.40"
-  resolved "https://registry.yarnpkg.com/@lauxinyi/box-editor/-/box-editor-1.1.40.tgz#38d9fae423f9d9a72a53806245c24f18d7a3a8c4"
-  integrity sha512-kZrB5p8OHxtLgs9QQ6f7MtXPFymrUCE1/TKWJbjJG/0WiM3g4T6SXZJrOTiSHL7sdViGfz8pWHrzdMeUoy61qQ==
+"@lauxinyi/box-editor@^1.1.42":
+  version "1.1.42"
+  resolved "https://registry.yarnpkg.com/@lauxinyi/box-editor/-/box-editor-1.1.42.tgz#45e064c514c3a6f8182732fb14e8835ad1fd37fa"
+  integrity sha512-ehGceaFp0EXtmzNKzgY/MrprKq6u7ZLpHnyx/liwGGKP91ZcVJ79LkqKJnXNFBhs+PdL4PQJVjDE2aG27bVP+A==
 
-"@lauxinyi/box-ui@^1.1.40":
-  version "1.1.40"
-  resolved "https://registry.yarnpkg.com/@lauxinyi/box-ui/-/box-ui-1.1.40.tgz#744db7a37048aa9133d5609b92c35cc8558e76f1"
-  integrity sha512-ll5P7+TqQFK0m0ReE3Mcm5ghDE8lbmK9sWU4LcezExxg+UutsIV1mnc57XbTYCnVOSxDLw94x/GBTCg3BZkrdQ==
+"@lauxinyi/box-ui@^1.1.42":
+  version "1.1.42"
+  resolved "https://registry.yarnpkg.com/@lauxinyi/box-ui/-/box-ui-1.1.42.tgz#0b6f43f574b8cf55b13d130c9a07544088d9955e"
+  integrity sha512-WG7RY8T5rIvOfaw8Z4CbOKUbQDwMCAUXqzXbwrEkNZobrfb1HBfBfr3wPzeM5gDgD/ASUw9vpaCUzYwdZOz9jg==
 
 "@nodelib/fs.scandir@2.1.5":
   version "2.1.5"
@@ -740,6 +740,11 @@ csstype@^3.1.0:
   resolved "https://registry.yarnpkg.com/csstype/-/csstype-3.1.1.tgz#841b532c45c758ee546a11d5bd7b7b473c8c30b9"
   integrity sha512-DJR/VvkAvSZW9bTouZue2sSxDwdTN92uHjqeKVm+0dAqdfNykRzQ95tay8aXMBAAPpUiq4Qcug2L7neoRh2Egw==
 
+dayjs@^1.11.6:
+  version "1.11.6"
+  resolved "https://registry.yarnpkg.com/dayjs/-/dayjs-1.11.6.tgz#2e79a226314ec3ec904e3ee1dd5a4f5e5b1c7afb"
+  integrity sha512-zZbY5giJAinCG+7AGaw0wIhNZ6J8AhWuSXKvuc1KAyMiRsvGQWqh4L+MomvhdAYjN+lqvVCMq1I41e3YHvXkyQ==
+
 de-indent@^1.0.2:
   version "1.0.2"
   resolved "https://registry.npm.taobao.org/de-indent/download/de-indent-1.0.2.tgz"
@@ -790,6 +795,14 @@ easings-css@^1.0.0:
   version "1.0.0"
   resolved "https://registry.npm.taobao.org/easings-css/download/easings-css-1.0.0.tgz"
   integrity sha1-3eVpADu3pKDAt3h49ds+C+VnnIE=
+
+echarts@^5.4.0:
+  version "5.4.0"
+  resolved "https://registry.yarnpkg.com/echarts/-/echarts-5.4.0.tgz#a9a8e5367293a397408d3bf3e2638b869249ce04"
+  integrity sha512-uPsO9VRUIKAdFOoH3B0aNg7NRVdN7aM39/OjovjO9MwmWsAkfGyeXJhK+dbRi51iDrQWliXV60/XwLA7kg3z0w==
+  dependencies:
+    tslib "2.3.0"
+    zrender "5.4.0"
 
 ee-first@1.1.1:
   version "1.1.1"
@@ -2084,6 +2097,11 @@ sourcemap-codec@^1.4.4, sourcemap-codec@^1.4.8:
   resolved "https://registry.npm.taobao.org/sourcemap-codec/download/sourcemap-codec-1.4.8.tgz"
   integrity sha1-6oBL2UhXQC5pktBaOO8a41qatMQ=
 
+splitpanes@^3.1.5:
+  version "3.1.5"
+  resolved "https://registry.yarnpkg.com/splitpanes/-/splitpanes-3.1.5.tgz#de81da25681c252d131747a9cb48a17156e2b210"
+  integrity sha512-r3Mq2ITFQ5a2VXLOy4/Sb2Ptp7OfEO8YIbhVJqJXoFc9hc5nTXXkCvtVDjIGbvC0vdE7tse+xTM9BMjsszP6bw==
+
 "statuses@>= 1.4.0 < 2":
   version "1.5.0"
   resolved "https://registry.npm.taobao.org/statuses/download/statuses-1.5.0.tgz"
@@ -2144,6 +2162,11 @@ tpanorama@^1.0.6:
     http-errors "~1.6.2"
     morgan "~1.9.0"
     three "0.85.0"
+
+tslib@2.3.0:
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.3.0.tgz#803b8cdab3e12ba581a4ca41c8839bbb0dacb09e"
+  integrity sha512-N82ooyxVNm6h1riLCoyS9e3fuJ3AMG2zIZs2Gd1ATcSFjSA23Q0fzjjZeh0jbJvWVDZ0cJT8yaNNaaXHzueNjg==
 
 tslib@^1.10.0:
   version "1.14.1"
@@ -2588,3 +2611,10 @@ yallist@^4.0.0:
   version "4.0.0"
   resolved "https://registry.nlark.com/yallist/download/yallist-4.0.0.tgz?cache=0&sync_timestamp=1622604530774&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fyallist%2Fdownload%2Fyallist-4.0.0.tgz"
   integrity sha1-m7knkNnA7/7GO+c1GeEaNQGaOnI=
+
+zrender@5.4.0:
+  version "5.4.0"
+  resolved "https://registry.yarnpkg.com/zrender/-/zrender-5.4.0.tgz#d4f76e527b2e3bbd7add2bdaf27a16af85785576"
+  integrity sha512-rOS09Z2HSVGFs2dn/TuYk5BlCaZcVe8UDLLjj1ySYF828LATKKdxuakSZMvrDz54yiKPDYVfjdKqcX8Jky3BIA==
+  dependencies:
+    tslib "2.3.0"

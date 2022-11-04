@@ -2,44 +2,35 @@
     <div class="box-editor-container">
         <el-container style="height: calc(100vh)">
             <el-header height="50px" style="padding:0">
-                <Header :option="{ title: '可视化数据大屏' }"></Header>
+                <box-editor-layout-top :option="{ title: '可视化数据大屏' }"></box-editor-layout-top>
             </el-header>
             <el-container style="height: calc(100vh)">
                 <el-main style="padding:0">
-                    <splitpanes class="default-theme">
-                        <pane :size="20" :minSize="10" :maxSize="50">
+                    <box-editor-pane-split class="default-theme">
+                        <box-editor-pane :size="20" :minSize="10" :maxSize="50">
                             <box-editor-toolbox></box-editor-toolbox>
-                        </pane>
-                        <pane>
+                        </box-editor-pane>
+                        <box-editor-pane>
                             <box-editor-page-resize></box-editor-page-resize>
-                        </pane>
-                        <pane :size="20" :minSize="10" :maxSize="50">
+                        </box-editor-pane>
+                        <box-editor-pane :size="20" :minSize="10" :maxSize="50">
                             <box-editor-property-layout-resize></box-editor-property-layout-resize>
-                        </pane>
-                    </splitpanes>
+                        </box-editor-pane>
+                    </box-editor-pane-split>
                 </el-main>
             </el-container>
         </el-container>
     </div>
 </template>
 <script lang="ts" setup>
-import Vue from "vue";
-import Header from "@/components/editor/layout/top.vue";
-import html2canvas from "html2canvas";
-import { Notification } from "element-ui";
-import Splitpanes from "@/components/editor/layout/splitpanes/splitpanes.vue";
-import Pane from "@/components/editor/layout/splitpanes/pane.vue";
 import "splitpanes/dist/splitpanes.css";
-
 import cc from './components'
-import {componentStore} from "@/components/editor/hook/componentStore"
-
+import { componentStore } from "@lauxinyi/box-editor"
 const root = getCurrentInstance();
 const that = root.proxy;
 const thatData = reactive({});
 const component = componentStore();
 component.load(cc)
-
 </script>
 <style lang="scss" scoped>
 .box-editor-container {
