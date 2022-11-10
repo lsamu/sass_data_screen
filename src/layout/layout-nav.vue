@@ -4,14 +4,14 @@
       <router-link to="/">企业数据大屏</router-link>
     </div>
     <router-link class="sidebar-item" v-for="(item, index) in thatData.menuList" :key="index"
-      :class="{ active: routePath == item.path }" :to="item.path"><i class="item.icon"></i><span>{{ item.name }}</span>
+      :class="{ active: that.$route.path == item.path }" :to="item.path"><i class="item.icon"></i><span>{{ item.name }}</span>
     </router-link>
   </div>
 </template>
 <script lang="ts" setup>
 
 const root = getCurrentInstance();
-const that: any = root.proxy;
+const that = root.proxy;
 
 const router = that.$router
 const route = that.$route
@@ -45,11 +45,6 @@ const thatData = reactive({
     },
   ],
 });
-
-const routePath = computed(() => {
-  return route.path;
-});
-
 
 </script>
 
