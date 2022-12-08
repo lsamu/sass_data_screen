@@ -1,6 +1,6 @@
 <template>
     <div>
-        <el-row v-for="item,index in currentOption.rows" :key="index">
+        <el-row v-for="item, index in currentOption.rows" :key="index">
             <el-col :span="24">
                 <div class="grid-content bg-purple-dark"></div>
             </el-col>
