@@ -2,14 +2,9 @@
   "name": "open-data-v",
   "version": "0.0.0",
   "scripts": {
-    "bootstrap": "pnpm install",
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
-    "serve": "pnpm build && vite preview",
-    "lint": "eslint --ext .js,.ts,.vue,.tsx src/",
-    "lint:fromat": "prettier -c --parser typescript \"{src,__tests__,e2e}/**/*.[jt]s?(x)\"",
-    "lint:fix": "eslint --fix --ext .js,.ts,.vue,.tsx src/",
-    "reinstall": "rimraf pnpm-lock.yaml && rimraf src/**/node_modules && rimraf node_modules && pnpm bootstrap"
+    "serve": "vite"
   },
   "license": "Apache-2.0",
   "dependencies": {
@@ -65,17 +60,6 @@
     "typescript": "^4.4.3",
     "vite": "^3.0.7",
     "vite-plugin-vue-markdown": "^0.22.1",
-    "vue-eslint-parser": "^7.11.0",
     "vue-tsc": "^0.40.1"
-  },
-  "prettier": {
-    "useTabs": false,
-    "tabWidth": 2,
-    "printWidth": 100,
-    "singleQuote": true,
-    "trailingComma": "none",
-    "bracketSpacing": true,
-    "semi": false,
-    "endOfLine": "lf"
   }
 }
