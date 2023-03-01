@@ -1,16 +1,13 @@
 <template>
   <Icon class="icon" v-bind="$attrs" tag="span" :size="size" :color="iconColor">
-    <IconComponet />
+    <!-- <IconComponet /> -->xxx
   </Icon>
 </template>
 
 <script lang="ts" setup>
 import { computed } from 'vue'
 import type { Component } from 'vue'
-import { Icon } from '@vicons/utils'
-import { Help } from '@vicons/carbon'
 import { useProjectSettingStoreWithOut } from '@/store/modules/projectSetting'
-import icons from './icons'
 
 const projectStore = useProjectSettingStoreWithOut()
 
@@ -27,8 +24,8 @@ const props = withDefaults(
 )
 
 const iconColor = computed<string>(() => (props.color ? props.color : projectStore.iconColor))
-const IconComponet = computed<Component>(() => {
-  return icons[props.name] ? icons[props.name] : Help
+const IconComponet = computed(() => {
+  return null;//icons[props.name] ? icons[props.name] : Help
 })
 </script>
 

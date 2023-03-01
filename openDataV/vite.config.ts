@@ -13,7 +13,7 @@ export default ({ mode, command }: ConfigEnv): UserConfigExport => {
   return {
     plugins: [
       vue({
-        include: [/\.vue$/, /\.md$/] // <--
+        include: [/\.vue$/] // <--
       }),
       vueJsx(),
       viteMockServe({
@@ -27,11 +27,11 @@ export default ({ mode, command }: ConfigEnv): UserConfigExport => {
         setupProdMockServer();
       `
       }),
-      MarkDownPlugin({
-        markdownItSetup(md) {
-          md.use(require('./build/toc.js'))
-        }
-      })
+      // MarkDownPlugin({
+      //   markdownItSetup(md) {
+      //     md.use(require('./build/toc.js'))
+      //   }
+      // })
     ],
     base: './',
     resolve: {
@@ -41,15 +41,15 @@ export default ({ mode, command }: ConfigEnv): UserConfigExport => {
       extensions: ['.js', '.ts']
     },
     build: {
-      target: 'es2015',
-      chunkSizeWarningLimit: 1500,
-      terserOptions: {
-        compress: {
-          keep_infinity: true,
-          // Used to delete console in production environment
-          drop_console: true
-        }
-      }
+      // target: 'es2015',
+      // chunkSizeWarningLimit: 1500,
+      // terserOptions: {
+      //   compress: {
+      //     keep_infinity: true,
+      //     // Used to delete console in production environment
+      //     drop_console: true
+      //   }
+      // }
     },
     css: {
       preprocessorOptions: {
