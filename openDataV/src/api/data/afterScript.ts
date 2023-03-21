@@ -6,7 +6,7 @@ import type { AfterScriptDetail } from './type'
  * 根据id 加载后置脚本
  * @param id 脚本ID
  */
-export const getAfterScriptApi = async (id): Promise<AxiosResponse<AfterScriptDetail>> => {
+export const getAfterScriptApi = async (id) => {
   return http.get<AfterScriptDetail>({
     url: `/dataset/script/${id}/`
   })
@@ -15,7 +15,7 @@ export const getAfterScriptApi = async (id): Promise<AxiosResponse<AfterScriptDe
 /**
  * 获取后置脚本列表
  */
-export const getAfterScriptListApi = async (): Promise<AxiosResponse<AfterScriptDetail[]>> => {
+export const getAfterScriptListApi = async ()=> {
   return http.get<AfterScriptDetail[]>({
     url: '/dataset/script/'
   })
@@ -29,7 +29,7 @@ export const getAfterScriptListApi = async (): Promise<AxiosResponse<AfterScript
 export const updateAfterScriptApi = async (
   id: string,
   data: Partial<Pick<AfterScriptDetail, 'name' | 'code' | 'type'>>
-): Promise<AxiosResponse<AfterScriptDetail>> => {
+) => {
   return http.put<AfterScriptDetail>({
     url: `/dataset/script/${id}/`,
     data: { ...data, id }

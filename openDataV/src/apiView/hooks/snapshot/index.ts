@@ -43,7 +43,7 @@ class DataSnapShot {
    * 加载快照记录
    * @returns 数据快照记录
    */
-  public async list(): Promise<any> {
+  public async list() {
     return this.db?.data.where('type').equals(this.key!).reverse().toArray()
   }
   /**

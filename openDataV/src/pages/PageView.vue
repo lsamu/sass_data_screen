@@ -10,9 +10,6 @@
 import ComponentWrapper from '@/designer/Editor/ComponentWrapper.vue'
 import { getPageApi } from '@/api/pages'
 import { backgroundToCss, filterStyle, pageScale } from '@/utils/utils'
-import type { CanvasStyleData } from '@/types/storeTypes'
-import type { LayoutData } from '@/api/pages'
-import type { BaseComponent } from '@/resource/models'
 import { createComponent } from '@/resource/models'
 
 const componentData = ref([])

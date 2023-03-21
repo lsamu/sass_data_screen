@@ -9,10 +9,8 @@
 <script setup lang="ts">
 import ComponentWrapper from '@/designer/Editor/ComponentWrapper.vue'
 import { backgroundToCss, filterStyle, pageScale } from '@/utils/utils'
-import type { CanvasStyleData } from '@/types/storeTypes'
 import { useSnapShotStoreWithOut } from '@/store/modules/snapshot'
 import { useBasicStoreWithOut } from '@/store/modules/basic'
-import type { BaseComponent } from '@/resource/models'
 import type { ComponentDataType } from '@/types/component'
 const snapShotStore = useSnapShotStoreWithOut()
 const basicStore = useBasicStoreWithOut()

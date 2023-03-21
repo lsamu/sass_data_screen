@@ -88,7 +88,7 @@ const paste = (_: HTMLElement, event: MouseEvent) => {
   copyStore.paste(true, x, y)
 }
 
-const contextmenus = (): ContextmenuItem[] => {
+const contextmenus = ()=> {
   return [
     {
       text: '粘贴',

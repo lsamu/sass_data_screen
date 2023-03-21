@@ -2,11 +2,12 @@ import { LOGIN_URL, NoAuth, RouteMode } from '@/enum'
 import type { AppRouteRecordRaw, MenuType } from './types'
 import NProgress from '@/utils/progress'
 import { useUserStoreWithOut } from '@/store/modules/user'
+import { createWebHistory, createWebHashHistory,Router,createRouter,RouteLocationNormalized,NavigationGuardNext } from 'vue-router'
 
 const userStore = useUserStoreWithOut()
 class RouteView {
   // 路由对象
-  private router: Router | undefined = undefined
+  private router
 
   constructor() {
     this.router = this.createRouter()
@@ -15,7 +16,7 @@ class RouteView {
   }
 
   // 根据环境变量中的配置生成路由模式
-  private createHistory = (): RouterHistory => {
+  private createHistory = () => {
     if (import.meta.env.VITE_ROUER_MODE === RouteMode.HISTORY) {
       return createWebHistory()
     } else {

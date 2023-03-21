@@ -17,6 +17,7 @@ import { routeView } from '@/router'
 import type { MenuOption } from 'naive-ui'
 import { NMenu } from 'naive-ui'
 import { XIcon } from '@/plugins/xicon'
+import { RouterLink} from 'vue-router'
 
 defineProps<{
   collapsed: boolean

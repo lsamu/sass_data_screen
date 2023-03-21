@@ -6,7 +6,7 @@ import type { RestDataDetail } from './type'
  * 根据id 加载Rest数据
  * @param id Rest接口ID
  */
-export const getRestDataApi = async (id): Promise<AxiosResponse<RestDataDetail>> => {
+export const getRestDataApi = async (id) => {
   return http.get<RestDataDetail>({
     url: `/dataset/rest/${id}/`
   })
@@ -15,7 +15,7 @@ export const getRestDataApi = async (id): Promise<AxiosResponse<RestDataDetail>>
 /**
  * 获取Rest数据列表
  */
-export const getRestDataListApi = async (): Promise<AxiosResponse<RestDataDetail[]>> => {
+export const getRestDataListApi = async () => {
   return http.get<RestDataDetail[]>({
     url: '/dataset/rest/'
   })

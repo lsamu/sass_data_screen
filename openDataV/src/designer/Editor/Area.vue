@@ -75,7 +75,7 @@ const batchDelete = () => {
   composeStore.setHidden()
 }
 
-const contextMenus = (): ContextmenuItem[] => {
+const contextMenus = ()=> {
   return [
     {
       text: '组合',

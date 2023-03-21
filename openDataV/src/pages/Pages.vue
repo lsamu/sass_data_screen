@@ -42,7 +42,6 @@
 
 <script setup lang="ts">
 import { getPageListApi, deletePageApi } from '@/api/pages'
-import type { SimpleLayoutData } from '@/api/pages'
 import defaultImg from '@/assets/default.png'
 import { message } from '@/utils/message'
 import { XIcon } from '@/plugins/xicon'

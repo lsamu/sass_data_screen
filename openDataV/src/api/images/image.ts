@@ -3,7 +3,7 @@ import type { ImageFile } from './type'
 import type { AxiosResponse } from 'axios'
 
 // 获取页面数据
-export const getImageListApi = async (): Promise<AxiosResponse<ImageFile[]>> => {
+export const getImageListApi = async => {
   return http.get<ImageFile[]>({
     url: '/image/image/'
   })
