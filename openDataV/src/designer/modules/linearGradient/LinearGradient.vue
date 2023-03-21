@@ -27,9 +27,7 @@ import { NColorPicker, NSlider } from 'naive-ui'
 import { GlobalColorSwatches } from '@/enum'
 
 const props = withDefaults(
-  defineProps<{
-    value: any
-  }>(),
+  defineProps(["value"]),
   {
     value: () => ({
       angle: 0,

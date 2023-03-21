@@ -51,14 +51,14 @@ const handleDrop = (event: DragEvent, index) => {
   const componentIndex: string = event.dataTransfer?.getData('componentIndex') as string
   const toIndex: string = calcDragIndex(componentIndex, index)
   const indexes: number[] = componentIndex.split('-').map((i) => Number(i))
-  const cutComponent: Optional<any> = basicStore.getComponentByIndex(indexes)
-  const component: Optional<any> = basicStore.cutComponent(
+  const cutComponent: any = basicStore.getComponentByIndex(indexes)
+  const component: any = basicStore.cutComponent(
     indexes[indexes.length - 1],
     cutComponent?.parent
   )
   if (component && toIndex) {
     const toIndexs: number[] = componentIndex.split('-').map((i) => Number(i))
-    const insertComponent: Optional<any> = basicStore.getComponentByIndex(toIndexs)
+    const insertComponent: any = basicStore.getComponentByIndex(toIndexs)
     basicStore.insertComponent(toIndexs[toIndexs.length - 1], component, insertComponent)
     emits('select', index)
   }

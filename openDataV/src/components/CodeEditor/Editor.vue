@@ -35,7 +35,7 @@ import { oneDark } from '@codemirror/theme-one-dark'
 import { redo, undo } from '@codemirror/commands'
 
 const props = withDefaults(
-  defineProps(),
+  defineProps(["code","language","theme","config"]),
   {
     config: () => ({
       height: '200px',

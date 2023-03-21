@@ -1,28 +1,11 @@
 <template>
   <n-space vertical>
     <n-space v-for="(_, index) in arrayValue" :key="index" :wrap="false">
-      <n-input
-        v-model:value="arrayValue[index]"
-        type="text"
-        placeholder="请输入数据"
-        @change="handleChange(index)"
-      />
-      <XIcon
-        v-if="type === 'dynamic'"
-        :size="18"
-        name="delete"
-        color="#F76560"
-        @click="handleDelete(index)"
-      />
+      <n-input v-model:value="arrayValue[index]" type="text" placeholder="请输入数据" @change="handleChange(index)" />
+      <XIcon v-if="type === 'dynamic'" :size="18" name="delete" color="#F76560" @click="handleDelete(index)" />
     </n-space>
     <n-space v-if="type === 'dynamic'" :wrap="false">
-      <n-input
-        ref="addInputEl"
-        v-model:value="newValue"
-        type="text"
-        placeholder="请输入数据"
-        @keypress.enter="handleAdd"
-      />
+      <n-input ref="addInputEl" v-model:value="newValue" type="text" placeholder="请输入数据" @keypress.enter="handleAdd" />
       <XIcon name="add" color="#4CD263" :size="18" @click="handleAdd" />
     </n-space>
   </n-space>
@@ -33,13 +16,7 @@ import { NSpace, NInput } from 'naive-ui'
 import { message } from '@/utils/message'
 
 const props = withDefaults(
-  defineProps<{
-    value: string[]
-    count?: number
-    type?: 'static' | 'dynamic'
-    maxItem?: number
-    minItem?: number
-  }>(),
+  defineProps(["value", "count", "type", "maxItem", "minItem"]),
   {
     count: 1,
     type: 'static',
@@ -47,7 +24,7 @@ const props = withDefaults(
   }
 )
 
-const emits = defineEmits()
+const emits = defineEmits(["updateValue"])
 
 const addInputEl = ref()
 const newValue = ref('')

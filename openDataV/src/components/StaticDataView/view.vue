@@ -1,11 +1,6 @@
 <template>
-  <CodeEditor
-    ref="cm"
-    v-model:code="contentRef"
-    :config="config"
-    :theme="projectStore.darkTheme ? 'dark' : 'light'"
-    @change="codeChange"
-  >
+  <CodeEditor ref="cm" v-model:code="contentRef" :config="config" :theme="projectStore.darkTheme ? 'dark' : 'light'"
+    @change="codeChange">
     <template v-if="mode === 'debug'" #tool-bar>
       <div class="buttons">
         <x-icon class="item button" name="save" @click="handleSave" />
@@ -36,12 +31,7 @@ const savedStatus = ref(true)
 
 const projectStore = useProjectSettingStoreWithOut()
 const props = withDefaults(
-  defineProps<{
-    content?: any
-    title?: string
-    mode?: string
-    height?: string
-  }>(),
+  defineProps(["content", "title", "mode", "height"]),
   {
     content: '',
     title: '',
@@ -100,13 +90,16 @@ watch(
 <style lang="less" scoped>
 .buttons {
   display: flex;
+
   .item {
     display: block;
     margin-left: 5px;
     margin-right: 5px;
+
     &.data {
       width: 120px;
     }
+
     &.button {
       &:hover {
         transform: scale(1.5);
@@ -114,6 +107,7 @@ watch(
     }
   }
 }
+
 .footer {
   display: flex;
   flex-direction: row;
@@ -121,15 +115,18 @@ watch(
   justify-content: space-between;
   align-items: center;
   align-content: center;
+
   div {
     margin-left: 5px;
     font-weight: 800;
     padding: 0 2px;
     border-radius: 2px;
   }
+
   .left {
     color: #2080f0;
   }
+
   .right {
     display: flex;
     flex-direction: row;
@@ -138,17 +135,19 @@ watch(
     align-items: center;
     align-content: center;
     color: #ffff;
+
     .lang {
       background-color: #2080f0;
     }
+
     .saved-status {
       &.save {
         background-color: #18a058;
       }
+
       &.unsave {
         background-color: #d03050;
       }
     }
   }
-}
-</style>
+}</style>

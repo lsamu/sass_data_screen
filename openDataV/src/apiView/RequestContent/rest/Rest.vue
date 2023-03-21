@@ -128,7 +128,7 @@ const getEmptyParams = () => {
 }
 
 const props = withDefaults(
-  defineProps(),
+  defineProps(["restOptions","mode"]),
   {
     restOptions: () => {
       return {

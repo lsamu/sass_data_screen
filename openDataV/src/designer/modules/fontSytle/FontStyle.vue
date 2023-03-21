@@ -13,9 +13,7 @@ import { SYS_FONTS } from '@/enum/font'
 import { NSelect } from 'naive-ui'
 
 const props = withDefaults(
-  defineProps<{
-    value?: string
-  }>(),
+  defineProps(["value"]),
   {
     value: ''
   }

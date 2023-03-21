@@ -1,6 +1,6 @@
 const CLICK_HANDLER = 'CLICK_HANDLER'
 
-const outsideHandle = (el: HTMLElement, binding: DirectiveBinding) => {
+const outsideHandle = (el: HTMLElement, binding: any) => {
   const clickoutside = binding.value
   const handler = function (e: MouseEvent) {
     if (el && !el.contains(<HTMLInputElement>e.target!)) {
@@ -14,8 +14,8 @@ const outsideHandle = (el: HTMLElement, binding: DirectiveBinding) => {
   el[CLICK_HANDLER] = handler
   document.addEventListener('mousedown', handler, { capture: true })
 }
-const ClickOutsideDirective: Directive = {
-  mounted(el: HTMLElement, binding: DirectiveBinding) {
+const ClickOutsideDirective: any = {
+  mounted(el: HTMLElement, binding: any) {
     outsideHandle(el, binding)
   },
 

@@ -59,9 +59,7 @@ import { NTabs, NTabPane } from 'naive-ui'
 const activeKey = ref('components')
 const emits = defineEmits(["update:iscollapsed"])
 withDefaults(
-  defineProps<{
-    iscollapsed: boolean
-  }>(),
+  defineProps(["iscollapsed"]),
   { iscollapsed: false }
 )
 const collapsedTabPane = (key) => {

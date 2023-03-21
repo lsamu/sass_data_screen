@@ -62,10 +62,10 @@ const handleDrop = (event: DragEvent, toIndex) => {
   const isDragAble = diffIndex(fromIndex, toIndex)
   if (!isDragAble) return
   const indexes: number[] = fromIndex.split('-').map((i) => Number(i))
-  const cutComponent: Optional<any> = basicStore.getComponentByIndex(indexes)
+  const cutComponent: any = basicStore.getComponentByIndex(indexes)
   const inComponent = cloneDeep(cutComponent)
   const toIndexs: number[] = toIndex.split('-').map((i) => Number(i))
-  const toComponent: Optional<any> = basicStore.getComponentByIndex(toIndexs)
+  const toComponent: any = basicStore.getComponentByIndex(toIndexs)
 
   if (inComponent && toComponent && toIndex) {
     const toComponentId: string = toComponent.id

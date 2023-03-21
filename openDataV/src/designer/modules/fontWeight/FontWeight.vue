@@ -13,9 +13,7 @@ import { SYS_FONT_WEIGHT } from '@/enum/font'
 import { NSelect } from 'naive-ui'
 
 const props = withDefaults(
-  defineProps<{
-    value?: number
-  }>(),
+  defineProps(["value"]),
   {
     value: 400
   }

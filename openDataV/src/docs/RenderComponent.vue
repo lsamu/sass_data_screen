@@ -38,8 +38,8 @@ const props = withDefaults(
   defineProps<{
     config: new (id?: string, name?) => any
     component: any
-    propValue: Recordable
-    style: Recordable
+    propValue: any
+    style: any
     title: string
     mode?: 'view' | 'debug'
   }>(),

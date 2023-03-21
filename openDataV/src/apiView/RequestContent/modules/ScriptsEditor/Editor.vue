@@ -80,7 +80,7 @@ const isShow = ref(false)
 
 const projectStore = useProjectSettingStoreWithOut()
 const props = withDefaults(
-  defineProps(),
+  defineProps(["data","config","mode"]),
   {
     data: () => {
       return {

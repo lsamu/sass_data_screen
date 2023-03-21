@@ -33,7 +33,7 @@
 <script setup lang="ts">
 
 defineProps<{
-  menus: Array<ContextmenuItem>
+  menus: Array<any>
   handleClickMenuItem: Function
 }>()
 </script>

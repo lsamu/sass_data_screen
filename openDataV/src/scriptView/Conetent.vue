@@ -76,7 +76,7 @@ const paramsChange = (content) => {
   params.value = content
 }
 
-const scriptChangeHandler = async (script: AfterScript) => {
+const scriptChangeHandler = async (script: any) => {
   formData.code = script.code
   formData.type = script.type
 }
@@ -130,7 +130,7 @@ const handleSave = async () => {
       type: formData.type
     })
     if (resp.status === 201) {
-      const data = resp.data as AfterScriptDetail
+      const data = resp.data as any
       formData.id = data.id
       formData.title = data.name
       formData.code = data.code

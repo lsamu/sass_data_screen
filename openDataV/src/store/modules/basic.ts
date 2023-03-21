@@ -98,7 +98,7 @@ const useBasicStore = defineStore({
      * @param component 当前组件
      * @param index
      */
-    setCurComponent(component: Optional<any>, index?): void {
+    setCurComponent(component: any, index?): void {
       // 设置前清理当前
       if (this.curComponent) {
         this.curComponent.active = false
@@ -272,7 +272,7 @@ const useBasicStore = defineStore({
       this.saveComponentData()
     },
 
-    getComponentIndexById(id: string, parent: Optional<any>): number {
+    getComponentIndexById(id: string, parent: any): number {
       if (parent) {
         return parent.subComponents.findIndex((item) => item.id === id)
       }
@@ -295,7 +295,7 @@ const useBasicStore = defineStore({
      * @param index 组件索引
      * @param parent
      */
-    downComponent(index: number, parent: Optional<any>) {
+    downComponent(index: number, parent: any) {
       let componentData = this.componentData
       if (parent && parent.subComponents) {
         componentData = parent.subComponents
@@ -312,7 +312,7 @@ const useBasicStore = defineStore({
      * @param index 组件索引
      * @param parent
      */
-    upComponent(index: number, parent: Optional<any>) {
+    upComponent(index: number, parent: any) {
       let componentData = this.componentData
       if (parent && parent.subComponents) {
         componentData = parent.subComponents
@@ -332,7 +332,7 @@ const useBasicStore = defineStore({
      * @param index 组件索引
      * @param parent
      */
-    topComponent(index: number, parent: Optional<any>) {
+    topComponent(index: number, parent: any) {
       let componentData = this.componentData
       if (parent && parent.subComponents) {
         componentData = parent.subComponents
@@ -351,7 +351,7 @@ const useBasicStore = defineStore({
      * @param index 组件索引
      * @param parent
      */
-    bottomComponent(index: number, parent: Optional<any>) {
+    bottomComponent(index: number, parent: any) {
       let componentData = this.componentData
       if (parent && parent.subComponents) {
         componentData = parent.subComponents
@@ -371,7 +371,7 @@ const useBasicStore = defineStore({
      * @param parent
      * @returns 移除结果
      */
-    removeComponent(index: number, parent: Optional<any>) {
+    removeComponent(index: number, parent: any) {
       if (parent && parent.subComponents) {
         parent.subComponents.splice(index, 1)
       } else {
@@ -379,7 +379,7 @@ const useBasicStore = defineStore({
       }
       this.saveComponentData()
     },
-    getComponentByIndex(indexs: readonly number[]): Optional<any> {
+    getComponentByIndex(indexs: readonly number[]): any {
       const firstIndex = indexs[0]
       if (firstIndex === undefined || firstIndex < 0 || firstIndex >= this.componentData.length) {
         return undefined
@@ -399,7 +399,7 @@ const useBasicStore = defineStore({
         resolve(snapShotStore.saveSnapshot(this.layoutData, this.canvasStyleData))
       })
     },
-    cutComponent(index: number, parent: Optional<any>): Optional<any> {
+    cutComponent(index: number, parent: any): any {
       let componentData = this.componentData
       if (parent && parent.subComponents) {
         componentData = parent.subComponents
@@ -417,7 +417,7 @@ const useBasicStore = defineStore({
     insertComponent(
       index: number,
       insertComponent: any,
-      parent: Optional<any>
+      parent: any
     ): void {
       let componentData = this.componentData
       if (parent && parent.subComponents) {
@@ -439,7 +439,7 @@ const useBasicStore = defineStore({
      * 重新自动调整组件尺寸
      * @param parentComponent
      */
-    resizeAutoComponent(parentComponent: Optional<any>): void {
+    resizeAutoComponent(parentComponent: any): void {
       if (parentComponent && parentComponent.component === 'Group') {
         const parentStyle = parentComponent.positionStyle
         const { top, left, height, width } = calcComponentsRect(parentComponent.subComponents)

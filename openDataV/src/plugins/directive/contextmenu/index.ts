@@ -1,9 +1,10 @@
 
+import { createVNode, render } from 'vue'
 import ContextmenuComponent from './ContextMenu.vue'
 
 const CTX_CONTEXTMENU_HANDLER = 'CTX_CONTEXTMENU_HANDLER'
 
-const contextmenuListener = (el: HTMLElement, event: MouseEvent, binding: DirectiveBinding) => {
+const contextmenuListener = (el: HTMLElement, event: MouseEvent, binding: any) => {
   event.preventDefault()
   const { stop } = binding.modifiers
   if (stop) {
@@ -46,7 +47,7 @@ const contextmenuListener = (el: HTMLElement, event: MouseEvent, binding: Direct
   window.addEventListener('resize', removeContextmenu)
 }
 
-const ContextmenuDirective: Directive = {
+const ContextmenuDirective: any = {
   mounted(el: HTMLElement, binding) {
     const { capture } = binding.modifiers
     el[CTX_CONTEXTMENU_HANDLER] = (event: MouseEvent) => contextmenuListener(el, event, binding)

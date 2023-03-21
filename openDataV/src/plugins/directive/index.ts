@@ -6,7 +6,7 @@ import ResizeDomDirective from './resize'
 import ClickOutsideDirective from './clickoutside'
 
 export default {
-  install(app: App) {
+  install(app: any) {
     app.directive('contextmenu', ContextMenu)
     app.directive('resize', ResizeDomDirective)
     app.directive('action', ActionDirective)

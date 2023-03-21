@@ -11,31 +11,15 @@
   </div>
   <div v-for="(item, index) in formData" :key="item.id">
     <n-input-group class="param-item">
-      <n-input
-        style="width: 50%"
-        size="small"
-        :input-props="{
-          autocomplete: 'disabled'
-        }"
-        :value="formData[index]['key']"
-        :allow-input="noSideSpace"
-        :placeholder="`参数${index + 1}`"
-        @update:value="(value) => changed(index, 'key', value)"
-      />
-      <n-input
-        style="width: 50%"
-        size="small"
-        :value="formData[index]['value']"
-        :allow-input="noSideSpace"
-        :placeholder="`值${index + 1}`"
-        @update:value="(value) => changed(index, 'value', value)"
-      />
+      <n-input style="width: 50%" size="small" :input-props="{
+        autocomplete: 'disabled'
+      }" :value="formData[index]['key']" :allow-input="noSideSpace" :placeholder="`参数${index + 1}`"
+        @update:value="(value) => changed(index, 'key', value)" />
+      <n-input style="width: 50%" size="small" :value="formData[index]['value']" :allow-input="noSideSpace"
+        :placeholder="`值${index + 1}`" @update:value="(value) => changed(index, 'value', value)" />
       <n-button size="small" @click="disableParams(index)">
         <template #icon>
-          <x-icon
-            :name="item.disable ? 'close' : 'check'"
-            :color="item.disable ? '#333639' : '#2080F0'"
-          />
+          <x-icon :name="item.disable ? 'close' : 'check'" :color="item.disable ? '#333639' : '#2080F0'" />
         </template>
       </n-button>
       <n-button size="small" @click="removeParams(index)">
@@ -50,7 +34,7 @@
 import { uuid } from '@/utils/utils'
 import { NInput, NButton, NInputGroup, NDivider } from 'naive-ui'
 
-const props = withDefaults(defineProps(), {
+const props = withDefaults(defineProps(["title", "value"]), {
   title: '',
   value: () => [
     {
@@ -119,10 +103,12 @@ watch(
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
+
   .action {
     &:hover {
       scale: 1.2;
     }
+
     transition: transform 1s scale;
   }
 }

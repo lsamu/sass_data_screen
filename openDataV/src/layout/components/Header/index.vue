@@ -103,7 +103,7 @@ defineProps<{
   collapsed: boolean
 }>()
 
-const emits = defineEmits()
+const emits = defineEmits(["update:collapsed"])
 
 const userStore = useUserStoreWithOut()
 const projectStore = useProjectSettingStoreWithOut()

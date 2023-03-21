@@ -50,7 +50,7 @@ import { NCard, NEllipsis, NTooltip, NDropdown, NButton } from 'naive-ui'
 const router = useRouter()
 const loading = ref(false)
 const layoutList = ref([])
-const options: DropdownOption[] = [
+const options: any[] = [
   {
     key: 'preview',
     label: '预览',

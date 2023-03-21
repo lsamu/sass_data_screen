@@ -25,7 +25,7 @@ class RouteView {
 
   // 动态获取 modules 目录下的所有 .ts 文件生成基础路由
   private createBasicRoutes = (): any[] => {
-    const moduleFiles: Recordable<{ [key: string]: any }> = import.meta.glob('./modules/**/*.ts', {
+    const moduleFiles: any = import.meta.glob('./modules/**/*.ts', {
       eager: true
     })
     const routeModuleList: any[] = []
@@ -164,7 +164,7 @@ class RouteView {
     }) as unknown as any[]
   }
 
-  private formatRouteToMenu(routes: Optional<any[]>, menus: any[]): void {
+  private formatRouteToMenu(routes: any, menus: any[]): void {
     if (!routes) {
       return
     }
@@ -204,6 +204,6 @@ class RouteView {
 
 const routeView = new RouteView()
 
-export { routeView, MenuType }
+export { routeView }
 
 export default routeView.getRouter()

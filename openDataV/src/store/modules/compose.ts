@@ -52,7 +52,7 @@ const useComposeStore = defineStore({
      * 向store 中增加组件
      * @param component 组件
      */
-    appendComponent(component: Optional<any>): void {
+    appendComponent(component: any): void {
       if (!component) {
         return
       }

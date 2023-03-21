@@ -6,7 +6,7 @@
   </div>
 </template>
 <script setup lang="ts">
-const router: Router = useRouter()
+const router: any = useRouter()
 
 const toHome = async () => {
   await router.push({
