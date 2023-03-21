@@ -15,7 +15,6 @@
 <script setup lang="ts">
 import { NUl, NLi } from 'naive-ui'
 import type { MenuItem } from './type'
-import { useRouter } from 'vue-router'
 
 const router = useRouter()
 withDefaults(
@@ -27,7 +26,7 @@ withDefaults(
   }
 )
 
-const goTo = async (key: string) => {
+const goTo = async (key) => {
   await router.push({
     name: key
   })

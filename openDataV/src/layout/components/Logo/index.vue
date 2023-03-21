@@ -6,14 +6,13 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue'
 import Logo from '@/assets/logo.png'
 
 defineProps<{
   collapsed: boolean
 }>()
 
-const title = ref<string>(import.meta.env.VITE_APP_TITLE)
+const title = ref(import.meta.env.VITE_APP_TITLE)
 </script>
 
 <style lang="less" scoped>

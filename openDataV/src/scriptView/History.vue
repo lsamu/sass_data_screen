@@ -27,12 +27,11 @@
 <script setup lang="ts">
 import { NInput, NCard, NTabs, NTabPane, NOl, NLi, NGradientText } from 'naive-ui'
 import { eventBus, StaticKey } from '@/bus'
-import { onMounted, ref } from 'vue'
 import { getAfterScriptListApi } from '@/api/data/afterScript'
 import type { AfterScriptDetail } from '@/api/data/type'
 import { ScriptType } from '@/enum'
 
-const dataList = ref<AfterScriptDetail[]>([])
+const dataList = ref([])
 const loadStaticList = async () => {
   try {
     const resp = await getAfterScriptListApi()
@@ -44,7 +43,7 @@ const loadStaticList = async () => {
   }
 }
 
-const selectDataItem = (id: string) => {
+const selectDataItem = (id) => {
   eventBus.emit(StaticKey.SRCIPT_KEY, id)
 }
 

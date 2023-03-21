@@ -39,7 +39,6 @@
 <script lang="ts" setup>
 import RulerLine from './RulerLine.vue'
 import CanvasRuler from '../canvas-ruler/index.vue'
-import { ref, computed } from 'vue'
 import type { PaletteType } from '../index-types'
 const props = withDefaults(
   defineProps<{
@@ -67,7 +66,7 @@ const props = withDefaults(
 
 const showIndicator = ref(false)
 const valueNum = ref(0)
-const lines = ref<number[]>([])
+const lines = ref([])
 const rwClassName = computed(() => {
   return props.vertical ? 'v-container' : 'h-container'
 })
@@ -99,7 +98,7 @@ const realHeight = computed(() => {
   }
 })
 
-const realWidth = computed<string>(() => {
+const realWidth = computed(() => {
   if (!props.vertical) {
     return '100vw'
   } else {

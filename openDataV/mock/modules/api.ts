@@ -86,7 +86,7 @@ export default [
     statusCode: 200,
     response: () => {
       const result: any[] = []
-      Object.keys(dataDict).forEach((key: string) => {
+      Object.keys(dataDict).forEach((key) => {
         const data = dataDict[key]
         // @ts-ignore
         result.push({

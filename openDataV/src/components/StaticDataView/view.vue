@@ -28,14 +28,12 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, ref, watch } from 'vue'
-/* eslint-disable-next-line @typescript-eslint/consistent-type-imports */
 import CodeEditor from '@/components/CodeEditor'
 import type { CodemirrorOption } from '@/components/CodeEditor/type'
 import { useProjectSettingStoreWithOut } from '@/store/modules/projectSetting'
 import { message } from '@/utils/message'
 
-const savedStatus = ref<boolean>(true)
+const savedStatus = ref(true)
 
 const projectStore = useProjectSettingStoreWithOut()
 const props = withDefaults(
@@ -52,7 +50,7 @@ const props = withDefaults(
     height: '600px'
   }
 )
-const config = computed<CodemirrorOption>(() => {
+const config = computed(() => {
   return {
     height: props.height,
     tabSize: 4,
@@ -61,7 +59,7 @@ const config = computed<CodemirrorOption>(() => {
     disabled: props.mode === 'debug' ? false : true
   }
 })
-const cm = ref<InstanceType<typeof CodeEditor> | null>(null)
+const cm = ref(null)
 const handleRedo = () => {
   const handler = cm.value!.handleRedo
   if (handler) {
@@ -75,13 +73,11 @@ const handleUndo = () => {
   }
 }
 
-const emits = defineEmits<{
-  (e: 'update:content', content?: any): void
-}>()
+const emits = defineEmits()
 
-const contentRef = ref<string>(JSON.stringify(props.content, null, '\t'))
+const contentRef = ref(JSON.stringify(props.content, null, '\t'))
 
-const codeChange = (_: string) => {
+const codeChange = (_) => {
   savedStatus.value = false
 }
 

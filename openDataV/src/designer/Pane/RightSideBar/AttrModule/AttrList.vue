@@ -23,7 +23,6 @@
 
 <script setup lang="ts">
 import { useBasicStoreWithOut } from '@/store/modules/basic'
-import { computed, ref, watch } from 'vue'
 import FormAttr from '@/designer/modules/form/FormAttr'
 import { NCollapse, NCollapseItem } from 'naive-ui'
 import type { BaseComponent } from '@/resource/models'
@@ -42,7 +41,7 @@ interface PropData {
   [key: string]: any
 }
 
-const formData = ref<PropData>({
+const formData = ref({
   common: {
     name: props.curComponent.name,
     component: props.curComponent.component,

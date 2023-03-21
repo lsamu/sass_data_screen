@@ -4,7 +4,7 @@ import { BaseComponent } from '@/resource/models'
 
 export const componentName = 'Decoration3'
 class DecorationComponent extends BaseComponent {
-  constructor(id?: string, name?: string) {
+  constructor(id?: string, name?) {
     super({
       component: componentName,
       group: ComponentGroup.DECORATION,

@@ -1,4 +1,4 @@
-import type { App } from 'vue'
+
 
 import ContextMenu from './contextmenu'
 import ActionDirective from './permission'

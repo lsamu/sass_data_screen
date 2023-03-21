@@ -49,7 +49,6 @@
   </div>
 </template>
 <script setup lang="ts">
-import { ref, computed, watch } from 'vue'
 import {
   filterStyle,
   getComponentStyle,
@@ -73,9 +72,9 @@ const props = defineProps<{
 }>()
 
 const basicStore = useBasicStoreWithOut()
-const editMode = computed<boolean>(() => basicStore.isEditMode)
+const editMode = computed(() => basicStore.isEditMode)
 const { propValue } = useProp<Tabs>(props.component)
-const labels = computed<Array<string>>(() => {
+const labels = computed(() => {
   return propValue.label.items || []
 })
 
@@ -143,7 +142,7 @@ const getShapeStyle = (item: BaseComponent) => {
 }
 
 const curComponent = computed(() => basicStore.curComponent)
-const activeKey = ref<number>(0)
+const activeKey = ref(0)
 
 const isShow = (display: boolean): boolean => {
   return !(basicStore.isEditMode && display === false)
@@ -156,19 +155,18 @@ const getShow = (index: number) => {
   return activeKey.value === index
 }
 
-const modeStyle = computed<string>(() => {
+const modeStyle = computed(() => {
   console.log(propValue.label.mode)
   return propValue.label.mode ? propValue.label.mode : 'horizontal'
 })
-const contentRef = ref<HTMLElement | null>(null)
-const content = computed<InstanceType<typeof GroupComponent>>(() => {
+const contentRef = ref(null)
+const content = computed(() => {
   console.log(props.component.subComponents[activeKey.value])
   return props.component.subComponents[activeKey.value]
 })
 
-// const content = ref<InstanceType<typeof GroupComponent>>()
 
-const labelStyle = computed<Recordable>(() => {
+const labelStyle = computed(() => {
   return {
     [propValue.label.mode === 'horizontal' ? 'height' : 'width']: `${propValue.style.height}px`,
     color: propValue.style.color,

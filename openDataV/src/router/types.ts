@@ -1,4 +1,3 @@
-import type { Component } from 'vue'
 import type { RouteMeta, RouteRecordRaw } from 'vue-router'
 
 export interface Meta extends RouteMeta {

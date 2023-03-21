@@ -1,11 +1,10 @@
 import { ComponentGroup, FormType } from '@/enum'
 import type { PropsType } from '@/types/component'
 import { BaseComponent } from '@/resource/models'
-import { h } from 'vue'
 
 export const componentName = 'Decoration2'
 class DecorationComponent extends BaseComponent {
-  constructor(id?: string, name?: string) {
+  constructor(id?: string, name?) {
     super({
       component: componentName,
       group: ComponentGroup.DECORATION,

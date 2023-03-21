@@ -26,7 +26,6 @@
 </template>
 
 <script lang="ts" setup>
-import { onMounted, reactive, ref, watch } from 'vue'
 import {
   NForm,
   NInput,
@@ -48,11 +47,9 @@ import { message } from '@/utils/message'
 const props = defineProps<{
   curComponent: BaseComponent
 }>()
-const isShow = ref<boolean>(false)
+const isShow = ref(false)
 
-const formData = reactive<{
-  afterData: string
-}>({
+const formData = reactive({
   afterData: ''
 })
 

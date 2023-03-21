@@ -5,7 +5,7 @@ import { DataIntegrationMode } from '@/resource/models/data'
 
 export const componentName = 'WaveChart'
 class WaveChartComponent extends BaseComponent {
-  constructor(id?: string, name?: string, icon?: string) {
+  constructor(id?: string, name?: string, icon?) {
     super({
       component: componentName,
       group: ComponentGroup.PROGERSS,

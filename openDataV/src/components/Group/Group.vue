@@ -39,7 +39,6 @@
 import { useBasicStoreWithOut } from '@/store/modules/basic'
 import { filterStyle, getComponentStyle, getInnerComponentShapeStyle } from '@/utils/utils'
 import Shape from '@/designer/Editor/Shape'
-import { computed } from 'vue'
 import type { BaseComponent } from '@/resource/models'
 
 const props = defineProps<{
@@ -47,7 +46,7 @@ const props = defineProps<{
 }>()
 
 const basicStore = useBasicStoreWithOut()
-const editMode = computed<boolean>(() => basicStore.isEditMode)
+const editMode = computed(() => basicStore.isEditMode)
 
 const curComponent = computed(() => basicStore.curComponent)
 const isActive = computed(() => {

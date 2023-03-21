@@ -13,8 +13,6 @@
 </template>
 
 <script setup lang="ts">
-import { watch, computed, onUnmounted } from 'vue'
-import type { WatchStopHandle } from 'vue'
 import type { ContextmenuItem } from '@/plugins/directive/contextmenu/types'
 import { useComposeStoreWithOut } from '@/store/modules/compose'
 import { useBasicStoreWithOut } from '@/store/modules/basic'
@@ -23,11 +21,11 @@ import type { Position } from '@/types/common'
 const composeStore = useComposeStoreWithOut()
 const basicStore = useBasicStoreWithOut()
 
-const hidden = computed<boolean>(() => composeStore.hidden)
-const left = computed<Position>(() => composeStore.style.left)
-const top = computed<Position>(() => composeStore.style.top)
-const width = computed<Position>(() => composeStore.style.width)
-const height = computed<Position>(() => composeStore.style.height)
+const hidden = computed(() => composeStore.hidden)
+const left = computed(() => composeStore.style.left)
+const top = computed(() => composeStore.style.top)
+const width = computed(() => composeStore.style.width)
+const height = computed(() => composeStore.style.height)
 
 const stopWatch: WatchStopHandle = watch(
   () => basicStore.curComponent,

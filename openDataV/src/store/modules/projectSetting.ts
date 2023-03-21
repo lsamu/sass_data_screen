@@ -68,10 +68,10 @@ const useProjectSettingStore = defineStore({
     }
   },
   actions: {
-    setNavTheme(value: string): void {
+    setNavTheme(value): void {
       this.navTheme = value
     },
-    setAppTheme(value: string): void {
+    setAppTheme(value): void {
       this.appTheme = value
     },
     setDarkTheme(isDark: boolean): void {

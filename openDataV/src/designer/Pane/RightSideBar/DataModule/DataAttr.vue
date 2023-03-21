@@ -31,14 +31,13 @@ import { NForm, NFormItem, NSelect, NDescriptions, NDescriptionsItem, NEmpty } f
 import StaticData from './StaticData'
 import DynamicData from './DynamicData'
 import DemoData from './DemoData'
-import { onMounted, reactive, ref, watch } from 'vue'
 import { DataIntegrationMode } from '@/resource/models/data'
 
 const props = defineProps<{
   curComponent: BaseComponent
 }>()
 
-const dataType = ref<string>(DataType.DEMO)
+const dataType = ref(DataType.DEMO)
 const dataTypeOptions = reactive([
   {
     label: '示例数据',
@@ -58,7 +57,7 @@ const dataTypeOptions = reactive([
   }
 ])
 
-const typeChanged = (type: string) => {
+const typeChanged = (type) => {
   dataType.value = type
 }
 

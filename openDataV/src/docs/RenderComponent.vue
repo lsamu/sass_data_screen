@@ -32,15 +32,12 @@
 import { NCard, NTabs, NTabPane } from 'naive-ui'
 import { getComponentStyle } from '@/utils/utils'
 import { uuid } from '@/utils/utils'
-import type { ComponentOptions, ConcreteComponent } from 'vue'
-import { reactive } from 'vue'
-import { computed, h } from 'vue'
 import StaticDataView from '@/components/StaticDataView'
 import type { BaseComponent } from '@/resource/models'
 
 const props = withDefaults(
   defineProps<{
-    config: new (id?: string, name?: string) => BaseComponent
+    config: new (id?: string, name?) => BaseComponent
     component: ConcreteComponent
     propValue: Recordable
     style: Recordable
@@ -52,10 +49,7 @@ const props = withDefaults(
   }
 )
 // const componentInstance = new props.config(uuid())
-const form = reactive<{
-  propValue: Recordable
-  style: Recordable
-}>({
+const form = reactive({
   propValue: props.propValue,
   style: props.style
 })
@@ -67,7 +61,7 @@ const styleChange = (style: Recordable) => {
   form.style = style
 }
 
-const Render = computed<ComponentOptions>(() => {
+const Render = computed(() => {
   const componentInstance = new props.config(uuid())
   componentInstance.setPropValue({ propValue: form.propValue })
   componentInstance.setStyleValue({ style: form.style })

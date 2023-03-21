@@ -29,7 +29,6 @@
 </template>
 
 <script lang="ts" setup>
-import { computed } from 'vue'
 import type { EditorView, ViewUpdate } from '@codemirror/view'
 import { Codemirror } from 'vue-codemirror'
 import { json } from '@codemirror/lang-json'
@@ -60,10 +59,7 @@ const props = withDefaults(
   }
 )
 
-const emits = defineEmits<{
-  (e: 'update:code', value: string): void
-  (e: 'change', value: string, viewUpdate: ViewUpdate): void
-}>()
+const emits = defineEmits(["update:code","change"])
 
 let cmView: EditorView
 

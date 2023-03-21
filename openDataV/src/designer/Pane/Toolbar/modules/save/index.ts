@@ -1,7 +1,6 @@
-import { render, createVNode } from 'vue'
 import SavePage from './SavePage.vue'
 
-const showSaveCard = (index: string) => {
+const showSaveCard = (index) => {
   const vm = createVNode(
     SavePage,
     {

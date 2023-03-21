@@ -20,7 +20,6 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, onMounted } from 'vue'
 import type { SelectOption } from 'naive-ui'
 import { NSpace, NSelect, NColorPicker } from 'naive-ui'
 import { GlobalColorSwatches } from '@/enum'
@@ -34,23 +33,20 @@ const props = defineProps<{
   value: BackgroundColor | Gradient | BackgroundImage
 }>()
 
-const emits = defineEmits<{
-  (e: 'update:value', value: any): void
-  (e: 'updateValue', value: any): void
-}>()
+const emits = defineEmits()
 
-const selectOption = ref<string>('backgroundColor')
-const backgroundColor = ref<BackgroundColor>({
+const selectOption = ref('backgroundColor')
+const backgroundColor = ref({
   backgroundColor: ''
 })
-const backgroundImage = ref<BackgroundImage>({
+const backgroundImage = ref({
   backgroundImage: '',
   backgroundRepeat: '',
   backgroundAttachment: '',
   backgroundPosition: '',
   backgroundSize: ''
 })
-const backgroundGradient = ref<Gradient>({ angle: 0, color1: '', color2: '' })
+const backgroundGradient = ref({ angle: 0, color1: '', color2: '' })
 const options: SelectOption[] = [
   {
     label: '背景色',

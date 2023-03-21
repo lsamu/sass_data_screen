@@ -40,7 +40,7 @@ export class GroupType {
   public icon: string
   public key: string
 
-  constructor(name: string, key: string, icon: string) {
+  constructor(name: string, key: string, icon) {
     this.name = name
     this.icon = icon
     this.key = key

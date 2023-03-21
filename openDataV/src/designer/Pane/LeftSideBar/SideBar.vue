@@ -54,25 +54,22 @@
 <script lang="ts" setup>
 import ComponentList from './Component/ComponentList.vue'
 import Layer from './Layer/Layer.vue'
-import { ref } from 'vue'
 import { NTabs, NTabPane } from 'naive-ui'
 
-const activeKey = ref<string>('components')
-const emits = defineEmits<{
-  (e: 'update:iscollapsed', iscollapsed: boolean): void
-}>()
+const activeKey = ref('components')
+const emits = defineEmits(["update:iscollapsed"])
 withDefaults(
   defineProps<{
     iscollapsed: boolean
   }>(),
   { iscollapsed: false }
 )
-const collapsedTabPane = (key: string) => {
+const collapsedTabPane = (key) => {
   emits('update:iscollapsed', false)
   activeKey.value = key
 }
 
-const switchTab = (key: string) => {
+const switchTab = (key) => {
   activeKey.value = key
 }
 </script>

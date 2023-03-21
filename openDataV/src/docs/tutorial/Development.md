@@ -55,7 +55,7 @@
  */
 
 class StaticTextComponent extends BaseComponent {
-  constructor(id?: string, name?: string, icon?: string) {
+  constructor(id?: string, name?: string, icon?) {
     super({
       component: componentName,
       group: ComponentGroup.TEXT,
@@ -296,10 +296,7 @@ const props = withDefaults(
   }
 )
 
-const emits = defineEmits<{
-  (e: 'update:value', weight: number): void
-  (e: 'change', weight: number): void
-}>()
+const emits = defineEmits()
 ```
 
 ## 监听组件属性
@@ -314,11 +311,11 @@ const emits = defineEmits<{
 
 ```typescript
 
-const customeText = ref<string>(props.propValue.base.text)
+const customeText = ref(props.propValue.base.text)
 
 watch( 
   () => props.propValue.base.text,
-  (value: string) => {
+  (value) => {
     customeText.value = value
   }
 
@@ -332,7 +329,7 @@ watch(
 
 ```typescript
 
-const customeText = computed<string>(() => {
+const customeText = computed(() => {
   return props.propValue.base.text
 })
 
@@ -343,7 +340,7 @@ const customeText = computed<string>(() => {
 还可以通过平台提供的`useProp`hook来监听属性变化
 
 ```typescript
-const customeText = ref<string>(props.propValue.base.text)
+const customeText = ref(props.propValue.base.text)
 const propValueChange = (type:string, key:string, value:any) {
   if(type === 'base' && key === 'text'){
     customeText.value = value
@@ -373,7 +370,7 @@ const { propValue } = useProp<StaticTextType>(props.component, propValueChange)
 
 ```typescript
 
-const activeCount = ref<string>(props.propValue.base.count)
+const activeCount = ref(props.propValue.base.count)
 
 const getData = async () => {
   const resp = await http.get({url: '/getdata'})
@@ -475,7 +472,7 @@ basicStore.isEditMode
 ```
 
 ```TypeScript
-const resizeHandler = (entry: ResizeObserverEntry) => {
+const resizeHandler = (entry) => {
   const {width, height}: DOMRectReadOnly = entry.contentRect
   doSomething()
 }

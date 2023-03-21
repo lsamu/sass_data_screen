@@ -8,7 +8,6 @@
   ></n-config-provider>
 </template>
 <script setup lang="ts">
-import { computed } from 'vue'
 import { NConfigProvider, zhCN, dateZhCN, darkTheme, lightTheme } from 'naive-ui'
 import { useProjectSettingStoreWithOut } from '@/store/modules/projectSetting'
 const projectSettingsStore = useProjectSettingStoreWithOut()

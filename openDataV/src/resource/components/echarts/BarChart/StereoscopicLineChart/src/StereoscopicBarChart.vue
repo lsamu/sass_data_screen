@@ -3,7 +3,6 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
 import { useData, useProp } from '@/resource/hooks'
 import type StereoscopicBarChartComponent from '../config'
 import type { StereoscopicBarChart } from '../type'
@@ -37,7 +36,7 @@ const propValueChange = () => {
   updateData(chartData)
 }
 
-const chartEl = ref<ElRef>()
+const chartEl = ref()
 const { updateEchart, resizeHandler } = useEchart(chartEl)
 const { propValue } = useProp<StereoscopicBarChart>(props.component, propValueChange)
 

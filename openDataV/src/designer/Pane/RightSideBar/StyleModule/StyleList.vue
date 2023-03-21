@@ -24,7 +24,6 @@
 <script setup lang="ts">
 import { useBasicStoreWithOut } from '@/store/modules/basic'
 import { debounce, cloneDeep } from 'lodash-es'
-import { computed, ref, watch } from 'vue'
 import FormAttr from '@/designer/modules/form/FormAttr'
 import { NCollapse, NCollapseItem } from 'naive-ui'
 import type { BaseComponent } from '@/resource/models'
@@ -34,7 +33,7 @@ const props = defineProps<{
 }>()
 const basicStore = useBasicStoreWithOut()
 
-const formData = ref<Recordable>({})
+const formData = ref({})
 const styleKeys = computed(() => {
   if (props.curComponent) {
     return props.curComponent.styleFormValue

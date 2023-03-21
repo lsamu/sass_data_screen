@@ -49,10 +49,8 @@
 <script lang="ts" setup>
 import { uuid } from '@/utils/utils'
 import { NInput, NButton, NInputGroup, NDivider } from 'naive-ui'
-import { ref, watch } from 'vue'
-import type { KV } from './type'
 
-const props = withDefaults(defineProps<{ value: Array<KV>; title: string; options?: string[] }>(), {
+const props = withDefaults(defineProps(), {
   title: '',
   value: () => [
     {
@@ -65,15 +63,12 @@ const props = withDefaults(defineProps<{ value: Array<KV>; title: string; option
   ]
 })
 
-const emits = defineEmits<{
-  (e: 'update:value', value: KV[]): void
-}>()
+const emits = defineEmits(["update:value"])
 
-const formData = ref<KV[]>(props.value)
+const formData = ref(props.value) as any
 
 const changed = (index: number, param: string, value: any) => {
   formData.value[index][param] = value
-
   emits('update:value', formData.value)
 }
 
@@ -101,7 +96,7 @@ const disableParams = (index: number) => {
   formData.value[index].disable = !formData.value[index].disable
   emits('update:value', formData.value)
 }
-const noSideSpace = (value: string) => {
+const noSideSpace = (value) => {
   return !value.startsWith(' ') && !value.endsWith(' ')
 }
 

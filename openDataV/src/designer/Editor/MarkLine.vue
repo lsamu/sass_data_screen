@@ -12,7 +12,6 @@
 </template>
 
 <script setup lang="ts">
-import { reactive, ref } from 'vue'
 import { useBasicStoreWithOut } from '@/store/modules/basic'
 import { useEventBus, StaticKey } from '@/bus'
 import { calcComponentAxis } from '@/utils/utils'
@@ -21,18 +20,11 @@ import type { Position } from '@/types/common'
 
 const basicStore = useBasicStoreWithOut()
 
-const linesRef = ref<Array<any>>([])
+const linesRef = ref([])
 
-const lines = reactive<Array<string>>(['xt', 'xc', 'xb', 'yl', 'yc', 'yr'])
-const diff = ref<number>(3)
-const lineStatus = reactive<{
-  xt: boolean
-  xc: boolean
-  xb: boolean
-  yl: boolean
-  yc: boolean
-  yr: boolean
-}>({
+const lines = reactive(['xt', 'xc', 'xb', 'yl', 'yc', 'yr'])
+const diff = ref(3)
+const lineStatus = reactive({
   xt: false,
   xc: false,
   xb: false,

@@ -3,7 +3,6 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
 import { useData, useProp } from '@/resource/hooks'
 import type MapChartComponent from '../config'
 import type { MapChart } from '../type'
@@ -14,7 +13,7 @@ import type { DataType } from '@/resource/models'
 import type { RequestResponse } from '@/resource/models/type'
 import chinaMap from './assets/china.json'
 
-const chartEl = ref<ElRef>(null)
+const chartEl = ref(null)
 let globalOption: EChartsOption
 const props = defineProps<{
   component: MapChartComponent

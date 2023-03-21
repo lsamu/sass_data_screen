@@ -82,7 +82,6 @@
 
 <script setup lang="ts">
 import { useProp } from '@/resource/hooks'
-import { ref } from 'vue'
 import type DecorationComponent from './config'
 
 import type { Decoration } from './type'
@@ -92,17 +91,17 @@ const props = defineProps<{
 
 const { propValue } = useProp<Decoration>(props.component)
 
-const width = ref<number>(200)
-const height = ref<number>(60)
-const svgWH = ref<number[]>([200, 50])
-const svgScale = ref<number[]>([1, 1])
-const rowNum = ref<number>(4)
-const rowPoints = ref<number>(20)
-const halfPointSideLength = ref<number>(Number(propValue.base.pointSideLength) / 2)
-const points = ref<number[][]>([])
-const rects = ref<number[][]>([])
+const width = ref(200)
+const height = ref(60)
+const svgWH = ref([200, 50])
+const svgScale = ref([1, 1])
+const rowNum = ref(4)
+const rowPoints = ref(20)
+const halfPointSideLength = ref(Number(propValue.base.pointSideLength) / 2)
+const points = ref([])
+const rects = ref([])
 
-const resizeHandler = (entry: ResizeObserverEntry) => {
+const resizeHandler = (entry) => {
   const rect: DOMRectReadOnly = entry.contentRect
   width.value = rect.width
   height.value = rect.height

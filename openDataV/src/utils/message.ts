@@ -1,11 +1,10 @@
 import type { ConfigProviderProps } from 'naive-ui'
 import { createDiscreteApi, lightTheme, darkTheme } from 'naive-ui'
-import { computed } from 'vue'
 import { useProjectSettingStoreWithOut } from '@/store/modules/projectSetting'
 
 // const themeRef = ref<'light' | 'dark'>('dark')
 const projectStore = useProjectSettingStoreWithOut()
-const configProviderPropsRef = computed<ConfigProviderProps>(() => ({
+const configProviderPropsRef = computed(() => ({
   theme: !projectStore.darkTheme ? lightTheme : darkTheme
 }))
 

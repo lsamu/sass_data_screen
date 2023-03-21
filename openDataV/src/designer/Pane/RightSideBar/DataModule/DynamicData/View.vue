@@ -36,7 +36,6 @@
 </template>
 
 <script lang="ts" setup>
-import { onMounted, reactive, ref, watch } from 'vue'
 import {
   NForm,
   NInput,
@@ -62,9 +61,9 @@ const props = defineProps<{
   curComponent: BaseComponent
 }>()
 
-const isShow = ref<boolean>(false)
+const isShow = ref(false)
 
-const formData = reactive<{ isRepeat: boolean; interval: number; restOptions: RequestOption }>({
+const formData = reactive({
   isRepeat: false,
   interval: 1000,
   restOptions: {
@@ -78,7 +77,7 @@ const formData = reactive<{ isRepeat: boolean; interval: number; restOptions: Re
       type: ScriptType.Javascript
     }
   }
-})
+}) as any
 const changeHandler = (option: RequestOption) => {
   formData.restOptions = option
   setDataConfig()

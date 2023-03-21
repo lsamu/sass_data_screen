@@ -81,7 +81,7 @@ const useBasicStore = defineStore({
       this.isClickComponent = status
     },
 
-    setEditMode(mode: string): void {
+    setEditMode(mode): void {
       this.editMode = mode
     },
     setScale(value: number) {
@@ -90,7 +90,7 @@ const useBasicStore = defineStore({
     toggleShowEm(): void {
       this.isShowEm = !this.isShowEm
     },
-    setName(name: string): void {
+    setName(name): void {
       this.name = name
     },
     setCanvasStyle(style: CanvasStyleData): void {
@@ -103,7 +103,7 @@ const useBasicStore = defineStore({
      * @param component 当前组件
      * @param index
      */
-    setCurComponent(component: Optional<BaseComponent>, index?: string): void {
+    setCurComponent(component: Optional<BaseComponent>, index?): void {
       // 设置前清理当前
       if (this.curComponent) {
         this.curComponent.active = false

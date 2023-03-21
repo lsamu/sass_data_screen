@@ -43,7 +43,6 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, unref, computed, onMounted } from 'vue'
 import { MainView } from './components/Main'
 import { AsideMenu } from './components/Menu'
 import { PageHeader } from './components/Header'
@@ -53,9 +52,9 @@ import { useProjectSettingStoreWithOut } from '@/store/modules/projectSetting'
 import { NLayout, NLayoutSider, NLayoutHeader, NLayoutContent, NBackTop } from 'naive-ui'
 
 const projectStore = useProjectSettingStoreWithOut()
-const collapsed = ref<boolean>(false)
+const collapsed = ref(false)
 
-const darkTheme = computed<boolean>(() => projectStore.darkTheme)
+const darkTheme = computed(() => projectStore.darkTheme)
 const fixedHeader = computed(() => {
   const { fixed } = unref(projectStore.headerSetting)
   return fixed ? 'absolute' : 'static'

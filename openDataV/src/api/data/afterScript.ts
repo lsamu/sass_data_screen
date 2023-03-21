@@ -6,7 +6,7 @@ import type { AfterScriptDetail } from './type'
  * 根据id 加载后置脚本
  * @param id 脚本ID
  */
-export const getAfterScriptApi = async (id: string): Promise<AxiosResponse<AfterScriptDetail>> => {
+export const getAfterScriptApi = async (id): Promise<AxiosResponse<AfterScriptDetail>> => {
   return http.get<AfterScriptDetail>({
     url: `/dataset/script/${id}/`
   })

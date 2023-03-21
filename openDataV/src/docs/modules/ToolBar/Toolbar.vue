@@ -3,8 +3,6 @@
 </template>
 
 <script setup lang="ts">
-import { h } from 'vue'
-import { useRouter } from 'vue-router'
 import { toggleTheme } from './modules/actions'
 import ThemeIcon from './modules/themeSwitch/ThemeIcon.vue'
 import { ToolBar } from '@/components/ToolBar'
@@ -14,9 +12,7 @@ import Logo from './modules/Logo.vue'
 import docsRouters from '@/router/modules/docs'
 
 const router = useRouter()
-const emits = defineEmits<{
-  (e: 'change', value: string): void
-}>()
+const emits = defineEmits(["change"])
 
 const leftBars: ToolBarItemType[] = docsRouters[0].children.map((el) => {
   return {

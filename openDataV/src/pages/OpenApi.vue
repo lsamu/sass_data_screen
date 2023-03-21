@@ -49,12 +49,11 @@ import ApiType from '@/apiView/siderBar/indext'
 import ToolBar from '@/apiView/ToolBar'
 import RequestContent from '@/apiView/RequestContent'
 import DataHistory from '@/apiView/DataHistory'
-import { ref, computed } from 'vue'
 import { NLayout, NLayoutContent, NLayoutHeader, NLayoutSider, NScrollbar } from 'naive-ui'
 const collapsedRight = ref(false)
 
-const windowWidth = ref<number>(0)
-const windowHeight = ref<number>(0)
+const windowWidth = ref(0)
+const windowHeight = ref(0)
 const scrollbarStyle = computed(() => {
   return {
     width: windowWidth.value + 'px',
@@ -62,12 +61,12 @@ const scrollbarStyle = computed(() => {
   }
 })
 
-const activeKey = ref<string>('REST')
-const menuChange = (value: string) => {
+const activeKey = ref('REST')
+const menuChange = (value) => {
   activeKey.value = value
 }
 
-const editorWindowResizeHandler = (entry: ResizeObserverEntry) => {
+const editorWindowResizeHandler = (entry) => {
   const { width, height } = entry.contentRect
   windowWidth.value = width
   windowHeight.value = height

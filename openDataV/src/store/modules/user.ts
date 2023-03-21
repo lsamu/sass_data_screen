@@ -21,7 +21,7 @@ const useUserStore = defineStore({
     }
   },
   actions: {
-    async setToken(token: string) {
+    async setToken(token) {
       this.token = token
       setStorageItem('token', token)
     },

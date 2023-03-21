@@ -1,4 +1,4 @@
-import { render, createVNode } from 'vue'
+
 import IconFont from './IconFont.vue'
 
 const showIconCard = () => {

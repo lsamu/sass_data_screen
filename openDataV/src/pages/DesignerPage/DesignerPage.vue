@@ -61,9 +61,7 @@ import LeftSideBar from '@/designer/Pane/LeftSideBar'
 import RightSideBar from '@/designer/Pane/RightSideBar'
 import Canvas from './Canvas.vue'
 import { useBasicStoreWithOut } from '@/store/modules/basic'
-import { ref, onMounted, onUnmounted } from 'vue'
 import { getPageApi } from '@/api/pages'
-import { useRoute } from 'vue-router'
 import { NLayout, NLayoutHeader, NLayoutSider } from 'naive-ui'
 import { useUnloadAlert } from '@/hooks'
 
@@ -83,7 +81,7 @@ onMounted(async () => {
   }
 })
 
-const restore = async (index: string) => {
+const restore = async (index) => {
   const resp = await getPageApi(index)
   if (!resp.data) {
     return

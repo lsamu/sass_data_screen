@@ -16,7 +16,6 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, ref, h, watch } from 'vue'
 import { useBasicStoreWithOut } from '@/store/modules/basic'
 import { useCopyStoreWithOut } from '@/store/modules/copy'
 import { uuid } from '@/utils/utils'
@@ -40,8 +39,8 @@ ComponentGroupList.map((ele) => {
 
 const componentData = computed(() => basicStore.componentData)
 
-const menu = ref<ElRef<any>>(null)
-const activeKey = ref<string>('')
+const menu = ref(null)
+const activeKey = ref('')
 const open = (event: any) => {
   const index = event as string
   activeKey.value = index
@@ -51,7 +50,7 @@ const open = (event: any) => {
 }
 useEventBus('ActiveMenu', open)
 
-const handleSelect = (key: string) => {
+const handleSelect = (key) => {
   activeKey.value = key
   const indexes: number[] = key.split('-').map((i) => Number(i))
   const activedComponent: Optional<BaseComponent> = basicStore.getComponentByIndex(indexes)
@@ -60,7 +59,7 @@ const handleSelect = (key: string) => {
   }
 }
 
-const menuOptions = ref<MenuOption[]>([])
+const menuOptions = ref([])
 
 const getMenuOptions = (
   fatherIndex: string,
@@ -113,7 +112,7 @@ const getMenuOptions = (
   }
   return options
 }
-const calcIndex = (index: number, fatherIndex: string) => {
+const calcIndex = (index: number, fatherIndex) => {
   if (fatherIndex) {
     return `${fatherIndex}-${index}`
   } else {
@@ -121,7 +120,7 @@ const calcIndex = (index: number, fatherIndex: string) => {
   }
 }
 
-const copy = (index: string) => {
+const copy = (index) => {
   const indexes: number[] = index.split('-').map((i) => Number(i))
   const component: Optional<BaseComponent> = cloneDeep(basicStore.getComponentByIndex(indexes))
   if (component) {
@@ -129,50 +128,50 @@ const copy = (index: string) => {
   }
 }
 
-const remove = async (index: string) => {
+const remove = async (index) => {
   handleSelect(index)
   const indexes: number[] = index.split('-').map((i) => Number(i))
   basicStore.removeComponent(indexes[indexes.length - 1], basicStore.curComponent?.parent)
 }
 
-const up = async (index: string) => {
+const up = async (index) => {
   handleSelect(index)
   const indexes: number[] = index.split('-').map((i) => Number(i))
   basicStore.upComponent(indexes[indexes.length - 1], basicStore.curComponent?.parent)
 }
 
-const down = async (index: string) => {
+const down = async (index) => {
   handleSelect(index)
   const indexes: number[] = index.split('-').map((i) => Number(i))
   basicStore.downComponent(indexes[indexes.length - 1], basicStore.curComponent?.parent)
 }
 
-const top = async (index: string) => {
+const top = async (index) => {
   handleSelect(index)
   const indexes: number[] = index.split('-').map((i) => Number(i))
   basicStore.topComponent(indexes[indexes.length - 1], basicStore.curComponent?.parent)
 }
 
-const bottom = async (index: string) => {
+const bottom = async (index) => {
   handleSelect(index)
   const indexes: number[] = index.split('-').map((i) => Number(i))
   basicStore.bottomComponent(indexes[indexes.length - 1], basicStore.curComponent?.parent)
 }
 
-const hidden = (index: string) => {
+const hidden = (index) => {
   handleSelect(index)
   const indexes: number[] = index.split('-').map((i) => Number(i))
   const component = basicStore.getComponentByIndex(indexes)
   if (component) component.hiddenComponent()
 }
 
-const display = (index: string) => {
+const display = (index) => {
   handleSelect(index)
   const indexes: number[] = index.split('-').map((i) => Number(i))
   const component = basicStore.getComponentByIndex(indexes)
   if (component) component.showComponent()
 }
-const cut = (index: string) => {
+const cut = (index) => {
   const indexes: number[] = index.split('-').map((i) => Number(i))
   const cutComponent: Optional<BaseComponent> = basicStore.getComponentByIndex(indexes)
   const component: Optional<BaseComponent> = basicStore.cutComponent(
@@ -184,7 +183,7 @@ const cut = (index: string) => {
   }
 }
 
-const paste = (index: string) => {
+const paste = (index) => {
   const indexes: number[] = index.split('-').map((i) => Number(i))
   const insertComponent: Optional<BaseComponent> = basicStore.getComponentByIndex(indexes)
   if (copyStore.copyData) {
@@ -194,7 +193,7 @@ const paste = (index: string) => {
   }
 }
 
-const contextmenus = (index: string): ContextmenuItem[] => {
+const contextmenus = (index): ContextmenuItem[] => {
   const indexes = index.split('-').map((el) => parseInt(el))
   return [
     {

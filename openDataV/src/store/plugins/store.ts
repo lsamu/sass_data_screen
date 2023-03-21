@@ -9,9 +9,9 @@ import type {
  * Storage类型
  */
 export interface Storage {
-  getItem: (key: string) => any
+  getItem: (key) => any
   setItem: (key: string, value: any) => void
-  removeItem: (key: string) => void
+  removeItem: (key) => void
 }
 
 /**

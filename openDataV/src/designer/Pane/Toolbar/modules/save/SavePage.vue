@@ -29,7 +29,6 @@
   </ConfigProvider>
 </template>
 <script lang="ts" setup>
-import { reactive, ref } from 'vue'
 import { NForm, NInput, NFormItem, NButton, NModal, NSpace } from 'naive-ui'
 import type { FormItemRule } from 'naive-ui'
 import { message } from '@/utils/message'
@@ -42,21 +41,16 @@ import router from '@/router'
 const basicStore = useBasicStoreWithOut()
 const props = defineProps<{ index?: string }>()
 
-const saveDialogVisible = ref<boolean>(true)
-const form = reactive<{
-  name: string
-  thumbnail: string
-}>({
+const saveDialogVisible = ref(true)
+const form = reactive({
   name: basicStore.name,
   thumbnail: basicStore.thumbnail
 })
-const rules = reactive<{
-  name: FormItemRule[]
-}>({
+const rules = reactive({
   name: [{ required: true, message: '请输入页面名称', trigger: 'blur' }]
 })
 
-const handleSubmit = async (type: string) => {
+const handleSubmit = async (type) => {
   const { name, thumbnail } = form
   if (!name) {
     message.error('请输入页面名称')

@@ -43,35 +43,24 @@
   </div>
 </template>
 <script lang="ts" setup>
-/* eslint-disable-next-line @typescript-eslint/consistent-type-imports */
 import { NFormItem, NInput, NButton, NForm } from 'naive-ui'
-import { reactive, ref } from 'vue'
 
-import type { LoginData } from '@/types/user'
 import { useUserStoreWithOut } from '@/store/modules/user'
-import { useRouter, useRoute } from 'vue-router'
-import type { Router, RouteLocationNormalizedLoaded as Route } from 'vue-router'
 import { message } from '@/utils/message'
 import { loginApi } from '@/api/user'
 
 const userStore = useUserStoreWithOut()
-const router: Router = useRouter()
-const route: Route = useRoute()
+const router = useRouter()
+const route = useRoute()
 
-const ruleFormRef = ref<InstanceType<typeof NForm>>()
+const ruleFormRef = ref()
 
-const formData = reactive<{
-  username: string
-  password: string
-}>({
+const formData = reactive({
   username: '',
   password: ''
 })
 
-const rules = reactive<{
-  username: Recordable[]
-  password: Recordable[]
-}>({
+const rules = reactive({
   username: [{ required: true, message: '请输入用户名', trigger: 'blur' }],
   password: [{ required: true, message: '请输入密码', trigger: 'blur' }]
 })
@@ -79,7 +68,7 @@ const rules = reactive<{
 const loginAction = async () => {
   try {
     await ruleFormRef.value?.validate()
-    const data: LoginData = { ...formData }
+    const data = { ...formData }
     try {
       const resp = await loginApi(data)
       if (resp.status === 200) {

@@ -34,7 +34,6 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
 import Editor from '@/designer/Editor/Index.vue'
 import type { SelectOption } from 'naive-ui'
 import {
@@ -50,13 +49,13 @@ import {
 import { debounce } from 'lodash-es'
 import { useBasicStoreWithOut } from '@/store/modules/basic'
 
-const windowWidth = ref<number>(0)
-const windowHeight = ref<number>(0)
-const toolBarHeight = ref<number>(35)
+const windowWidth = ref(0)
+const windowHeight = ref(0)
+const toolBarHeight = ref(35)
 
-const sliderValue = ref<number>(100)
-const selectValue = ref<string>('100%')
-const scaleValue = ref<number>(1)
+const sliderValue = ref(100)
+const selectValue = ref('100%')
+const scaleValue = ref(1)
 const basicStore = useBasicStoreWithOut()
 const options: SelectOption[] = [
   {
@@ -88,7 +87,7 @@ const scrollbarStyle = computed(() => {
   }
 })
 
-const editorWindowResizeHandler = (entry: ResizeObserverEntry) => {
+const editorWindowResizeHandler = (entry) => {
   const { width, height } = entry.contentRect
   windowWidth.value = width
   windowHeight.value = height - toolBarHeight.value

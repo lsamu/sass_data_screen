@@ -14,7 +14,6 @@
 </template>
 <script lang="ts" setup>
 import type { ContextmenuItem } from '@/plugins/directive/contextmenu/types'
-import { ref, computed, onMounted } from 'vue'
 import type { PaletteType } from '../index-types'
 
 const props = defineProps<{
@@ -28,11 +27,7 @@ const props = defineProps<{
   isShowReferLine: boolean
 }>()
 
-const emit = defineEmits<{
-  (e: 'onMouseDown'): void
-  (e: 'onRelease', start: number, index: number): void
-  (e: 'onRemove', index: number): void
-}>()
+const emit = defineEmits(["onMouseDown","onRelease","onRemove"])
 
 const startValue = ref(0)
 const showLine = ref(true)

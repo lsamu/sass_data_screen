@@ -147,7 +147,6 @@
 
 <script setup lang="ts">
 import { useProp } from '@/resource/hooks'
-import { ref } from 'vue'
 import type DecorationComponent from './config'
 import type { Decoration } from './type'
 
@@ -162,16 +161,16 @@ const propChange = (prop: string, key: string, value: any) => {
 
 const { propValue } = useProp<Decoration>(props.component, propChange)
 
-const width = ref<number>(300)
-const height = ref<number>(35)
+const width = ref(300)
+const height = ref(35)
 
-const resizeHandler = (entry: ResizeObserverEntry) => {
+const resizeHandler = (entry) => {
   const rect: DOMRectReadOnly = entry.contentRect
   width.value = rect.width
   height.value = rect.height
 }
 
-const mergedColor = ref<string[]>([propValue.base.color1, propValue.base.color2])
+const mergedColor = ref([propValue.base.color1, propValue.base.color2])
 </script>
 
 <style lang="less" scoped>

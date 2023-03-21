@@ -6,7 +6,7 @@ import type { StaticDataDetail } from './type'
  * 根据id 加载静态数据
  * @param id 静态数据ID
  */
-export const getStaticDataApi = async (id: string): Promise<AxiosResponse<StaticDataDetail>> => {
+export const getStaticDataApi = async (id): Promise<AxiosResponse<StaticDataDetail>> => {
   return http.get<StaticDataDetail>({
     url: `/dataset/static/${id}/`
   })
@@ -53,7 +53,7 @@ export const createStaticDataApi = async (
  * 删除静态数据
  * @param id 静态数据 id
  */
-export const deleteStaticDataApi = async (id: string): Promise<AxiosResponse<StaticDataDetail>> => {
+export const deleteStaticDataApi = async (id): Promise<AxiosResponse<StaticDataDetail>> => {
   return http.post<StaticDataDetail>({
     url: `/dataset/static/${id}/`
   })

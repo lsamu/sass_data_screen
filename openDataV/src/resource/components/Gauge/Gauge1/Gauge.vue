@@ -83,7 +83,6 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
 import { http } from '@/utils/http'
 import { useProp } from '@/resource/hooks'
 import { useEventBus } from '@/bus'
@@ -102,16 +101,16 @@ const propChange = (prop: string, key: string, value: any) => {
   if (prop === 'attr' && key === 'unit') unit.value = value
 }
 const { propValue } = useProp<Gauge>(props.component, propChange)
-const mergedColor = ref<string[]>([propValue.attr.color1, propValue.attr.color2])
+const mergedColor = ref([propValue.attr.color1, propValue.attr.color2])
 
 const polygonId = `decoration-9-polygon`
-const dur = ref<number>(3)
-const dataValue = ref<number>(0)
-const scaleRota = ref<number[]>([1, 1])
+const dur = ref(3)
+const dataValue = ref(0)
+const scaleRota = ref([1, 1])
 
-const unit = ref<string>(propValue.attr.unit || '')
+const unit = ref(propValue.attr.unit || '')
 
-const resizeHandler = (entry: ResizeObserverEntry) => {
+const resizeHandler = (entry) => {
   const rect: DOMRectReadOnly = entry.contentRect
   const rate = Math.min(rect.width / 100, rect.height / 100)
   scaleRota.value = [rate, rate]

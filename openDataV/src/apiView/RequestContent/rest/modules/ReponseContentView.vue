@@ -8,7 +8,6 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, watch } from 'vue'
 import CodeEditor from '@/components/CodeEditor'
 import type { CodemirrorOption } from '@/components/CodeEditor/type'
 import { json } from '@codemirror/lang-json'
@@ -18,14 +17,14 @@ const projectStore = useProjectSettingStoreWithOut()
 const props = defineProps<{
   data: string
 }>()
-const config = ref<CodemirrorOption>({
+const config = ref({
   height: '600px',
   tabSize: 4,
   indentWithTab: true,
   autofocus: true,
   disabled: true
 })
-const code = ref<string>(props.data)
+const code = ref(props.data)
 watch(
   () => props.data,
   () => {

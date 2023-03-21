@@ -4,7 +4,7 @@ import { BaseComponent } from '@/resource/models'
 export const componentName = 'Group'
 class GroupComponent extends BaseComponent {
   show = false
-  constructor(id?: string, name?: string) {
+  constructor(id?: string, name?) {
     super({
       component: componentName,
       group: ComponentGroup.CONTAINER,

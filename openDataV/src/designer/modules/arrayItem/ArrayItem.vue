@@ -29,7 +29,6 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, reactive, nextTick } from 'vue'
 import { NSpace, NInput } from 'naive-ui'
 import { message } from '@/utils/message'
 
@@ -48,13 +47,11 @@ const props = withDefaults(
   }
 )
 
-const emits = defineEmits<{
-  (e: 'updateValue', value: string[]): void
-}>()
+const emits = defineEmits()
 
-const addInputEl = ref<HTMLInputElement>()
-const newValue = ref<string>('')
-const arrayValue = reactive<string[]>(
+const addInputEl = ref()
+const newValue = ref('')
+const arrayValue = reactive(
   props.type === 'static' ? new Array(props.count).fill('') : []
 )
 arrayValue.splice(0, props.value.length, ...props.value)

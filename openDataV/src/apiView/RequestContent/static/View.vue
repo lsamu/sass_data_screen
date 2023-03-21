@@ -49,7 +49,6 @@
 </template>
 
 <script lang="ts" setup>
-import { onMounted, reactive, ref, watch } from 'vue'
 import { NTabs, NTabPane, NCard, NSelect, NSpace, NButtonGroup, NButton, NInput } from 'naive-ui'
 import type { SelectOption } from 'naive-ui'
 import { ScriptType } from '@/enum'
@@ -70,7 +69,7 @@ import { useEventBus, StaticKey } from '@/bus'
 import useDataSnapShot from '@/apiView/hooks/snapshot'
 import type { AfterScript } from '@/types/component'
 
-const staticDataList = ref<Array<SelectOption>>([])
+const staticDataList = ref([])
 const props = withDefaults(
   defineProps<{
     options?: StaticRequestOptions
@@ -114,22 +113,14 @@ const loadStaticList = async () => {
   }
 }
 
-const formData = reactive<{
-  id?: string
-  title: string
-  originData: any
-  afterData: string
-}>({
+const formData = reactive({
   id: props.options.dataId,
   title: props.options.title || '',
   afterData: '',
   originData: ''
 })
 
-const emits = defineEmits<{
-  (e: 'dataChange', id: string, title: string): void
-  (e: 'scriptChange', script: AfterScript): void
-}>()
+const emits = defineEmits()
 
 const clear = () => {
   formData.id = undefined
@@ -139,7 +130,7 @@ const originDataChange = (value: any) => {
   formData.originData = value
   getAfterData(props.options.script)
 }
-const dataChangeHandler = async (id: string) => {
+const dataChangeHandler = async (id) => {
   if (id) {
     const resp: StaticDataDetail | undefined = await loadStaticData(id)
     if (resp) {
@@ -181,7 +172,7 @@ const getAfterData = (script: AfterScript) => {
   }
 }
 
-const loadStaticData = async (id: string): Promise<StaticDataDetail | undefined> => {
+const loadStaticData = async (id): Promise<StaticDataDetail | undefined> => {
   try {
     const resp = await getStaticDataApi(id)
     if (resp.status === 200) {

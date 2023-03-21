@@ -40,7 +40,6 @@
 
 <script setup lang="ts">
 import { useProp } from '@/resource/hooks'
-import { onMounted, ref } from 'vue'
 import type DecorationComponent from './config'
 import type { Decoration } from './type'
 import { randomExtend } from './utils'
@@ -58,24 +57,24 @@ const propChange = (prop: string, key: string, value: any) => {
 
 const { propValue } = useProp<Decoration>(props.component, propChange)
 
-const width = ref<number>(300)
-const height = ref<number>(35)
+const width = ref(300)
+const height = ref(35)
 
-const resizeHandler = (entry: ResizeObserverEntry) => {
+const resizeHandler = (entry) => {
   const rect: DOMRectReadOnly = entry.contentRect
   width.value = rect.width
   height.value = rect.height
   calcPointsPosition()
 }
 
-const rowNum = ref<number>(1)
-const rectWidth = ref<number>(propValue.base.rectWidth || 7)
-const rectSpace = ref<number>(propValue.base.space || 0)
-const points = ref<number[][]>([])
-const heights = ref<number[]>([])
-const minHeights = ref<number[]>([])
-const randoms = ref<number[]>([])
-const mergedColor = ref<string[]>([propValue.base.color1, propValue.base.color2])
+const rowNum = ref(1)
+const rectWidth = ref(propValue.base.rectWidth || 7)
+const rectSpace = ref(propValue.base.space || 0)
+const points = ref([])
+const heights = ref([])
+const minHeights = ref([])
+const randoms = ref([])
+const mergedColor = ref([propValue.base.color1, propValue.base.color2])
 
 const calcPointsPosition = () => {
   const rowPoints = Math.round(width.value / (rectWidth.value + rectSpace.value))

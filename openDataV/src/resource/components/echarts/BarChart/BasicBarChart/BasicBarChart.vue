@@ -3,7 +3,6 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
 import type BasicLineChartComponent from './config'
 import type { BasicLineChart } from './type'
 import type { BarSeriesOption, EChartsOption, XAXisComponentOption } from 'echarts'
@@ -13,7 +12,7 @@ import { useProp, useData } from '@/resource/hooks'
 import type { DataType } from '@/resource/models'
 import type { RequestResponse } from '@/resource/models/type'
 
-const chartEl = ref<ElRef>(null)
+const chartEl = ref(null)
 let globalOption: EChartsOption
 const props = defineProps<{
   component: BasicLineChartComponent

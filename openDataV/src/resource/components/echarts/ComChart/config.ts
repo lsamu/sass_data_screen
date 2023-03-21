@@ -4,7 +4,7 @@ import { DataIntegrationMode } from '@/resource/models/data'
 
 export const componentName = 'ComChart'
 class ComChartComponent extends BaseComponent {
-  constructor(id?: string, name?: string, icon?: string) {
+  constructor(id?: string, name?: string, icon?) {
     super({
       component: componentName,
       group: ComponentGroup.OTHER,

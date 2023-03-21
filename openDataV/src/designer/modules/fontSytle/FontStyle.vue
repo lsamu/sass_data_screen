@@ -9,7 +9,6 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive } from 'vue'
 import { SYS_FONTS } from '@/enum/font'
 import { NSelect } from 'naive-ui'
 
@@ -22,15 +21,12 @@ const props = withDefaults(
   }
 )
 
-const font = ref<string>(props.value)
-const fonts = reactive<{ label: string; value: string }[]>(SYS_FONTS)
+const font = ref(props.value)
+const fonts = reactive(SYS_FONTS)
 
-const emits = defineEmits<{
-  (e: 'update:value', color: string): void
-  (e: 'change', color: string): void
-}>()
+const emits = defineEmits(["update:value","change"])
 
-const change = (val: string) => {
+const change = (val) => {
   font.value = val
   emits('update:value', font.value)
   emits('change', font.value)

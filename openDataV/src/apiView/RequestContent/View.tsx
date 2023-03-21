@@ -1,4 +1,3 @@
-import { defineComponent } from 'vue'
 import GraphQL from './graphQL'
 import Rest from './rest'
 import Static from './static'

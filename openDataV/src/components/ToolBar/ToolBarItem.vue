@@ -9,8 +9,6 @@
 </template>
 <script lang="ts" setup>
 import { NButton, NTooltip, NDivider } from 'naive-ui'
-import type { VNode, ComponentOptions } from 'vue'
-import { computed, h } from 'vue'
 import type { iconNode, ToolBarItemType } from './type'
 import { XIcon } from '@/plugins/xicon'
 const props = withDefaults(
@@ -31,7 +29,7 @@ const props = withDefaults(
   }
 )
 
-const IconComponent = computed<ComponentOptions>(() =>
+const IconComponent = computed(() =>
   typeof props.icon === 'string'
     ? h(XIcon, {
         name: props.icon,

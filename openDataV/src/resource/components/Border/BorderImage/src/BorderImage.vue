@@ -4,7 +4,6 @@
 
 <script setup lang="ts">
 import { useProp } from '@/resource/hooks'
-import { computed, ref } from 'vue'
 import type BorderImageComponent from '../config'
 import type { BorderImage } from '../type'
 const props = defineProps<{
@@ -13,8 +12,8 @@ const props = defineProps<{
 
 const { propValue } = useProp<BorderImage>(props.component)
 
-const width = ref<number>(150)
-const height = ref<number>(150)
+const width = ref(150)
+const height = ref(150)
 const borderImageUrl = computed(
   () => `url(${propValue.base.borderSource || '/images/border-image.png'})`
 )
@@ -24,7 +23,7 @@ const backgroundColor = computed(() => propValue.base.backgroundColor || 'transp
 
 // 监听窗口大小变化
 
-const resizeHandler = (entry: ResizeObserverEntry) => {
+const resizeHandler = (entry) => {
   const rect: DOMRectReadOnly = entry.contentRect
   width.value = rect.width
   height.value = rect.height

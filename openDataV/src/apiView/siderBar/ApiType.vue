@@ -12,7 +12,6 @@
 </template>
 
 <script setup lang="ts">
-import { computed, h, ref } from 'vue'
 import { NMenu } from 'naive-ui'
 import type { MenuOption } from 'naive-ui'
 
@@ -40,16 +39,14 @@ const apiTypes = [
   }
 ]
 
-const activeItem = ref<string>('REST')
-const emits = defineEmits<{
-  (e: 'change', value: string): void
-}>()
-const menuChange = (value: string) => {
+const activeItem = ref('REST')
+const emits = defineEmits()
+const menuChange = (value) => {
   activeItem.value = value
   emits('change', value)
 }
 
-const menuOptions = computed<MenuOption[]>(() => {
+const menuOptions = computed(() => {
   const menus: MenuOption[] = []
   apiTypes.forEach((item) => {
     menus.push({

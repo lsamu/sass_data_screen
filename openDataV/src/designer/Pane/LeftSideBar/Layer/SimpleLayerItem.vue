@@ -30,10 +30,10 @@ const props = withDefaults(
   }
 )
 
-const emits = defineEmits<{ (e: 'select', index: string): void }>()
+const emits = defineEmits(["select"])
 const basicStore = useBasicStoreWithOut()
 
-const handleDragStart = (event: DragEvent, index: string) => {
+const handleDragStart = (event: DragEvent, index) => {
   // event.preventDefault()
   event.dataTransfer?.setData('componentIndex', index)
   event.stopPropagation()
@@ -47,7 +47,7 @@ const handleDragOver = (event: DragEvent, index: string, isEmit = false) => {
   }
 }
 
-const handleDrop = (event: DragEvent, index: string) => {
+const handleDrop = (event: DragEvent, index) => {
   event.preventDefault()
   event.stopPropagation()
   const componentIndex: string = event.dataTransfer?.getData('componentIndex') as string
@@ -65,9 +65,9 @@ const handleDrop = (event: DragEvent, index: string) => {
     emits('select', index)
   }
 }
-const calcDragIndex = (fromIndex: string, toIndex: string): string => {
-  const fromIndexs: number[] = fromIndex.split('-').map((el: string) => parseInt(el))
-  const toIndexs: number[] = toIndex.split('-').map((el: string) => parseInt(el))
+const calcDragIndex = (fromIndex: string, toIndex): string => {
+  const fromIndexs: number[] = fromIndex.split('-').map((el) => parseInt(el))
+  const toIndexs: number[] = toIndex.split('-').map((el) => parseInt(el))
   const fromLength: number = fromIndexs.length
   for (let i = 0; i < fromLength; i++) {
     if (fromIndexs[i] === toIndexs[i]) {

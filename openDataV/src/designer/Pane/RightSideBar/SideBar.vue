@@ -52,7 +52,6 @@
 <script setup lang="ts">
 import { NTabs, NTabPane, NMenu } from 'naive-ui'
 import type { MenuOption } from 'naive-ui'
-import { ref, computed, h } from 'vue'
 import { useBasicStoreWithOut } from '@/store/modules/basic'
 import Canvas from './Canvas.vue'
 import StyleList from './StyleModule' // 右侧属性列表
@@ -60,7 +59,7 @@ import AttrList from './AttrModule'
 import DataList from './DataModule'
 import { XIcon } from '@/plugins/xicon'
 
-const activeKey = ref<string>('attr')
+const activeKey = ref('attr')
 
 const basicStore = useBasicStoreWithOut()
 withDefaults(
@@ -70,12 +69,10 @@ withDefaults(
   { iscollapsed: false }
 )
 
-const emits = defineEmits<{
-  (e: 'update:iscollapsed', iscollapsed: boolean): void
-}>()
+const emits = defineEmits(["update:iscollapsed"])
 
 const curComponent = computed(() => basicStore.curComponent)
-const menuOptions = computed<MenuOption[]>(() => {
+const menuOptions = computed(() => {
   if (basicStore.curComponent) {
     return [
       {
@@ -120,7 +117,7 @@ const menuOptions = computed<MenuOption[]>(() => {
   }
 })
 
-const collapsedTabPane = (key: string) => {
+const collapsedTabPane = (key) => {
   emits('update:iscollapsed', false)
   activeKey.value = key
 }

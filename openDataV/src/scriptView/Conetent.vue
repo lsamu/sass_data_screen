@@ -43,7 +43,6 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, reactive, ref } from 'vue'
 import { NCard, NSpace, NButtonGroup, NButton, NInput, NDivider, NTabs, NTabPane } from 'naive-ui'
 import DataView from '@/components/DataView'
 import { message } from '@/utils/message'
@@ -67,20 +66,15 @@ const config = ref({
   disabled: false
 })
 
-const formData = reactive<{
-  id?: string
-  title: string
-  code: any
-  type: ScriptType
-}>({
+const formData = reactive({
   id: '',
   title: '' || '',
   code: '',
   type: ScriptType.Javascript
 })
 
-const params = ref<string>(JSON.stringify({}, null, '\t'))
-const paramsChange = (content: string) => {
+const params = ref(JSON.stringify({}, null, '\t'))
+const paramsChange = (content) => {
   params.value = content
 }
 
@@ -93,8 +87,8 @@ useEventBus(StaticKey.SRCIPT_KEY, async (id) => {
   await loadAfterScript(id as string)
 })
 
-const stdOut = ref<string>('')
-const scriptData = computed<AfterScript>(() => {
+const stdOut = ref('')
+const scriptData = computed(() => {
   return {
     code: formData.code,
     type: formData.type
@@ -116,7 +110,7 @@ const run = () => {
   }
 }
 
-const loadAfterScript = async (id: string) => {
+const loadAfterScript = async (id) => {
   try {
     const resp = await getAfterScriptApi(id)
     if (resp.status === 200) {

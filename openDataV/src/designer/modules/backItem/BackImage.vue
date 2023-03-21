@@ -42,7 +42,6 @@
 </template>
 
 <script lang="ts" setup>
-import { computed } from 'vue'
 import type { SelectOption, UploadCustomRequestOptions } from 'naive-ui'
 import { NForm, NFormItem, NInput, NSelect, NUpload, NButton } from 'naive-ui'
 import type { BackgroundImage } from '@/types/common'
@@ -53,11 +52,9 @@ const props = defineProps<{
   value: BackgroundImage
 }>()
 
-const emits = defineEmits<{
-  (e: 'update:value', value: BackgroundImage)
-}>()
+const emits = defineEmits(["update:value"])
 
-const data = computed<BackgroundImage>(() => {
+const data = computed(() => {
   return {
     backgroundImage: props.value.backgroundImage,
     backgroundRepeat: props.value.backgroundRepeat || 'round',
@@ -160,7 +157,7 @@ const sizeOptions: SelectOption[] = [
     value: 'contain'
   }
 ]
-const handleChange = (value: string, type: string) => {
+const handleChange = (value: string, type) => {
   const background: BackgroundImage = cloneDeep(data.value)
   switch (type) {
     case 'backgroundImage':

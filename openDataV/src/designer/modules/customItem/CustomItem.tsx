@@ -1,5 +1,4 @@
-import { defineComponent, h } from 'vue'
-import type { PropType, ConcreteComponent, VNodeProps } from 'vue'
+
 export default defineComponent({
   props: {
     args: {

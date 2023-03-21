@@ -10,7 +10,6 @@
 </template>
 <script lang="ts" setup>
 import { drawCavaseRuler } from './utils'
-import { reactive, ref, onMounted, watch } from 'vue'
 import type { PaletteType } from '../index-types'
 
 const props = defineProps<{
@@ -27,16 +26,12 @@ const props = defineProps<{
   selectLength: number
 }>()
 
-const emit = defineEmits<{
-  (e: 'onAddLine', value: number): void
-  (e: 'update:showIndicator', showIndicator: boolean): void
-  (e: 'update:valueNum', valueNum: number): void
-}>()
+const emit = defineEmits(["onAddLine","update:valueNum","update:showIndicator"])
 const state = reactive({
   canvasContext: null as CanvasRenderingContext2D | null
 })
 let ratio = 1
-const canvas = ref<HTMLCanvasElement | null>(null)
+const canvas = ref(null)
 onMounted(() => {
   ratio = props.ratio || window.devicePixelRatio || 1
   initCanvasRef()
@@ -90,7 +85,7 @@ watch([() => props.width, () => props.height], () => {
   updateCanvasContext(ratio)
   drawRuler(ratio)
 })
-const handle = (e: MouseEvent, key: string) => {
+const handle = (e: MouseEvent, key) => {
   const getValueByOffset = (offset: number, start: number, scale: number) =>
     Math.round(start + offset / scale)
   const offset = props.vertical ? e.offsetY : e.offsetX

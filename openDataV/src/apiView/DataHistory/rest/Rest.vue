@@ -51,15 +51,12 @@
 import { getRestDataListApi, deleteRestDataApi } from '@/api/data'
 import { NInput, NCard, NTabs, NTabPane, NOl, NLi, NGradientText } from 'naive-ui'
 import { eventBus, StaticKey } from '@/bus'
-import { onMounted, ref } from 'vue'
-import type { RestDataDetail } from '@/api/data/type'
 import useDataSnapShot from '@/apiView/hooks/snapshot'
-import type { ContextmenuItem } from '@/plugins/directive/contextmenu/types'
 import { message } from '@/utils/message'
 
-const dataList = ref<RestDataDetail[]>([])
+const dataList = ref([])
 const snapShot = useDataSnapShot('REST', true)
-const dataHistory = ref<RestDataDetail[]>([])
+const dataHistory = ref([])
 const loadStaticList = async () => {
   try {
     const resp = await getRestDataListApi()
@@ -71,7 +68,7 @@ const loadStaticList = async () => {
   }
 }
 
-const selectDataItem = (id: string) => {
+const selectDataItem = (id) => {
   eventBus.emit(StaticKey.REST_KEY, id)
 }
 const getHistory = async () => {
@@ -84,7 +81,7 @@ onMounted(async () => {
   await getHistory()
 })
 
-const removeData = async (id: string) => {
+const removeData = async (id) => {
   try {
     const resp = await deleteRestDataApi(id)
     if (resp.status === 200) {
@@ -101,7 +98,7 @@ const clearSnapshot = async () => {
   await getHistory()
 }
 
-const dataListContextMenus = (id: string): Optional<ContextmenuItem[]> => {
+const dataListContextMenus = (id): Optional<ContextmenuItem[]> => {
   return [
     {
       text: '删除',
@@ -111,7 +108,7 @@ const dataListContextMenus = (id: string): Optional<ContextmenuItem[]> => {
   ]
 }
 
-const dataHistoryContextMenus = (_: string): Optional<ContextmenuItem[]> => {
+const dataHistoryContextMenus = (_): Optional<ContextmenuItem[]> => {
   return [
     {
       text: '清除',

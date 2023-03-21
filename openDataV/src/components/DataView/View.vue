@@ -9,7 +9,6 @@
 </template>
 
 <script lang="ts" setup>
-import { computed } from 'vue'
 import CodeEditor from '@/components/CodeEditor'
 import type { CodemirrorOption } from '@/components/CodeEditor/type'
 import { useProjectSettingStoreWithOut } from '@/store/modules/projectSetting'
@@ -35,16 +34,13 @@ const props = withDefaults(
     }
   }
 )
-const curConfig = computed<CodemirrorOption>(() => {
+const curConfig = computed(() => {
   return { ...props.config, disabled: props.disable || false }
 })
 
-const emits = defineEmits<{
-  (e: 'update:content', value: string): void
-  (e: 'change', value: string): void
-}>()
+const emits = defineEmits()
 
-const formChange = (value: string) => {
+const formChange = (value) => {
   emits('change', value)
   emits('update:content', value)
 }

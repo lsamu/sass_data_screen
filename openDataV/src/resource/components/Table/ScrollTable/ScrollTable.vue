@@ -49,7 +49,6 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, computed } from 'vue'
 import { useProp, useData } from '@/resource/hooks'
 import type { BaseComponent, DataType } from '@/resource/models'
 import type { ScrollTableType } from './type'
@@ -61,16 +60,13 @@ const props = defineProps<{
 
 const { propValue } = useProp<ScrollTableType>(props.component)
 
-const comHeight = ref<number>(0)
-const resizeHandler = (entry: ResizeObserverEntry) => {
+const comHeight = ref(0)
+const resizeHandler = (entry) => {
   const { height } = entry.contentRect
   comHeight.value = height
 }
 
-const tableData = ref<
-  | Array<{ label: string; value: number }>
-  | RequestResponse<Array<{ label: string; value: number }>>['afterData']
->([])
+const tableData = ref([])
 const dataChange = (resp: any, _: DataType) => {
   if (resp.status >= 0) {
     tableData.value = resp.afterData

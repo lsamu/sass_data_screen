@@ -37,14 +37,13 @@
 
 <script setup lang="ts">
 import { useBasicStoreWithOut } from '@/store/modules/basic'
-import { computed, ref } from 'vue'
 import { NForm, NFormItem, NInput, NSelect, NInputNumber, NScrollbar, NColorPicker } from 'naive-ui'
 import PixelEnum from '@/enum/pixel'
 import { FormType } from '@/enum'
 import type { CanvasStyleData } from '@/types/storeTypes'
 import BackItem from '../../modules/backItem'
 
-const pixels = computed<Recordable<string>[]>(() => {
+const pixels = computed(() => {
   return [
     { label: '本设备', value: `${window.screen.width}X${window.screen.height}` },
     ...PixelEnum
@@ -53,7 +52,7 @@ const pixels = computed<Recordable<string>[]>(() => {
 
 const basicStore = useBasicStoreWithOut()
 
-const canvasStyleFrom = ref<CanvasStyleData>({
+const canvasStyleFrom = ref({
   width: basicStore.canvasData.width,
   height: basicStore.canvasData.height,
   background: basicStore.canvasStyleData.background
@@ -62,14 +61,14 @@ const canvasStyleFrom = ref<CanvasStyleData>({
 const styleChange = () => {
   basicStore.setCanvasStyle(canvasStyleFrom.value)
 }
-const myPixel = ref<string>('本设备')
+const myPixel = ref('本设备')
 const styleKeys = [
   { key: 'width', label: '宽度', type: FormType.NUMBER },
   { key: 'height', label: '高度', type: FormType.NUMBER },
   { key: 'background', label: '背景', type: FormType.BACKGROUND }
 ]
 
-const setScreenSize = (pixel: string) => {
+const setScreenSize = (pixel) => {
   const pixels = pixel.split('X')
   const width = parseInt(pixels[0])
   const height = parseInt(pixels[1])

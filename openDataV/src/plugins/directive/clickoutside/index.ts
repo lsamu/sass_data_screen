@@ -1,5 +1,3 @@
-import type { Directive, DirectiveBinding } from 'vue'
-
 const CLICK_HANDLER = 'CLICK_HANDLER'
 
 const outsideHandle = (el: HTMLElement, binding: DirectiveBinding) => {

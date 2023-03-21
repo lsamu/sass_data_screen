@@ -12,12 +12,7 @@
           </n-ellipsis>
         </template>
         <template #cover>
-          <img
-            :src="previewIcon(item.thumbnail)"
-            class="thumbnail-image"
-            alt=""
-            @click="handleView(item)"
-          />
+          <img :src="previewIcon(item.thumbnail)" class="thumbnail-image" alt="" @click="handleView(item)" />
         </template>
         <template #action>
           <div class="options">
@@ -31,12 +26,7 @@
               </template>
               <span>编辑</span>
             </n-tooltip>
-            <n-dropdown
-              trigger="hover"
-              :options="options"
-              :show-arrow="true"
-              @select="(key) => handleSelect(key, item)"
-            >
+            <n-dropdown trigger="hover" :options="options" :show-arrow="true" @select="(key) => handleSelect(key, item)">
               <n-button quaternary>
                 <template #icon>
                   <x-icon name="setting" />
@@ -53,17 +43,15 @@
 <script setup lang="ts">
 import { getPageListApi, deletePageApi } from '@/api/pages'
 import type { SimpleLayoutData } from '@/api/pages'
-import { onMounted, ref, h } from 'vue'
 import defaultImg from '@/assets/default.png'
-import { useRouter } from 'vue-router'
 import { message } from '@/utils/message'
 import { XIcon } from '@/plugins/xicon'
 import type { DropdownOption } from 'naive-ui'
 import { NCard, NEllipsis, NTooltip, NDropdown, NButton } from 'naive-ui'
 
 const router = useRouter()
-const loading = ref<boolean>(false)
-const layoutList = ref<SimpleLayoutData[]>([])
+const loading = ref(false)
+const layoutList = ref([])
 const options: DropdownOption[] = [
   {
     key: 'preview',
@@ -81,14 +69,14 @@ onMounted(async () => {
   await initUI()
 })
 
-function renderIcon(icon: string) {
+function renderIcon(icon) {
   return () =>
     h(XIcon, {
       name: icon
     })
 }
 
-const initUI = async (): Promise<void> => {
+const initUI = async () => {
   try {
     const resp = await getPageListApi()
     if (resp.data) {
@@ -99,7 +87,7 @@ const initUI = async (): Promise<void> => {
   }
 }
 
-const handleSelect = async (key: string | number, item: SimpleLayoutData) => {
+const handleSelect = async (key, item) => {
   if (key === 'preview') {
     await router.push({
       name: 'PageView',
@@ -129,7 +117,7 @@ const handleCreate = async () => {
   })
 }
 
-const handleEdit = async (item: SimpleLayoutData) => {
+const handleEdit = async (item) => {
   if (loading.value) {
     return false
   }
@@ -143,7 +131,7 @@ const handleEdit = async (item: SimpleLayoutData) => {
   })
 }
 
-const handleView = async (item: SimpleLayoutData) => {
+const handleView = async (item) => {
   await router.push({
     name: 'PageView',
     params: {
@@ -174,6 +162,7 @@ const previewIcon = (icon: string | undefined) => {
   padding: 5px 5px 5px 5px;
   @apply flex justify-between items-center;
 }
+
 :deep(.n-card__action) {
   padding: 0;
 }

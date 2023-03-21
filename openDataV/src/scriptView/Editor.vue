@@ -36,7 +36,6 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, reactive, ref, watch } from 'vue'
 import { NSelect } from 'naive-ui'
 import type { SelectOption } from 'naive-ui'
 import { python } from '@codemirror/lang-python'
@@ -49,8 +48,8 @@ import { ScriptType } from '@/enum'
 import type { AfterScript } from '@/types/component'
 
 const projectStore = useProjectSettingStoreWithOut()
-const savedStatus = ref<boolean>(true)
-const isShow = ref<boolean>(false)
+const savedStatus = ref(true)
+const isShow = ref(false)
 const props = withDefaults(
   defineProps<{
     data: AfterScript
@@ -77,10 +76,7 @@ const props = withDefaults(
   }
 )
 
-const emits = defineEmits<{
-  (e: 'update:data', value: AfterScript): void
-  (e: 'change', value: AfterScript): void
-}>()
+const emits = defineEmits(["update:data","change"])
 const languageMap = { Javascript: javascript, Python: python }
 
 const form = reactive(props.data)
@@ -89,7 +85,7 @@ const formChange = () => {
   emits('change', form)
 }
 
-const languageOptions = computed<SelectOption[]>(() => {
+const languageOptions = computed(() => {
   return Object.keys(ScriptType).map((el) => {
     return {
       label: el,
@@ -98,12 +94,12 @@ const languageOptions = computed<SelectOption[]>(() => {
   })
 })
 
-const language = ref<string>(ScriptType.Javascript)
-const languageType = computed<Function>(() => {
+const language = ref(ScriptType.Javascript)
+const languageType = computed(() => {
   return languageMap[language.value] || javascript
 })
 
-const cm = ref<InstanceType<typeof CodeEditor> | null>(null)
+const cm = ref(null)
 const handleRedo = () => {
   const handler = cm.value!.handleRedo
   if (handler) {

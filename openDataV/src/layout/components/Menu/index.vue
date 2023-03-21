@@ -11,8 +11,6 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, onMounted, computed, watch, h } from 'vue'
-import { useRoute, RouterLink } from 'vue-router'
 import { useProjectSettingStoreWithOut } from '@/store/modules/projectSetting'
 import type { MenuType } from '@/router'
 import { routeView } from '@/router'
@@ -27,9 +25,9 @@ defineProps<{
 // 当前路由
 const currentRoute = useRoute()
 const settingStore = useProjectSettingStoreWithOut()
-const menuOptions = ref<MenuOption[]>([])
-const selectedKeys = ref<string>(currentRoute.name as string)
-// const openKeys = reactive<string[]>([])
+const menuOptions = ref([])
+const selectedKeys = ref(currentRoute.name as string)
+// const openKeys = reactive([])
 
 const inverted = computed(() => {
   return ['dark', 'header-dark'].includes(settingStore.navTheme)
@@ -58,7 +56,7 @@ function updateSelectedKeys() {
   selectedKeys.value = activeMenu ? (activeMenu as string) : (currentRoute.name as string)
 }
 
-function renderLink(name: string, title: string) {
+function renderLink(name: string, title) {
   return () =>
     h(
       RouterLink,
@@ -69,7 +67,7 @@ function renderLink(name: string, title: string) {
     )
 }
 
-function renderIcon(icon: string) {
+function renderIcon(icon) {
   return () =>
     h(XIcon, {
       name: icon

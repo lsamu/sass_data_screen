@@ -3,7 +3,7 @@ import { TokenStorage } from '@/enum'
 /**
  * 设置键值对
  */
-export const setStorageItem = (key: string, value: string) => {
+export const setStorageItem = (key: string, value) => {
   switch (import.meta.env.VITE_TOKEN_STORAGE) {
     case TokenStorage.LOCALSTORAGE:
       window.localStorage.setItem(key, value)
@@ -19,7 +19,7 @@ export const setStorageItem = (key: string, value: string) => {
  * @param key 键
  * @returns
  */
-export const getStorageItem = (key: string) => {
+export const getStorageItem = (key) => {
   switch (import.meta.env.VITE_TOKEN_STORAGE) {
     case TokenStorage.LOCALSTORAGE:
       return window.localStorage.getItem(key)
@@ -32,7 +32,7 @@ export const getStorageItem = (key: string) => {
  * 删除storage下的数据
  * @param key 键
  */
-export const removeStorageItem = (key: string) => {
+export const removeStorageItem = (key) => {
   switch (import.meta.env.VITE_TOKEN_STORAGE) {
     case TokenStorage.LOCALSTORAGE:
       window.localStorage.removeItem(key)

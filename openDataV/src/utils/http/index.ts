@@ -56,7 +56,7 @@ class AxiosHttp {
   }
 
   // 异常请求处理
-  private errorHandler(status: number, msg?: string): void {
+  private errorHandler(status: number, msg?): void {
     switch (status) {
       case 401:
         message.info('请登录后使用')

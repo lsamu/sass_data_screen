@@ -7,7 +7,6 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
 import { useEventBus } from '@/bus'
 import { http } from '@/utils/http'
 import type { SubTextType } from './type'
@@ -19,10 +18,10 @@ const props = defineProps<{
 }>()
 
 const { propValue } = useProp<SubTextType>(props.component)
-const customeText = ref<string>('0')
+const customeText = ref('0')
 
-const lineHeight = ref<string>('20px')
-const resizeHandler = (entry: ResizeObserverEntry) => {
+const lineHeight = ref('20px')
+const resizeHandler = (entry) => {
   const { height } = entry.contentRect
   lineHeight.value = `${height}px`
 }

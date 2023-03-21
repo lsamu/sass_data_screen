@@ -20,7 +20,6 @@ import {
   RestRequestData,
   StaticRequestData
 } from './data'
-import { h } from 'vue'
 
 interface DataConfig {
   type: DataType
@@ -289,7 +288,7 @@ export abstract class BaseComponent {
     }
   }
 
-  change(prop: string, value: string | number | boolean | any, form?: string) {
+  change(prop: string, value: string | number | boolean | any, form?) {
     if (form) {
       this.changeProp(form, prop, value)
     } else {

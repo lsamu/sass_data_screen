@@ -3,7 +3,6 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted } from 'vue'
 import dayjs from 'dayjs'
 import type DateTextComponent from './config'
 import { useProp } from '@/resource/hooks'
@@ -13,13 +12,13 @@ const props = defineProps<{
   component: DateTextComponent
 }>()
 const { propValue } = useProp<DateText>(props.component)
-const lineHeight = ref<string>('20px')
-const resizeHandler = (entry: ResizeObserverEntry) => {
+const lineHeight = ref('20px')
+const resizeHandler = (entry) => {
   const { height } = entry.contentRect
   lineHeight.value = `${height}px`
 }
 let intervalId: IntervalHandle
-const customText = ref<string>(dayjs().format(propValue.base.format || 'YYYY-MM-DD HH:mm:ss'))
+const customText = ref(dayjs().format(propValue.base.format || 'YYYY-MM-DD HH:mm:ss'))
 
 const updateData = () => {
   const newFormat: string = propValue.base.format

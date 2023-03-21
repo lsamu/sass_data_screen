@@ -58,17 +58,12 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, reactive, ref, watch, onMounted } from 'vue'
-/* eslint-disable-next-line @typescript-eslint/consistent-type-imports */
 import CodeEditor from '@/components/CodeEditor'
-import type { CodemirrorOption } from '@/components/CodeEditor/type'
 import { NSelect, NInput, NSpace, NButtonGroup, NButton } from 'naive-ui'
-import type { SelectOption } from 'naive-ui'
 import { python } from '@codemirror/lang-python'
 import { javascript } from '@codemirror/lang-javascript'
 import { useProjectSettingStoreWithOut } from '@/store/modules/projectSetting'
 import { ScriptType } from '@/enum'
-import type { AfterScript } from '@/types/component'
 import { message } from '@/utils/message'
 import {
   getAfterScriptListApi,
@@ -76,21 +71,16 @@ import {
   createAfterScriptApi,
   getAfterScriptApi
 } from '@/api/data/afterScript'
-import type { AfterScriptDetail } from '@/api/data/type'
 
-const scriptList = ref<SelectOption[]>([])
+const scriptList = ref([])
 
-const savedStatus = ref<boolean>(true)
+const savedStatus = ref(true)
 
-const isShow = ref<boolean>(false)
+const isShow = ref(false)
 
 const projectStore = useProjectSettingStoreWithOut()
 const props = withDefaults(
-  defineProps<{
-    data: AfterScript
-    config?: CodemirrorOption
-    mode?: 'use' | 'debug'
-  }>(),
+  defineProps(),
   {
     data: () => {
       return {
@@ -109,25 +99,19 @@ const props = withDefaults(
     },
     mode: 'use'
   }
-)
+) as any
 
-const emits = defineEmits<{
-  (e: 'update:data', value: AfterScript): void
-  (e: 'change', value: AfterScript): void
-}>()
+const emits = defineEmits(["update:data","change"])
 const languageMap = { Javascript: javascript, Python: python }
 
-const formData = reactive<{
-  id?: string
-  title?: string
-}>({})
+const formData = reactive({} as any)
 
-const form = reactive(props.data)
+const form = reactive(props.data as any)
 const formChange = () => {
   savedStatus.value = false
 }
 
-const languageOptions = computed<SelectOption[]>(() => {
+const languageOptions = computed(() => {
   return Object.keys(ScriptType).map((el) => {
     return {
       label: el,
@@ -136,12 +120,12 @@ const languageOptions = computed<SelectOption[]>(() => {
   })
 })
 
-const language = ref<string>(ScriptType.Javascript)
-const languageType = computed<Function>(() => {
+const language = ref(ScriptType.Javascript)
+const languageType = computed(() => {
   return languageMap[language.value] || javascript
 })
 
-const cm = ref<InstanceType<typeof CodeEditor> | null>(null)
+const cm = ref(null)
 const handleRedo = () => {
   const handler = cm.value!.handleRedo
   if (handler) {
@@ -188,7 +172,7 @@ watch(
   }
 )
 
-const selectedChange = async (id: string) => {
+const selectedChange = async (id) => {
   if (id) {
     await loadScriptData(id)
   } else {
@@ -210,7 +194,7 @@ const handleSave = async () => {
       type: props.data.type
     })
     if (resp.status === 201) {
-      const data: AfterScriptDetail = resp.data
+      const data = resp.data
       formData.id = data.id!
       formData.title = data.name
       message.success('脚本保存成功')
@@ -238,11 +222,11 @@ const handleUpdate = async () => {
   }
 }
 
-const loadScriptData = async (id: string) => {
+const loadScriptData = async (id) => {
   try {
     const resp = await getAfterScriptApi(id)
     if (resp.status === 200) {
-      const data: AfterScriptDetail = resp.data
+      const data = resp.data
       formData.id = data.id
       formData.title = data.name
       form.code = data.code

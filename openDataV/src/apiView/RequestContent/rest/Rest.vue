@@ -108,7 +108,6 @@ import {
   NDivider
 } from 'naive-ui'
 import DynamicKVForm from '../modules/DynamicKVForm.vue'
-import { onMounted, reactive, ref } from 'vue'
 import { uuid } from '@/utils/utils'
 import { RequestHeaderEnum, RequestMethod } from '../requestEnums'
 import type { AxiosResponse } from 'axios'
@@ -156,7 +155,7 @@ const props = withDefaults(
   }
 )
 
-const restDataList = ref<Array<SelectOption>>([])
+const restDataList = ref([])
 const loadRestList = async () => {
   try {
     const resp = await getRestDataListApi()
@@ -226,7 +225,7 @@ if (props.mode === 'debug') {
   snapShot = useDataSnapShot('REST', true)
 }
 
-const loadRestData = async (id: string) => {
+const loadRestData = async (id) => {
   try {
     const resp = await getRestDataApi(id)
     if (resp.status === 200) {
@@ -247,17 +246,14 @@ const loadRestData = async (id: string) => {
     return undefined
   }
 }
-const emits = defineEmits<{
-  (e: 'update:restOptions', value: RequestOption): void
-  (e: 'change', value: RequestOption): void
-}>()
+const emits = defineEmits()
 
 interface RequestDataOption extends RequestOption {
   title?: string
   id?: string
 }
-const formData = reactive<RequestDataOption>(props.restOptions)
-const response = ref<RequestResponse>({
+const formData = reactive(props.restOptions)
+const response = ref({
   code: 0,
   data: '',
   afterData: '',
@@ -290,7 +286,7 @@ const afterScriptChange = (data: AfterScript) => {
   formData.afterScript = data
   formChange()
 }
-const selectedChange = async (id: string) => {
+const selectedChange = async (id) => {
   await loadRestData(id)
   await send()
   emits('update:restOptions', formData)

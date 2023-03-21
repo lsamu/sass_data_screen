@@ -17,7 +17,6 @@
 </template>
 
 <script lang="ts" setup>
-import { reactive } from 'vue'
 import { NForm, NFormItem, NInputNumber, NColorPicker } from 'naive-ui'
 import type { RowType } from './type'
 
@@ -26,11 +25,9 @@ const props = defineProps<{
   args: any
 }>()
 
-const emits = defineEmits<{
-  (e: 'updateValue', value: RowType)
-}>()
+const emits = defineEmits(["updateValue"])
 
-const formData = reactive<RowType>({
+const formData = reactive({
   height: props.value.height || 30,
   oddRowBGC: props.value.oddRowBGC || '#003B51',
   evenRowBGC: props.value.evenRowBGC || '#0A2732'

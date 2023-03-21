@@ -125,17 +125,17 @@ export default defineComponent({
 
     const showEm = computed(() => basicStore.isShowEm)
 
-    const shape = ref<ElRef>(null)
+    const shape = ref(null)
 
     const cursors = ref({})
 
-    const borderWidth = ref<string>('0px')
-    const borderColor = ref<string>('#fff0')
-    const borderStyle = ref<string>('none')
-    const isError = ref<boolean>(false)
-    const errorInfo = ref<string>('')
+    const borderWidth = ref('0px')
+    const borderColor = ref('#fff0')
+    const borderStyle = ref('none')
+    const isError = ref(false)
+    const errorInfo = ref('')
 
-    onErrorCaptured((err: Error, instance: ComponentPublicInstance | null, info: string) => {
+    onErrorCaptured((err: Error, instance: ComponentPublicInstance | null, info) => {
       console.log(err)
       if (info === 'render function') {
         if (basicStore.isEditMode) {
@@ -156,7 +156,7 @@ export default defineComponent({
       }
     })
 
-    const isActive = computed<boolean>(() => {
+    const isActive = computed(() => {
       return (props.active && !props.info!.locked) || composeStore.isActived(props.info!)
     })
 
@@ -386,7 +386,7 @@ export default defineComponent({
       }
 
       const points = ['lt', 't', 'rt', 'r', 'rb', 'b', 'lb', 'l']
-      points.forEach((point: string) => {
+      points.forEach((point) => {
         const angle: number = mod360(initialAngle[point] + rotate)
         const len: number = angleToCursor.length
         while (true) {

@@ -23,7 +23,6 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
 import { NColorPicker, NSlider } from 'naive-ui'
 import { GlobalColorSwatches } from '@/enum'
 import type { Gradient } from './type'
@@ -41,16 +40,13 @@ const props = withDefaults(
   }
 )
 
-const linearGradient = ref<Gradient>({
+const linearGradient = ref({
   angle: props.value.angle || 0,
   color1: props.value.color1 || '',
   color2: props.value.color2 || ''
 })
 
-const emits = defineEmits<{
-  (e: 'updateValue', value: Gradient): void
-  (e: 'update:value', value: Gradient): void
-}>()
+const emits = defineEmits(["updateValue","update:value"])
 
 const changed = () => {
   emits('updateValue', linearGradient.value)

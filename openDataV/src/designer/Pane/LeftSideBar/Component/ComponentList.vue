@@ -7,7 +7,6 @@
 <script setup lang="ts">
 import { ComponentGroupList } from '@/enum'
 import { componentList } from '@/designer/load'
-import { computed, h } from 'vue'
 import { NMenu } from 'naive-ui'
 import type { MenuOption } from 'naive-ui'
 import ComponentItem from './ComponentItem.vue'
@@ -15,7 +14,7 @@ import type { GroupType } from '@/enum'
 import { XIcon } from '@/plugins/xicon'
 import type { BaseComponent } from '@/resource/models'
 
-const menuOptions = computed<MenuOption[]>(() => {
+const menuOptions = computed(() => {
   const groups: { group: string; component: BaseComponent[] } | {} = {}
   Object.keys(componentList).forEach((key) => {
     const component: BaseComponent = new componentList[key]()

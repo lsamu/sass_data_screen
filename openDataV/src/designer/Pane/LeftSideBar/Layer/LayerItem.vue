@@ -38,12 +38,12 @@ const props = withDefaults(
   }
 )
 
-const emits = defineEmits<{ (e: 'select', index: string): void }>()
+const emits = defineEmits(["select"])
 const basicStore = useBasicStoreWithOut()
 
 const toggleIcon = (isDisplay: boolean) => (isDisplay ? 'previewOpen' : 'previewClose')
 
-const handleDragStart = (event: DragEvent, index: string) => {
+const handleDragStart = (event: DragEvent, index) => {
   // event.preventDefault()
   event.dataTransfer?.setData('componentIndex', index)
   event.stopPropagation()
@@ -57,7 +57,7 @@ const handleDragOver = (event: DragEvent, index: string, isEmit = false) => {
   }
 }
 
-const handleDrop = (event: DragEvent, toIndex: string) => {
+const handleDrop = (event: DragEvent, toIndex) => {
   event.preventDefault()
   event.stopPropagation()
   const fromIndex: string = event.dataTransfer?.getData('componentIndex') as string

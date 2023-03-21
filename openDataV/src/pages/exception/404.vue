@@ -6,9 +6,6 @@
   </div>
 </template>
 <script setup lang="ts">
-import type { Router } from 'vue-router'
-import { useRouter } from 'vue-router'
-
 const router: Router = useRouter()
 
 const toHome = async () => {

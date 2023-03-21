@@ -53,7 +53,6 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onMounted } from 'vue'
 import { http } from '@/utils/http'
 import { useProp } from '@/resource/hooks'
 import { uuid } from '@/utils/utils'
@@ -67,13 +66,13 @@ const props = defineProps<{
 
 const { propValue } = useProp<Progress>(props.component)
 
-const width = ref<number>(150)
-const height = ref<number>(150)
-const dataValue = ref<number>(60)
-const gradientId1 = ref<string>(`percent-pond-gradientId1-${uuid()}`)
-const gradientId2 = ref<string>(`percent-pond-gradientId2-${uuid()}`)
+const width = ref(150)
+const height = ref(150)
+const dataValue = ref(60)
+const gradientId1 = ref(`percent-pond-gradientId1-${uuid()}`)
+const gradientId2 = ref(`percent-pond-gradientId2-${uuid()}`)
 
-const resizeHandler = (entry: ResizeObserverEntry) => {
+const resizeHandler = (entry) => {
   const rect: DOMRectReadOnly = entry.contentRect
   width.value = rect.width
   height.value = rect.height

@@ -37,7 +37,7 @@ const setShowEm = () => {
   basicStore.toggleShowEm()
 }
 
-const exportCanvas = (id: string) => {
+const exportCanvas = (id) => {
   const name: string = `${basicStore.name}` || 'OpenDataV'
   exportRaw(
     `${name}.json`,

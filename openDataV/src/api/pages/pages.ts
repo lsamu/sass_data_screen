@@ -6,7 +6,7 @@ import type { AxiosResponse } from 'axios'
  * 获取页面数据
  * @param index 页面ID
  */
-export const getPageApi = async (index: string): Promise<AxiosResponse<LayoutData>> => {
+export const getPageApi = async (index): Promise<AxiosResponse<LayoutData>> => {
   return http.get<LayoutData>({
     url: `/page/page/${index}/`
   })
@@ -51,7 +51,7 @@ export const updatePageApi = (
  * 删除页面数据
  * @param id 页面ID
  */
-export const deletePageApi = (id: string): Promise<AxiosResponse<string>> => {
+export const deletePageApi = (id): Promise<AxiosResponse<string>> => {
   return http.delete<string>({
     url: `/page/page/${id}/`
   })

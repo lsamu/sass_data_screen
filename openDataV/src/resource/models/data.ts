@@ -82,7 +82,7 @@ class StaticRequestData implements RequestData {
   public static dumps(data: string, isFormat = false): string | undefined {
     return isFormat ? JSON.stringify(data, null, '\t') : JSON.stringify(data)
   }
-  public static loads(data: string): any | undefined {
+  public static loads(data): any | undefined {
     return JSON.parse(data)
   }
   public async getRespData(options?: Recordable): Promise<RequestResponse<any>> {

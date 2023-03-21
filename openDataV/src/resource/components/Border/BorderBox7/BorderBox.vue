@@ -219,7 +219,6 @@
 
 <script lang="ts" setup>
 import { useProp } from '@/resource/hooks'
-import { computed, ref } from 'vue'
 import type BorderBoxComponent from './config'
 import TinyColor2 from 'tinycolor2'
 
@@ -240,11 +239,11 @@ const { propValue } = useProp<BorderBox>(props.component)
 const filterId = computed(() => props.component.id)
 const titleWidth = computed(() => propValue.base.titleWidth)
 
-const width = ref<number>(150)
-const height = ref<number>(150)
+const width = ref(150)
+const height = ref(150)
 const mergedColor = computed(() => [propValue.base.colorLeft, propValue.base.colorRight])
 
-const resizeHandler = (entry: ResizeObserverEntry) => {
+const resizeHandler = (entry) => {
   const rect: DOMRectReadOnly = entry.contentRect
   width.value = rect.width
   height.value = rect.height

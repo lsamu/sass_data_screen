@@ -93,8 +93,6 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, computed, unref } from 'vue'
-import { useRouter, useRoute } from 'vue-router'
 import { NTooltip, NDropdown, NAvatar, NBreadcrumb, NBreadcrumbItem } from 'naive-ui'
 import { useUserStoreWithOut } from '@/store/modules/user'
 import ProjectSetting from './setting.vue'
@@ -105,9 +103,7 @@ defineProps<{
   collapsed: boolean
 }>()
 
-const emits = defineEmits<{
-  (e: 'update:collapsed', collapsed: boolean)
-}>()
+const emits = defineEmits()
 
 const userStore = useUserStoreWithOut()
 const projectStore = useProjectSettingStoreWithOut()
@@ -115,13 +111,13 @@ const projectStore = useProjectSettingStoreWithOut()
 const username = userStore?.userName || ''
 
 const drawerSetting = ref()
-const fullscreenIcon = ref<string>('fullScreen')
-const themeIcon = ref<string>('sun')
+const fullscreenIcon = ref('fullScreen')
+const themeIcon = ref('sun')
 
 const router = useRouter()
 const route = useRoute()
 
-const iconColor = computed<string>(() => projectStore.iconColor)
+const iconColor = computed(() => projectStore.iconColor)
 
 const generator: any = (routerMap) => {
   return routerMap.map((item) => {

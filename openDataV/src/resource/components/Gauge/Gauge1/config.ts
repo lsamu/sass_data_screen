@@ -1,11 +1,10 @@
 import { ComponentGroup, FormType } from '@/enum'
 import type { PropsType } from '@/types/component'
 import { BaseComponent } from '@/resource/models'
-import { h } from 'vue'
 
 export const componentName = 'Gauge1'
 class GaugeComponent extends BaseComponent {
-  constructor(id?: string, name?: string, icon?: string) {
+  constructor(id?: string, name?: string, icon?) {
     super({
       component: componentName,
       group: ComponentGroup.GAUGE,

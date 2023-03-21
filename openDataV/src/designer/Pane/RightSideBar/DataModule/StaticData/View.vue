@@ -33,7 +33,6 @@
 </template>
 
 <script lang="ts" setup>
-import { onMounted, reactive, ref, watch } from 'vue'
 import { NForm, NInput, NInputGroup, NButton, NModal, NCard, NFormItem } from 'naive-ui'
 import type { BaseComponent, StaticRequestData } from '@/resource/models'
 import { DataType } from '@/resource/models'
@@ -45,9 +44,9 @@ import { message } from '@/utils/message'
 const props = defineProps<{
   curComponent: BaseComponent
 }>()
-const isShow = ref<boolean>(false)
+const isShow = ref(false)
 
-const formData = reactive<StaticRequestOptions>({
+const formData = reactive({
   dataId: '',
   title: '',
   script: {
@@ -86,7 +85,7 @@ const changeHandler = () => {
   })
 }
 
-const dataChangeHandler = (id: string, title: string) => {
+const dataChangeHandler = (id: string, title) => {
   formData.title = title
   formData.dataId = id
   changeHandler()

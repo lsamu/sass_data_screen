@@ -303,7 +303,7 @@ export const cleanObjectProp = (obj: Recordable, excludes: string[] = []) => {
 }
 
 // 生成随机字符串
-export const uuid = (hasHyphen?: string) => {
+export const uuid = (hasHyphen?) => {
   return (
     hasHyphen ? 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx' : 'xxxxxxxxxxxx4xxxyxxxxxxxxxxxxxxx'
   ).replace(/[xy]/g, function (c) {
@@ -314,7 +314,7 @@ export const uuid = (hasHyphen?: string) => {
 }
 
 // 下载本地数据到文件
-export const exportRaw = (name: string, data: string) => {
+export const exportRaw = (name: string, data) => {
   const downLink = document.createElement('a')
   const blob = new Blob([data])
   downLink.href = URL.createObjectURL(blob)
@@ -352,7 +352,7 @@ export const importRaw = (fileHandler, accept = '.*') => {
 
 // 复制文本到剪贴板
 
-export const copyText = (text: string): void => {
+export const copyText = (text): void => {
   const copy = (event: ClipboardEvent) => {
     event.clipboardData?.setData('text', text)
     event.preventDefault()
@@ -493,7 +493,7 @@ export const getComponentRealRect = (components: BaseComponent[]) => {
   }
 }
 
-export const loadScript = async (src: string) => {
+export const loadScript = async (src) => {
   return new Promise(function (resolve, reject) {
     let shouldAppend = false
     let el: any = document.querySelector('script[src="' + src + '"]')
@@ -517,7 +517,7 @@ export const loadScript = async (src: string) => {
   })
 }
 
-export const diffIndex = (fromIndex: string, toIndex: string): boolean => {
+export const diffIndex = (fromIndex: string, toIndex): boolean => {
   if (fromIndex && toIndex && fromIndex !== toIndex) {
     const fromLength = fromIndex.length
     const toLength = toIndex.length

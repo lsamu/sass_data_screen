@@ -1,5 +1,3 @@
-import type { PropType } from 'vue'
-import { reactive, defineComponent, resolveComponent, h } from 'vue'
 import FontStyle from '../fontSytle'
 import FontWeight from '../fontWeight'
 import LinearGradient from '../linearGradient'
@@ -60,9 +58,9 @@ export default defineComponent({
   },
   emits: ['change'],
   setup(props, { emit }) {
-    const formData = reactive<Recordable>(props.data)
+    const formData = reactive(props.data)
 
-    const changed = (val: any, key: string) => {
+    const changed = (val: any, key) => {
       emit('change', key, val)
     }
 

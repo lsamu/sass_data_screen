@@ -5,8 +5,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed } from 'vue'
-import type { Component } from 'vue'
+
 import { useProjectSettingStoreWithOut } from '@/store/modules/projectSetting'
 
 const projectStore = useProjectSettingStoreWithOut()
@@ -23,7 +22,7 @@ const props = withDefaults(
   }
 )
 
-const iconColor = computed<string>(() => (props.color ? props.color : projectStore.iconColor))
+const iconColor = computed(() => (props.color ? props.color : projectStore.iconColor))
 const IconComponet = computed(() => {
   return null;//icons[props.name] ? icons[props.name] : Help
 })

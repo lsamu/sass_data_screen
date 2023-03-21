@@ -55,7 +55,6 @@
 
 <script setup lang="ts">
 import { useProp } from '@/resource/hooks'
-import { ref } from 'vue'
 import type DecorationComponent from './config'
 
 import type { Decoration } from './type'
@@ -64,10 +63,10 @@ const props = defineProps<{
 }>()
 
 const { propValue } = useProp<Decoration>(props.component)
-const width = ref<number>(200)
-const height = ref<number>(60)
+const width = ref(200)
+const height = ref(60)
 
-const resizeHandler = (entry: ResizeObserverEntry) => {
+const resizeHandler = (entry) => {
   const rect: DOMRectReadOnly = entry.contentRect
   width.value = rect.width
   height.value = rect.height

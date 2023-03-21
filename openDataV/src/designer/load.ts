@@ -1,5 +1,3 @@
-import type { App } from 'vue'
-import { defineAsyncComponent } from 'vue'
 import Group from '@/components/Group'
 import type { BaseComponent } from '@/resource/models'
 
@@ -16,7 +14,7 @@ const AsyncComponent = {
     const moduleFilesTs: any = import.meta.glob('../resource/components/**/index.ts', {
       eager: true
     })
-    Object.keys(moduleFilesTs).forEach((key: string) => {
+    Object.keys(moduleFilesTs).forEach((key) => {
       const componentOptions = moduleFilesTs[key]?.default
 
       if (componentOptions) {

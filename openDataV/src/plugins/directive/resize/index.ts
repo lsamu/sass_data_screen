@@ -1,9 +1,9 @@
-import type { Directive, DirectiveBinding } from 'vue'
+
 
 const RESIZE_OBSERVE = 'RESIZE_OBSERVE'
 
 interface CustomResizeObserverCallback {
-  (entry: ResizeObserverEntry): void
+  (entry): void
 }
 
 const resizeDOM = (el: HTMLElement, binding: DirectiveBinding) => {

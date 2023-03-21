@@ -20,22 +20,21 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, ref } from 'vue'
 import { copyText } from '@/utils/utils'
 import { message } from '@/utils/message'
 import { NModal } from 'naive-ui'
 import ConfigProvider from '@/components/provider/ConfigProvider.vue'
 import iconfontList from '@/assets/directionFonts/iconfont.json'
 
-const iconList = computed<string[]>(() => {
+const iconList = computed(() => {
   return iconfontList.glyphs.map((item) => `icon-${item.font_class}`)
 })
 
-const isShow = ref<boolean>(true)
+const isShow = ref(true)
 const close = () => {
   isShow.value = false
 }
-const handleClick = (icon: string) => {
+const handleClick = (icon) => {
   copyText(icon)
   message.success(`复制图标: ${icon}`)
 }

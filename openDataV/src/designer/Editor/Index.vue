@@ -50,7 +50,6 @@
 </template>
 
 <script setup lang="ts">
-import { reactive, ref, computed, onMounted, onUnmounted } from 'vue'
 import Ruler from '@/designer/Editor/Ruler.vue'
 import Area from '@/designer/Editor/Area.vue'
 import Grid from '@/designer/Editor/Grid.vue'
@@ -126,7 +125,7 @@ const componentData = computed(() => {
 const canvasStyleData = computed(() => basicStore.canvasStyleData)
 const curComponent = computed(() => basicStore.curComponent)
 
-const bgStyle = computed<Recordable<string>>(() => {
+const bgStyle = computed(() => {
   const backgroundStyle = backgroundToCss(canvasStyleData.value.background)
   const style = {
     ...canvasStyleData.value,
@@ -165,15 +164,15 @@ const pasteComponent = (event: ClipboardEvent) => {
   }
 }
 
-const editorX = ref<number>(0)
-const editorY = ref<number>(0)
-const start = reactive<Vector>({
+const editorX = ref(0)
+const editorY = ref(0)
+const start = reactive({
   x: 0,
   y: 0
 })
 
-const editor = ref<ElRef>(null)
-const isShowReferLine = ref<boolean>(true)
+const editor = ref(null)
+const isShowReferLine = ref(true)
 const handleMouseDown = (e: MouseEvent) => {
   // 阻止默认事件，防止拖拽时出现拖拽图标
   basicStore.setClickComponentStatus(false)

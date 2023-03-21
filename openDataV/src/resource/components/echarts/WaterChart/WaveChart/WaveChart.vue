@@ -3,7 +3,6 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, onMounted } from 'vue'
 import { useEchart } from '../../hooks'
 import type WaveChartComponent from './config'
 import { useProp, useData } from '@/resource/hooks'
@@ -16,9 +15,9 @@ const props = defineProps<{
   component: WaveChartComponent
 }>()
 
-const chartEl = ref<ElRef>(null)
+const chartEl = ref(null)
 const { updateEchart, resizeHandler } = useEchart(chartEl)
-const chartData = ref<number | RequestResponse<number>['afterData']>(0)
+const chartData = ref(0)
 const dataChange = (resp: any, _: DataType) => {
   if (resp.status >= 0) {
     chartData.value = resp.afterData

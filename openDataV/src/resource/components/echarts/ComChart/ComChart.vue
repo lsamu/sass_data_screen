@@ -3,7 +3,6 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue'
 import { useEchart } from '../hooks'
 import { useData } from '@/resource/hooks'
 import type ComChartComponent from './config'
@@ -13,7 +12,7 @@ const props = defineProps<{
   component: ComChartComponent
 }>()
 
-const chartEl = ref<ElRef>(null)
+const chartEl = ref(null)
 const { updateEchart, resizeHandler } = useEchart(chartEl)
 
 const dataChange = (resp: any, _: DataType) => {

@@ -8,26 +8,24 @@
 
 <script setup lang="ts">
 import ComponentWrapper from '@/designer/Editor/ComponentWrapper.vue'
-import { ref, onUnmounted, onMounted, computed } from 'vue'
 import { getPageApi } from '@/api/pages'
-import { useRoute, useRouter } from 'vue-router'
 import { backgroundToCss, filterStyle, pageScale } from '@/utils/utils'
 import type { CanvasStyleData } from '@/types/storeTypes'
 import type { LayoutData } from '@/api/pages'
 import type { BaseComponent } from '@/resource/models'
 import { createComponent } from '@/resource/models'
 
-const componentData = ref<Array<BaseComponent>>([])
-const canvasStyle = ref<CanvasStyleData>({
+const componentData = ref([])
+const canvasStyle = ref({
   width: 0,
   height: 0,
   background: { backgroundColor: '#272e3b' }
 })
-const bgStyle = computed<Recordable<string>>(() => {
+const bgStyle = computed(() => {
   return backgroundToCss(canvasStyle.value.background)
 })
 
-const screenStyle = computed<Recordable<string>>(() => {
+const screenStyle = computed(() => {
   const style = {
     ...canvasStyle.value
   }
@@ -36,7 +34,7 @@ const screenStyle = computed<Recordable<string>>(() => {
 const route = useRoute()
 const router = useRouter()
 
-const initComponents = async (index: string): Promise<void> => {
+const initComponents = async (index) => {
   console.log('加载通用组件')
   try {
     const resp = await getPageApi(index)
@@ -50,7 +48,7 @@ const initComponents = async (index: string): Promise<void> => {
   }
 }
 
-const setPageData = (data: LayoutData): void => {
+const setPageData = (data) => {
   if (data.canvasStyle) {
     canvasStyle.value = data.canvasStyle
   }

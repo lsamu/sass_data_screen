@@ -1,11 +1,10 @@
 import { ComponentGroup, FormType } from '@/enum'
 import type { PropsType } from '@/types/component'
 import { BaseComponent } from '@/resource/models'
-import { h } from 'vue'
 
 export const componentName = 'DateText'
 class DateTextComponent extends BaseComponent {
-  constructor(id?: string, name?: string) {
+  constructor(id?: string, name?) {
     super({
       component: componentName,
       group: ComponentGroup.TEXT,

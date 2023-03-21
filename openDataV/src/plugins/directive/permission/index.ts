@@ -1,4 +1,4 @@
-import type { Directive, DirectiveBinding } from 'vue'
+
 
 const checkAction = (el: HTMLElement, binding: DirectiveBinding) => {
   const action: string = binding.value

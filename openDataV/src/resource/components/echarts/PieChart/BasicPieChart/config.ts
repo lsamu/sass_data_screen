@@ -2,11 +2,10 @@ import { ComponentGroup, FormType } from '@/enum'
 import type { PropsType } from '@/types/component'
 import { BaseComponent } from '@/resource/models'
 import { DataIntegrationMode } from '@/resource/models/data'
-import { h } from 'vue'
 
 export const componentName = 'BasicPieChart'
 class BasicPieChartComponent extends BaseComponent {
-  constructor(id?: string, name?: string, icon?: string) {
+  constructor(id?: string, name?: string, icon?) {
     super({
       component: componentName,
       group: ComponentGroup.PIE,

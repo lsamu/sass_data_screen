@@ -1,4 +1,3 @@
-import { onMounted, onUnmounted } from 'vue'
 import mitt from 'mitt'
 import type { Handler, Emitter } from 'mitt'
 

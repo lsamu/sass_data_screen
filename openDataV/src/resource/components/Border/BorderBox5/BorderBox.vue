@@ -143,7 +143,6 @@
 <script setup lang="ts">
 import { useProp } from '@/resource/hooks'
 import { uuid } from '@/utils/utils'
-import { ref } from 'vue'
 import type BorderBoxComponent from './config'
 import type { BorderBox } from './type'
 
@@ -152,13 +151,13 @@ const props = defineProps<{
 }>()
 
 const { propValue } = useProp<BorderBox>(props.component)
-const width = ref<number>(150)
-const height = ref<number>(150)
-const gradientId = ref<string>(`border-box-9-gradient-${uuid()}`)
-const maskId = ref<string>(`border-box-9-mask-${uuid()}`)
+const width = ref(150)
+const height = ref(150)
+const gradientId = ref(`border-box-9-gradient-${uuid()}`)
+const maskId = ref(`border-box-9-mask-${uuid()}`)
 
 // 监听窗口大小变化
-const resizeHandler = (entry: ResizeObserverEntry) => {
+const resizeHandler = (entry) => {
   const rect: DOMRectReadOnly = entry.contentRect
   width.value = rect.width
   height.value = rect.height

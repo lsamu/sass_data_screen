@@ -124,7 +124,6 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, watch, computed } from 'vue'
 import type { ProjectSettingState } from '@/store/modules/projectSetting'
 import { useProjectSettingStoreWithOut } from '@/store/modules/projectSetting'
 import {
@@ -154,10 +153,10 @@ withDefaults(
 )
 
 const settingStore = useProjectSettingStoreWithOut()
-const currentThemeSettings = computed<ProjectSettingState>(() => settingStore)
-const isDrawer = ref<boolean>(false)
-const placement = ref<DrawerPlacement>('right')
-const alertText = ref<string>(
+const currentThemeSettings = computed(() => settingStore)
+const isDrawer = ref(false)
+const placement = ref('right')
+const alertText = ref(
   '该功能主要实时预览各种布局效果，更多完整配置在 projectSetting.ts 中设置，建议在生产环境关闭该布局预览功能。'
 )
 const appThemeList = [

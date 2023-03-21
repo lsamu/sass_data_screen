@@ -9,7 +9,6 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive } from 'vue'
 import { SYS_FONT_WEIGHT } from '@/enum/font'
 import { NSelect } from 'naive-ui'
 
@@ -22,13 +21,10 @@ const props = withDefaults(
   }
 )
 
-const weight = ref<number>(props.value)
-const weights = reactive<{ label: string; value: number }[]>(SYS_FONT_WEIGHT)
+const weight = ref(props.value)
+const weights = reactive(SYS_FONT_WEIGHT)
 
-const emits = defineEmits<{
-  (e: 'update:value', weight: number): void
-  (e: 'change', weight: number): void
-}>()
+const emits = defineEmits(["update:value","change"])
 
 const change = (val: number) => {
   weight.value = val

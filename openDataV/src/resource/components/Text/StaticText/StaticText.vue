@@ -9,7 +9,6 @@
 
 <script setup lang="ts">
 import { useProp } from '@/resource/hooks'
-import { computed, ref } from 'vue'
 import type StaticTextComponent from './config'
 import type { StaticTextType } from './type'
 
@@ -19,12 +18,12 @@ const props = defineProps<{
 
 const { propValue } = useProp<StaticTextType>(props.component)
 
-const customeText = computed<string>(() => {
+const customeText = computed(() => {
   return propValue.base.text
 })
 
-const lineHeight = ref<string>('20px')
-const resizeHandler = (entry: ResizeObserverEntry) => {
+const lineHeight = ref('20px')
+const resizeHandler = (entry) => {
   const { height } = entry.contentRect
   lineHeight.value = `${height}px`
 }

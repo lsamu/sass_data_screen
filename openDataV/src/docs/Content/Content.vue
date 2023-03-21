@@ -25,13 +25,11 @@ import ConfigProvider from '@/components/provider/ConfigProvider.vue'
 import RenderMD from '../RenderMD.vue'
 import SiderContent from '../modules/components/SiderContent'
 import { getMenus } from './menus'
-import { computed } from 'vue'
-import { useRoute } from 'vue-router'
 import docsRouters from '@/router/modules/docs'
 import type { MenuItem } from '../modules/components/SiderContent/type'
 import type { AppRouteRecordRaw } from '@/router/types'
 const route = useRoute()
-const componentMenus = computed<Array<MenuItem>>(() => {
+const componentMenus = computed(() => {
   const matcheds = route.matched
   const name = matcheds[1].name
   const routers = docsRouters[0].children.filter((el) => el.name === name)

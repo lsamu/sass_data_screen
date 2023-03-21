@@ -22,16 +22,12 @@
 import { useProp, useData } from '@/resource/hooks'
 import type { BaseComponent, DataType } from '@/resource/models'
 import type { RequestResponse } from '@/resource/models/type'
-import { computed, onMounted, onUnmounted, ref } from 'vue'
 import type { RankBoard } from './type'
 const props = defineProps<{
   component: BaseComponent
 }>()
 
-const dataSource = ref<
-  | Array<{ label: string; value: number }>
-  | RequestResponse<Array<{ label: string; value: number }>>['afterData']
->([])
+const dataSource = ref([])
 const dataChange = (resp: any, _: DataType) => {
   if (resp.status >= 0) {
     dataSource.value = resp.afterData
@@ -90,24 +86,24 @@ const propValueChange = (prop: string, key: string, value: any) => {
 
 const { propValue } = useProp<RankBoard>(props.component, propValueChange)
 
-const unit = ref<string>(propValue.data.unit)
-const barHeight = ref<string>(`${propValue.bar.barHeight}px`)
+const unit = ref(propValue.data.unit)
+const barHeight = ref(`${propValue.bar.barHeight}px`)
 
-const fontSize = ref<string>(`${propValue.text.fontSize}px`)
-const labelColor = ref<string>(propValue.text.labelColor || '#fff')
-const valueColor = ref<string>(propValue.text.valueColor || '#fff')
-const rankColor = ref<string>(propValue.text.rankColor || '#fff')
-const color1 = ref<string>(propValue.bar.color1 || '#3DE7C9')
-const color2 = ref<string>(propValue.bar.color2 || '#00BAFF')
-const borderRadius = ref<string>(`${propValue.bar.borderRadius}px`)
-const lineHeight = ref<string>(`${propValue.line.lineHeight}px`)
-const borderGap = ref<string>(`${propValue.line.borderGap}px`)
-const lineColor = ref<string>(propValue.line.lineColor || '#3DE7C9')
-const linearGradient = computed<string>(
+const fontSize = ref(`${propValue.text.fontSize}px`)
+const labelColor = ref(propValue.text.labelColor || '#fff')
+const valueColor = ref(propValue.text.valueColor || '#fff')
+const rankColor = ref(propValue.text.rankColor || '#fff')
+const color1 = ref(propValue.bar.color1 || '#3DE7C9')
+const color2 = ref(propValue.bar.color2 || '#00BAFF')
+const borderRadius = ref(`${propValue.bar.borderRadius}px`)
+const lineHeight = ref(`${propValue.line.lineHeight}px`)
+const borderGap = ref(`${propValue.line.borderGap}px`)
+const lineColor = ref(propValue.line.lineColor || '#3DE7C9')
+const linearGradient = computed(
   () => `linear-gradient(to right, ${color1.value}, ${color2.value})`
 )
 
-const maxValue = computed<number>(() => {
+const maxValue = computed(() => {
   if (propValue.data.maxValue) {
     return propValue.data.maxValue
   } else {

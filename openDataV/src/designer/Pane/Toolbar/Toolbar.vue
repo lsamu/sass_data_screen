@@ -5,8 +5,6 @@
 </template>
 
 <script setup lang="ts">
-import { h } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
 import type { ToolBarItemType } from '@/components/ToolBar'
 import {
   undo,

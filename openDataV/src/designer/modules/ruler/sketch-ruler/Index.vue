@@ -38,9 +38,7 @@
 </template>
 
 <script lang="ts" setup>
-/* eslint-disable-next-line @typescript-eslint/consistent-type-imports */
 import RulerWrapper from './RulerWrapper.vue'
-import { computed, ref } from 'vue'
 import type { PaletteType, ShadowType } from '../index-types'
 import type { ContextmenuItem } from '@/plugins/directive/contextmenu/types'
 
@@ -66,9 +64,9 @@ const props = withDefaults(
   }
 )
 
-const VRulerWrapperRef = ref<InstanceType<typeof RulerWrapper> | null>(null)
-const HRulerWrapperRef = ref<InstanceType<typeof RulerWrapper> | null>(null)
-const isShowReferLine = ref<boolean>(true)
+const VRulerWrapperRef = ref(null)
+const HRulerWrapperRef = ref(null)
+const isShowReferLine = ref(true)
 const clearLines = () => {
   // @ts-ignore
   VRulerWrapperRef.value?.clearLines()

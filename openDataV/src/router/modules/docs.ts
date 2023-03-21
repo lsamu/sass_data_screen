@@ -16,7 +16,7 @@ const getComponents = () => {
   const moduleFilesTs: any = import.meta.glob('../../resource/components/**/index.ts', {
     eager: true
   })
-  Object.keys(moduleFilesTs).forEach((key: string) => {
+  Object.keys(moduleFilesTs).forEach((key) => {
     const componentOptions = moduleFilesTs[key]?.default
     const componentInstance = new componentOptions.config()
     const docs = componentDocs.filter((el) => el.key === componentInstance.group)

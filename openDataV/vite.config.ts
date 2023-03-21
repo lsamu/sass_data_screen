@@ -5,6 +5,7 @@ import MarkDownPlugin from 'vite-plugin-vue-markdown'
 import { viteMockServe } from 'vite-plugin-mock'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import { resolve } from 'path'
+import AutoImport from "unplugin-auto-import/vite"
 
 // https://vitejs.dev/config/
 export default ({ mode, command }: ConfigEnv): UserConfigExport => {
@@ -32,6 +33,9 @@ export default ({ mode, command }: ConfigEnv): UserConfigExport => {
       //     md.use(require('./build/toc.js'))
       //   }
       // })
+      AutoImport ({
+        imports: ["vue", "vue-router"], // 自动导入vue和vue-router相关函数
+      })
     ],
     base: './',
     resolve: {
