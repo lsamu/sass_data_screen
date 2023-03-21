@@ -6,7 +6,7 @@ import { makeFunction } from '@/utils/data'
 export class RestRequest {
   private axiosInstance: any
   public url: string
-  public params: Recordable<string | number> | undefined
+  public params: any
   public data: any
   private callback: any
   private isNotify = false
@@ -28,7 +28,7 @@ export class RestRequest {
 
     // const resp = await axiosInstance.request({url,params,data})
   }
-  public request<T = any>(args?: Recordable) {
+  public request<T = any>(args?: any) {
     return new Promise<any>((resolve, reject) => {
       this.axiosInstance
         .request({ url: this.url, params: this.params, data: this.data })

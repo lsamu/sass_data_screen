@@ -63,7 +63,7 @@ export default defineComponent({
       basicStore.decompose()
     }
 
-    const contextmenus = (_: HTMLDivElement, event: MouseEvent): Optional<any[]> => {
+    const contextmenus = (_: HTMLDivElement, event: MouseEvent): any => {
       // 如果当前有选中组件，并且接受到contextmenu事件的组件正是当前组件，就停止事件冒泡
       if (basicStore.curComponent && basicStore.curComponent.id === props.info!.id) {
         event.stopPropagation()

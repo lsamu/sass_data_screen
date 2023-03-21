@@ -6,7 +6,7 @@ import vueJsx from '@vitejs/plugin-vue-jsx'
 import { resolve } from 'path'
 import AutoImport from "unplugin-auto-import/vite"
 import Components from 'unplugin-vue-components/vite'
-import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
+import { ElementPlusResolver, NaiveUiResolver } from 'unplugin-vue-components/resolvers'
 
 
 // https://vitejs.dev/config/
@@ -34,7 +34,7 @@ export default ({ mode, command }: ConfigEnv): UserConfigExport => {
         imports: ["vue", "vue-router"], // 自动导入vue和vue-router相关函数
       }),
       Components({
-        resolvers: [ElementPlusResolver()],
+        resolvers: [ElementPlusResolver(), NaiveUiResolver()],
         dts: true,
         include: [/\.vue$/, /\.vue\?vue/, /\.md$/]
       })

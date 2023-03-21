@@ -98,7 +98,7 @@ const clearSnapshot = async () => {
   await getHistory()
 }
 
-const dataListContextMenus = (id): Optional<ContextmenuItem[]> => {
+const dataListContextMenus = (id) => {
   return [
     {
       text: '删除',
@@ -108,7 +108,7 @@ const dataListContextMenus = (id): Optional<ContextmenuItem[]> => {
   ]
 }
 
-const dataHistoryContextMenus = (_): Optional<ContextmenuItem[]> => {
+const dataHistoryContextMenus = (_) => {
   return [
     {
       text: '清除',

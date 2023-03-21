@@ -10,7 +10,7 @@ import LogoView from '@/components/LogoView'
 
 const router = useRouter()
 
-const toolBars: ToolBarItemType[] = [
+const toolBars: any[] = [
   {
     label: '首页',
     action: async (_e: MouseEvent) => {
