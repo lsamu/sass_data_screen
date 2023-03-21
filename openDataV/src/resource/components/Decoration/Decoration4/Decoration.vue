@@ -147,11 +147,9 @@
 
 <script setup lang="ts">
 import { useProp } from '@/resource/hooks'
-import type DecorationComponent from './config'
-import type { Decoration } from './type'
 
 const props = defineProps<{
-  component: DecorationComponent
+  component: any
 }>()
 
 const propChange = (prop: string, key: string, value: any) => {
@@ -159,7 +157,7 @@ const propChange = (prop: string, key: string, value: any) => {
   if (prop === 'base' && key === 'color2') mergedColor.value[1] = value
 }
 
-const { propValue } = useProp<Decoration>(props.component, propChange)
+const { propValue } = useProp<any>(props.component, propChange)
 
 const width = ref(300)
 const height = ref(35)

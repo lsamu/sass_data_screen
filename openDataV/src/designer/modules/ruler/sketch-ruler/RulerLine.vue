@@ -13,13 +13,11 @@
   </div>
 </template>
 <script lang="ts" setup>
-import type { ContextmenuItem } from '@/plugins/directive/contextmenu/types'
-import type { PaletteType } from '../index-types'
 
 const props = defineProps<{
   scale: number
   thick: number
-  palette: PaletteType
+  palette: any
   index: number
   start: number
   vertical: boolean
@@ -77,7 +75,7 @@ const handleDown = (e: MouseEvent) => {
 const handleRemove = () => {
   emit('onRemove', props.index)
 }
-const contextmenus = (): ContextmenuItem[] => {
+const contextmenus = (): any[] => {
   return [
     {
       text: '删除',

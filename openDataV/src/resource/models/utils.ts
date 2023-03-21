@@ -1,13 +1,10 @@
 import { componentList } from '@/designer/load'
-import type { ComponentDataType } from '@/types/component'
-import type { BaseComponent } from './component'
-import type { RestRequestOptions, StaticRequestOptions } from './data'
 import { DataIntegrationMode, DataType } from './data'
 
-export function createComponent(component: ComponentDataType): any {
+export function createComponent(component: any): any {
   if ((component.component as string) in componentList) {
     const _class = componentList[component.component as string]
-    const obj: BaseComponent = new _class(component.id, component.name, component.icon)
+    const obj: any = new _class(component.id, component.name, component.icon)
     obj.groupStyle = component.groupStyle
     obj.setPropValue(component)
     obj.setStyleValue(component)
@@ -16,13 +13,13 @@ export function createComponent(component: ComponentDataType): any {
     if (obj.dataIntegrationMode === DataIntegrationMode.UNIVERSAL) {
       if (data) {
         if (data.type === DataType.STATIC) {
-          const options = data.requestOptions as StaticRequestOptions
+          const options = data.requestOptions as any
           obj.changeRequestDataConfig(DataType.STATIC, {
             id: options.dataId,
             script: options.script
           })
         } else if (data.type === DataType.REST) {
-          const options = data.requestOptions as RestRequestOptions
+          const options = data.requestOptions as any
           obj.changeRequestDataConfig(DataType.REST, {
             options: options.restOptions,
             otherConfig: data.otherConfig
@@ -43,6 +40,6 @@ export function createComponent(component: ComponentDataType): any {
   }
 }
 
-export function getComponentIndexById(id: string, parent: BaseComponent) {
+export function getComponentIndexById(id: string, parent: any) {
   return parent.subComponents.findIndex((item) => item.id === id)
 }

@@ -17,14 +17,13 @@
 </template>
 
 <script setup lang="ts">
-import type { ContextmenuItem, Axis } from './types'
 
 import MenuContent from './MenuContent.vue'
 
 const props = defineProps<{
-  axis: Axis
+  axis: any
   el: HTMLElement
-  menus: ContextmenuItem[]
+  menus: any[]
   removeContextmenu: Function
 }>()
 
@@ -50,7 +49,7 @@ const style = computed(() => {
   }
 })
 
-const handleClickMenuItem = (item: ContextmenuItem, event: MouseEvent) => {
+const handleClickMenuItem = (item: any, event: MouseEvent) => {
   if (item.disable) return
   if (item.children && !item.handler) return
   if (item.handler) item.handler(props.el, event)

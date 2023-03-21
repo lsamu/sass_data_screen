@@ -11,7 +11,6 @@ import ComponentWrapper from '@/designer/Editor/ComponentWrapper.vue'
 import { backgroundToCss, filterStyle, pageScale } from '@/utils/utils'
 import { useSnapShotStoreWithOut } from '@/store/modules/snapshot'
 import { useBasicStoreWithOut } from '@/store/modules/basic'
-import type { ComponentDataType } from '@/types/component'
 const snapShotStore = useSnapShotStoreWithOut()
 const basicStore = useBasicStoreWithOut()
 
@@ -44,7 +43,7 @@ onMounted(async () => {
   const snapshot = await snapShotStore.latestRecord()
   if (snapshot) {
     basicStore.setLayoutData({
-      canvasData: snapshot.canvasData as ComponentDataType[],
+      canvasData: snapshot.canvasData as any[],
       canvasStyle: snapshot.canvasStyle
     })
   }

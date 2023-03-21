@@ -1,5 +1,4 @@
 import { ComponentGroup, FormType } from '@/enum'
-import type { PropsType } from '@/types/component'
 import { BaseComponent } from '@/resource/models'
 
 export const componentName = 'Tabs'
@@ -15,7 +14,7 @@ class TabsComponent extends BaseComponent {
     })
   }
 
-  _prop: PropsType[] = [
+  _prop: any[] = [
     {
       label: '标签配置',
       prop: 'label',
@@ -99,7 +98,7 @@ class TabsComponent extends BaseComponent {
       ]
     }
   ]
-  _style: PropsType[] = []
+  _style: any[] = []
 }
 
 export default TabsComponent

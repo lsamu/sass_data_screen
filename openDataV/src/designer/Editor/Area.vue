@@ -13,10 +13,8 @@
 </template>
 
 <script setup lang="ts">
-import type { ContextmenuItem } from '@/plugins/directive/contextmenu/types'
 import { useComposeStoreWithOut } from '@/store/modules/compose'
 import { useBasicStoreWithOut } from '@/store/modules/basic'
-import type { Position } from '@/types/common'
 
 const composeStore = useComposeStoreWithOut()
 const basicStore = useBasicStoreWithOut()
@@ -27,7 +25,7 @@ const top = computed(() => composeStore.style.top)
 const width = computed(() => composeStore.style.width)
 const height = computed(() => composeStore.style.height)
 
-const stopWatch: WatchStopHandle = watch(
+const stopWatch = watch(
   () => basicStore.curComponent,
   () => {
     if (composeStore.components.length > 0) {

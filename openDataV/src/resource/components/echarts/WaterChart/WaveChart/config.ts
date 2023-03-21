@@ -1,5 +1,4 @@
 import { ComponentGroup, FormType } from '@/enum'
-import type { PropsType } from '@/types/component'
 import { BaseComponent } from '@/resource/models'
 import { DataIntegrationMode } from '@/resource/models/data'
 
@@ -18,7 +17,7 @@ class WaveChartComponent extends BaseComponent {
     })
   }
 
-  _prop: PropsType[] = [
+  _prop: any[] = [
     {
       label: '图表配置',
       prop: 'options',

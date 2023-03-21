@@ -1,11 +1,9 @@
 import { NothingLayout } from '@/layout'
 import { ComponentGroupList } from '@/enum'
-import type { GroupType } from '@/enum'
-import type { ComponentItem } from '@/types/component'
 import { camel2snake } from '@/utils/utils'
 
 const getComponents = () => {
-  const componentDocs: Array<ComponentItem> = ComponentGroupList.map((el: GroupType) => {
+  const componentDocs: Array<any> = ComponentGroupList.map((el: any) => {
     return {
       label: el.name,
       key: el.key,

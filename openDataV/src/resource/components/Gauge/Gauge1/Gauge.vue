@@ -86,13 +86,11 @@
 import { http } from '@/utils/http'
 import { useProp } from '@/resource/hooks'
 import { useEventBus } from '@/bus'
-import type { Gauge } from './type'
-import type { BaseComponent } from '@/resource/models'
 import { useBasicStoreWithOut } from '@/store/modules/basic'
 
 const basicStore = useBasicStoreWithOut()
 const props = defineProps<{
-  component: BaseComponent
+  component: any
 }>()
 
 const propChange = (prop: string, key: string, value: any) => {
@@ -100,7 +98,7 @@ const propChange = (prop: string, key: string, value: any) => {
   if (prop === 'attr' && key === 'color2') mergedColor.value[1] = value
   if (prop === 'attr' && key === 'unit') unit.value = value
 }
-const { propValue } = useProp<Gauge>(props.component, propChange)
+const { propValue } = useProp<any>(props.component, propChange)
 const mergedColor = ref([propValue.attr.color1, propValue.attr.color2])
 
 const polygonId = `decoration-9-polygon`

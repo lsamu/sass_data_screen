@@ -59,11 +59,8 @@ import { filterStyle, uuid } from '@/utils/utils'
 import { useBasicStoreWithOut } from '@/store/modules/basic'
 import { useComposeStoreWithOut } from '@/store/modules/compose'
 import { EditMode } from '@/enum'
-import type { Position, Vector } from '@/types/common'
 import { getComponentShapeStyle } from '@/utils/utils'
-import type { ContextmenuItem } from '@/plugins/directive/contextmenu/types'
 import { useCopyStoreWithOut } from '@/store/modules/copy'
-import type { BaseComponent } from '@/resource/models'
 import { createComponent } from '@/resource/models'
 import { componentList } from '../load'
 import { DataIntegrationMode } from '@/resource/models/data'
@@ -150,7 +147,7 @@ const pasteComponent = (event: ClipboardEvent) => {
   if (event.clipboardData) {
     const textData = event.clipboardData.getData('text')
     try {
-      const component: BaseComponent = createComponent(JSON.parse(textData))
+      const component = createComponent(JSON.parse(textData))
       if (component) {
         component.change('top', component.positionStyle.top + 10)
         component.change('left', component.positionStyle.left + 10)
@@ -210,7 +207,7 @@ const handleMouseDown = (e: MouseEvent) => {
       return
     }
 
-    const selectedRect: Position = {
+    const selectedRect = {
       left: composeStore.style.left,
       top: composeStore.style.top,
       right: composeStore.style.left + composeStore.style.width,
@@ -228,7 +225,7 @@ const handleDrop = async (e) => {
   e.stopPropagation()
   const componentName = e.dataTransfer.getData('componentName')
   if (componentName) {
-    const component: BaseComponent = new componentList[componentName]()
+    const component = new componentList[componentName]()
     if (component.dataIntegrationMode === DataIntegrationMode.UNIVERSAL) {
       component.loadDemoData()
     }

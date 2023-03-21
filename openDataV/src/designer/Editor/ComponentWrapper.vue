@@ -10,9 +10,7 @@
 
 <script setup lang="ts">
 import { getComponentStyle } from '@/utils/utils'
-import type { BaseComponent } from '@/resource/models'
-
-defineProps<{ component: BaseComponent }>()
+defineProps(["component"])
 </script>
 
 <style lang="less" scoped>

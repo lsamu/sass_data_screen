@@ -55,14 +55,12 @@
 
 <script setup lang="ts">
 import { useProp } from '@/resource/hooks'
-import type DecorationComponent from './config'
 
-import type { Decoration } from './type'
 const props = defineProps<{
-  component: DecorationComponent
+  component: any
 }>()
 
-const { propValue } = useProp<Decoration>(props.component)
+const { propValue } = useProp<any>(props.component)
 const width = ref(200)
 const height = ref(60)
 

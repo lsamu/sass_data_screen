@@ -29,21 +29,13 @@
 </template>
 
 <script lang="ts" setup>
-import type { EditorView, ViewUpdate } from '@codemirror/view'
 import { Codemirror } from 'vue-codemirror'
 import { json } from '@codemirror/lang-json'
 import { oneDark } from '@codemirror/theme-one-dark'
-import type { CodemirrorOption } from './type'
-import type { Extension } from '@codemirror/state'
 import { redo, undo } from '@codemirror/commands'
 
 const props = withDefaults(
-  defineProps<{
-    config?: CodemirrorOption
-    code?: string
-    language?: Function
-    theme?: string
-  }>(),
+  defineProps(),
   {
     config: () => ({
       height: '200px',
@@ -57,14 +49,14 @@ const props = withDefaults(
     language: json,
     theme: 'dark'
   }
-)
+) as any
 
 const emits = defineEmits(["update:code","change"])
 
-let cmView: EditorView
+let cmView
 
 const extensions = computed(() => {
-  const result: Extension[] = []
+  const result: any[] = []
   if (props.language) {
     result.push(props.language())
   }
@@ -78,7 +70,7 @@ const handleReady = ({ view }: any) => {
   cmView = view
 }
 const log = console.log
-const codeChange = (value: string, viewUpdate: ViewUpdate) => {
+const codeChange = (value: string, viewUpdate) => {
   emits('update:code', value)
   emits('change', value, viewUpdate)
 }

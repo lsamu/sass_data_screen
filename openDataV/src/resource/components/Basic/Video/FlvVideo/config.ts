@@ -1,5 +1,4 @@
 import { ComponentGroup, FormType } from '@/enum'
-import type { PropsType } from '@/types/component'
 import { BaseComponent } from '@/resource/models'
 
 export const componentName = 'FlvVideo'
@@ -15,7 +14,7 @@ class FlvVideoComponent extends BaseComponent {
     })
   }
 
-  _prop: PropsType[] = [
+  _prop: any[] = [
     {
       label: '视频配置',
       prop: 'basic',
@@ -64,7 +63,7 @@ class FlvVideoComponent extends BaseComponent {
       ]
     }
   ]
-  _style: PropsType[] = []
+  _style: any[] = []
 }
 
 export default FlvVideoComponent

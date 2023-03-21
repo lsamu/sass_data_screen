@@ -20,15 +20,13 @@
 </template>
 <script setup lang="ts">
 import { useProp, useData } from '@/resource/hooks'
-import type { BaseComponent, DataType } from '@/resource/models'
-import type { RequestResponse } from '@/resource/models/type'
-import type { RankBoard } from './type'
+
 const props = defineProps<{
-  component: BaseComponent
+  component: any
 }>()
 
 const dataSource = ref([])
-const dataChange = (resp: any, _: DataType) => {
+const dataChange = (resp: any, _: any) => {
   if (resp.status >= 0) {
     dataSource.value = resp.afterData
   }
@@ -84,7 +82,7 @@ const propValueChange = (prop: string, key: string, value: any) => {
   if (prop === 'data' && key === 'unit') unit.value = value
 }
 
-const { propValue } = useProp<RankBoard>(props.component, propValueChange)
+const { propValue } = useProp<any>(props.component, propValueChange)
 
 const unit = ref(propValue.data.unit)
 const barHeight = ref(`${propValue.bar.barHeight}px`)

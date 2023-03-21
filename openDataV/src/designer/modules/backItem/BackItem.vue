@@ -20,20 +20,17 @@
 </template>
 
 <script lang="ts" setup>
-import type { SelectOption } from 'naive-ui'
 import { NSpace, NSelect, NColorPicker } from 'naive-ui'
 import { GlobalColorSwatches } from '@/enum'
 import LinearGradient from '../linearGradient'
-import type { Gradient } from '../linearGradient/type'
-import type { BackgroundImage, BackgroundColor } from '@/types/common'
 import BackImage from './BackImage.vue'
 import { isNumber } from 'lodash-es'
 
 const props = defineProps<{
-  value: BackgroundColor | Gradient | BackgroundImage
+  value: any
 }>()
 
-const emits = defineEmits()
+const emits = defineEmits(["updateValue","update:value"])
 
 const selectOption = ref('backgroundColor')
 const backgroundColor = ref({
@@ -47,7 +44,7 @@ const backgroundImage = ref({
   backgroundSize: ''
 })
 const backgroundGradient = ref({ angle: 0, color1: '', color2: '' })
-const options: SelectOption[] = [
+const options: any[] = [
   {
     label: '背景色',
     value: 'backgroundColor'

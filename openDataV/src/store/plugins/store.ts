@@ -1,37 +1,3 @@
-import type {
-  PiniaPlugin,
-  PiniaPluginContext,
-  SubscriptionCallbackMutation,
-  StateTree
-} from 'pinia'
-
-/**
- * Storage类型
- */
-export interface Storage {
-  getItem: (key) => any
-  setItem: (key: string, value: any) => void
-  removeItem: (key) => void
-}
-
-/**
- * 配置类型
- */
-export interface Options {
-  /**
-   * 存储类型，默认为 `window.localStorage`
-   */
-  storage?: Storage
-  /**
-   * 存储的key值，默认为 `pinia`
-   */
-  key?: string
-  /**
-   * 是否开启日志，默认为 `false`
-   */
-  logger?: boolean
-  activeStores?: Array<string>
-}
 
 /**
  * 打印日志
@@ -41,8 +7,8 @@ export interface Options {
  */
 function logGroup(
   mutationId: string,
-  mutation: SubscriptionCallbackMutation<any>,
-  state: StateTree
+  mutation: any,
+  state: any
 ) {
   const group = console.groupCollapsed || console.group
   try {
@@ -59,7 +25,7 @@ function logGroup(
  * @params  option
  * @default options = { storage: window.localStorage, key: 'pinia', logger: false }
  */
-export function StoragePlugin(options?: Options): PiniaPlugin {
+export function StoragePlugin(options?: any): any {
   const activeStores = options?.activeStores || []
 
   const storage = options?.storage || (window && window.localStorage)
@@ -67,7 +33,7 @@ export function StoragePlugin(options?: Options): PiniaPlugin {
   const logger = options?.logger || false
 
   // 获取state的值
-  const getState = (key: string, storage: Options['storage']) => {
+  const getState = (key: string, storage:any) => {
     const value = (storage as Storage).getItem(key)
     try {
       return typeof value === 'string'
@@ -81,12 +47,12 @@ export function StoragePlugin(options?: Options): PiniaPlugin {
   }
 
   // 设置state的值
-  const setState = (key: string, state: StateTree, storage: Options['storage']) => {
+  const setState = (key: string, state: any, storage: any) => {
     return (storage as Storage).setItem(key, JSON.stringify(state))
   }
 
-  return (Context: PiniaPluginContext) => {
-    const store: PiniaPluginContext['store'] = Context.store
+  return (Context: any) => {
+    const store: any['store'] = Context.store
     if (
       (activeStores.length > 0 && activeStores.includes(store.$id)) ||
       activeStores.length === 0
@@ -95,9 +61,8 @@ export function StoragePlugin(options?: Options): PiniaPlugin {
       const data = getState(tempKey, storage)
       data && store.$patch(data)
 
-      // $subscribe()一个 store的方法来观察 state 和它的变化，类似于 Vuex 的subscribe 方法
       store.$subscribe(
-        (mutation: SubscriptionCallbackMutation<any>, state: StateTree) => {
+        (mutation: any, state: any) => {
           // 记录日志
           logger && logGroup(mutation.storeId, mutation, state)
           const tempKey = `${key}-${mutation.storeId}`

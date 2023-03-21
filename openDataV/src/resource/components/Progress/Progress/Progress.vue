@@ -57,14 +57,12 @@ import { http } from '@/utils/http'
 import { useProp } from '@/resource/hooks'
 import { uuid } from '@/utils/utils'
 import { useEventBus } from '@/bus'
-import type { Progress } from './type'
-import type { BaseComponent } from '@/resource/models'
 
 const props = defineProps<{
-  component: BaseComponent
+  component: any
 }>()
 
-const { propValue } = useProp<Progress>(props.component)
+const { propValue } = useProp<any>(props.component)
 
 const width = ref(150)
 const height = ref(150)

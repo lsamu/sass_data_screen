@@ -25,17 +25,9 @@
 </template>
 
 <script setup lang="ts">
-import type { ToolBarItemType } from './type'
 import ToolBarItem from './ToolBarItem.vue'
 
-const props = withDefaults(
-  defineProps<{
-    bars?: ToolBarItemType[]
-  }>(),
-  {
-    bars: () => []
-  }
-)
+const props = defineProps(["bars"])
 
 const leftToolBars = computed(() =>
   props.bars.filter((el) => el.location === 'left' || el.location === undefined)

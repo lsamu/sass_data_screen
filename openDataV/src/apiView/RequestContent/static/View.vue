@@ -50,14 +50,11 @@
 
 <script lang="ts" setup>
 import { NTabs, NTabPane, NCard, NSelect, NSpace, NButtonGroup, NButton, NInput } from 'naive-ui'
-import type { SelectOption } from 'naive-ui'
 import { ScriptType } from '@/enum'
 import ScriptsEdtor from '../modules/ScriptsEditor'
 import DataView from '@/components/DataView'
 import StaticDataView from '@/components/StaticDataView'
 import { message } from '@/utils/message'
-import type { StaticRequestOptions } from './type'
-import type { StaticDataDetail } from '@/api/data'
 import {
   createStaticDataApi,
   getStaticDataApi,
@@ -67,14 +64,9 @@ import {
 import { makeFunction } from '@/utils/data'
 import { useEventBus, StaticKey } from '@/bus'
 import useDataSnapShot from '@/apiView/hooks/snapshot'
-import type { AfterScript } from '@/types/component'
-
 const staticDataList = ref([])
 const props = withDefaults(
-  defineProps<{
-    options?: StaticRequestOptions
-    mode?: 'debug' | 'use'
-  }>(),
+  defineProps(),
   {
     options: () => {
       return {
@@ -88,7 +80,7 @@ const props = withDefaults(
     },
     mode: 'use'
   }
-)
+) as any
 let snapShot
 if (props.mode === 'debug') {
   useEventBus(StaticKey.STATIC_KEY, async (id) => {

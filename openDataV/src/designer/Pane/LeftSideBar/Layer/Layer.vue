@@ -23,11 +23,8 @@ import { NDescriptions, NEmpty, NDescriptionsItem, NMenu } from 'naive-ui'
 import { useEventBus } from '@/bus'
 import LayerItem from './LayerItem.vue'
 import SimpleLayerItem from './SimpleLayerItem.vue'
-import type { MenuOption } from 'naive-ui'
 import { ComponentGroup, ComponentGroupList } from '@/enum'
-import type { ContextmenuItem } from '@/plugins/directive/contextmenu/types'
 import { cloneDeep } from 'lodash-es'
-import type { BaseComponent } from '@/resource/models'
 
 const basicStore = useBasicStoreWithOut()
 const copyStore = useCopyStoreWithOut()
@@ -53,7 +50,7 @@ useEventBus('ActiveMenu', open)
 const handleSelect = (key) => {
   activeKey.value = key
   const indexes: number[] = key.split('-').map((i) => Number(i))
-  const activedComponent: Optional<BaseComponent> = basicStore.getComponentByIndex(indexes)
+  const activedComponent: Optional<any> = basicStore.getComponentByIndex(indexes)
   if (activedComponent) {
     basicStore.setCurComponent(activedComponent, key)
   }
@@ -63,14 +60,14 @@ const menuOptions = ref([])
 
 const getMenuOptions = (
   fatherIndex: string,
-  components: BaseComponent[],
-  options: MenuOption[]
-): MenuOption[] => {
+  components: any[],
+  options: any[]
+): any[] => {
   for (let i = 0; i < components.length; i++) {
     const item = components[i]
     const currentIndex = calcIndex(i, fatherIndex)
     if (item.group === ComponentGroup.CONTAINER) {
-      const childrenOptions: MenuOption[] = []
+      const childrenOptions: any[] = []
       options.push({
         label: () =>
           h(LayerItem, {
@@ -122,7 +119,7 @@ const calcIndex = (index: number, fatherIndex) => {
 
 const copy = (index) => {
   const indexes: number[] = index.split('-').map((i) => Number(i))
-  const component: Optional<BaseComponent> = cloneDeep(basicStore.getComponentByIndex(indexes))
+  const component: Optional<any> = cloneDeep(basicStore.getComponentByIndex(indexes))
   if (component) {
     copyStore.copy(component)
   }
@@ -173,8 +170,8 @@ const display = (index) => {
 }
 const cut = (index) => {
   const indexes: number[] = index.split('-').map((i) => Number(i))
-  const cutComponent: Optional<BaseComponent> = basicStore.getComponentByIndex(indexes)
-  const component: Optional<BaseComponent> = basicStore.cutComponent(
+  const cutComponent: Optional<any> = basicStore.getComponentByIndex(indexes)
+  const component: Optional<any> = basicStore.cutComponent(
     indexes[indexes.length - 1],
     cutComponent?.parent
   )
@@ -185,15 +182,15 @@ const cut = (index) => {
 
 const paste = (index) => {
   const indexes: number[] = index.split('-').map((i) => Number(i))
-  const insertComponent: Optional<BaseComponent> = basicStore.getComponentByIndex(indexes)
+  const insertComponent: Optional<any> = basicStore.getComponentByIndex(indexes)
   if (copyStore.copyData) {
-    const data = cloneDeep(copyStore.copyData) as BaseComponent
+    const data = cloneDeep(copyStore.copyData) as any
     data.id = uuid()
     basicStore.insertComponent(indexes[indexes.length - 1], data, insertComponent?.parent)
   }
 }
 
-const contextmenus = (index): ContextmenuItem[] => {
+const contextmenus = (index): any[] => {
   const indexes = index.split('-').map((el) => parseInt(el))
   return [
     {

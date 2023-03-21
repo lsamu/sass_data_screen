@@ -1,5 +1,4 @@
 import { ComponentGroup, FormType } from '@/enum'
-import type { PropsType } from '@/types/component'
 import { BaseComponent } from '@/resource/models'
 
 export const componentName = 'Gauge1'
@@ -16,7 +15,7 @@ class GaugeComponent extends BaseComponent {
     })
   }
 
-  _prop: PropsType[] = [
+  _prop: any[] = [
     {
       label: '数据配置',
       prop: 'data',
@@ -78,7 +77,7 @@ class GaugeComponent extends BaseComponent {
       ]
     }
   ]
-  _style: PropsType[] = [
+  _style: any[] = [
     {
       label: '字体设置',
       prop: 'font',

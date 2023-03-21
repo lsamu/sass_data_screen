@@ -1,11 +1,10 @@
 import { defineStore } from 'pinia'
 import store from '@/store'
-import type { UserInfo } from '@/types/storeTypes'
 import { setStorageItem, getStorageItem, removeStorageItem } from '@/utils/storage'
 
 const useUserStore = defineStore({
   id: 'user',
-  state: (): UserInfo => ({
+  state: (): any => ({
     username: '',
     token: undefined
   }),
@@ -32,7 +31,7 @@ const useUserStore = defineStore({
       removeStorageItem('token')
       return Promise.resolve('')
     },
-    async setUserInfo(userInfo: UserInfo) {
+    async setUserInfo(userInfo: any) {
       setStorageItem('userInfo', JSON.stringify(userInfo))
       return userInfo
     }

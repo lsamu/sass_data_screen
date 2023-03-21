@@ -31,7 +31,6 @@
 </template>
 
 <script setup lang="ts">
-import type { ContextmenuItem } from './types'
 
 defineProps<{
   menus: Array<ContextmenuItem>

@@ -1,18 +1,15 @@
 import { defineStore } from 'pinia'
 import store from '@/store'
-import type { AreaData } from '@/types/storeTypes'
 import { useBasicStoreWithOut } from '@/store/modules/basic'
 import { createGroupStyle, calcComponentsRect, getComponentRealRect } from '@/utils/utils'
-import type { BaseComponent } from '@/resource/models'
 import { componentList } from '@/designer/load'
-import type { Position } from '@/types/common'
 import { getSelectComponents } from '../utils/utils'
 
 const basicStore = useBasicStoreWithOut()
 
 const useComposeStore = defineStore({
   id: 'compose',
-  state: (): AreaData => ({
+  state: (): any => ({
     style: {
       top: 0,
       left: 0,
@@ -31,11 +28,11 @@ const useComposeStore = defineStore({
     }
   },
   actions: {
-    isActived(component: BaseComponent): boolean {
-      return this.components.findIndex((el: BaseComponent) => el.id === component.id) !== -1
+    isActived(component: any): boolean {
+      return this.components.findIndex((el: any) => el.id === component.id) !== -1
     },
 
-    setSelectComponents(style: Position) {
+    setSelectComponents(style: any) {
       const res = getSelectComponents(style, basicStore.componentData)
       if (res) {
         const { components, rect } = res
@@ -55,7 +52,7 @@ const useComposeStore = defineStore({
      * 向store 中增加组件
      * @param component 组件
      */
-    appendComponent(component: Optional<BaseComponent>): void {
+    appendComponent(component: Optional<any>): void {
       if (!component) {
         return
       }
@@ -78,7 +75,7 @@ const useComposeStore = defineStore({
       this.components = []
       this.ids.clear()
     },
-    setPostion(position: Partial<Position>) {
+    setPostion(position: Partial<any>) {
       if (position.left) {
         this.style.left = position.left
       }
@@ -104,7 +101,7 @@ const useComposeStore = defineStore({
         this.style = { ...this.style, ...calcComponentsRect(this.components) }
       }
       const GroupClass = componentList['Group']
-      const groupComponent: BaseComponent = new GroupClass()
+      const groupComponent: any = new GroupClass()
       for (const prop in this.style) {
         groupComponent.change(prop, this.style[prop])
       }
@@ -121,7 +118,7 @@ const useComposeStore = defineStore({
      * 将已经放到 Group 组件数据删除，也就是在 componentData 中删除，因为它们已经放到 Group 组件中了
      * @param deleteData
      */
-    batchDeleteComponent(deleteData: BaseComponent[]) {
+    batchDeleteComponent(deleteData: any[]) {
       deleteData.forEach((component) => {
         for (let i = 0, len = basicStore.componentData.length; i < len; i++) {
           if (component.id === basicStore.componentData[i].id) {

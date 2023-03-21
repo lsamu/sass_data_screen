@@ -1,12 +1,11 @@
-import type { BaseComponent } from '@/resource/models'
 import { DataType } from '@/resource/models'
 
 export const useData = (
-  component: BaseComponent,
+  component: any,
   callbackData?: (data: any, type: DataType) => void
 ) => {
   component.changeDataCallback(callbackData!)
-  let timer: IntervalHandle = 0
+  let timer: any = 0
   const pullData = async () => {
     const requestConfig = component.dataConfig?.requestConfig
     if (requestConfig && callbackData) {

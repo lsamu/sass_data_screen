@@ -10,14 +10,13 @@
 </template>
 <script lang="ts" setup>
 import { drawCavaseRuler } from './utils'
-import type { PaletteType } from '../index-types'
 
 const props = defineProps<{
   showIndicator: boolean
   valueNum: number
   scale: number
   ratio: number
-  palette: PaletteType
+  palette: any
   vertical: boolean
   start: number
   width: number

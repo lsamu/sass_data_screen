@@ -1,4 +1,3 @@
-import type { ConfigProviderProps } from 'naive-ui'
 import { createDiscreteApi, lightTheme, darkTheme } from 'naive-ui'
 import { useProjectSettingStoreWithOut } from '@/store/modules/projectSetting'
 

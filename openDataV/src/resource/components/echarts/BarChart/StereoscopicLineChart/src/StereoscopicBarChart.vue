@@ -4,25 +4,18 @@
 
 <script setup lang="ts">
 import { useData, useProp } from '@/resource/hooks'
-import type StereoscopicBarChartComponent from '../config'
-import type { StereoscopicBarChart } from '../type'
-import type { EChartsOption, XAXisComponentOption, CustomSeriesOption } from 'echarts'
 import { compareResetValue } from '../../../utils'
 import { useEchart } from '../../../hooks'
-import type { DataType } from '@/resource/models'
-import type { RequestResponse } from '@/resource/models/type'
 import { graphic } from 'echarts'
 
-let globalOption: EChartsOption
+let globalOption: any
 const props = defineProps<{
-  component: StereoscopicBarChartComponent
+  component: any
 }>()
-let chartData:
-  | Array<{ label: string; value: number }>
-  | RequestResponse<{ label: string; value: number }[]>['afterData'] = []
+let chartData:any;
 const dataChange = (
-  resp: RequestResponse<Array<{ label: string; value: number }>>,
-  _: DataType
+  resp,
+  _
 ) => {
   if (resp.status >= 0) {
     chartData = resp.afterData
@@ -38,7 +31,7 @@ const propValueChange = () => {
 
 const chartEl = ref()
 const { updateEchart, resizeHandler } = useEchart(chartEl)
-const { propValue } = useProp<StereoscopicBarChart>(props.component, propValueChange)
+const { propValue } = useProp<any>(props.component, propValueChange)
 
 onMounted(async () => {
   configGraphic()
@@ -56,7 +49,7 @@ function configGraphic() {
       x: 0,
       y: 0
     },
-    buildPath(ctx, shape) {
+    buildPath(ctx:any, shape) {
       // 会canvas的应该都能看得懂，shape是从custom传入的
       const xAxisPoint = shape.xAxisPoint
       const c0 = [shape.x, shape.y]
@@ -78,7 +71,7 @@ function configGraphic() {
       x: 0,
       y: 0
     },
-    buildPath: function (ctx, shape) {
+    buildPath: function (ctx:any, shape) {
       const xAxisPoint = shape.xAxisPoint
       const c1 = [shape.x, shape.y]
       const c2 = [xAxisPoint[0], xAxisPoint[1]]
@@ -99,7 +92,7 @@ function configGraphic() {
       x: 0,
       y: 0
     },
-    buildPath: function (ctx, shape) {
+    buildPath: function (ctx:any, shape) {
       const c1 = [shape.x, shape.y]
       const c2 = [shape.x + offsetX, shape.y - offsetY] //右点
       const c3 = [shape.x, shape.y - offsetX]
@@ -121,7 +114,7 @@ function configGraphic() {
 // endregion
 
 const getOption = () => {
-  const option: EChartsOption = {
+  const option: any = {
     grid: {
       top: '10%',
       left: '3%',
@@ -270,8 +263,8 @@ const getOption = () => {
         }
       }
     }
-  ] as CustomSeriesOption[]
-  return option as EChartsOption
+  ] as any[]
+  return option as any
 }
 
 const updateData = (resp: Array<{ label: string; value: number }>) => {
@@ -289,7 +282,7 @@ const updateData = (resp: Array<{ label: string; value: number }>) => {
   globalOption.xAxis = {
     ...globalOption.xAxis,
     data: data.map((el) => el.label)
-  } as XAXisComponentOption
+  } as any
   updateEchart(globalOption)
 }
 </script>

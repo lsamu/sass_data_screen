@@ -1,14 +1,8 @@
 import { cloneDeep } from 'lodash-es'
-import type { Table } from 'dexie'
 import Dexie from 'dexie'
 
 class DataSnapShotDexie extends Dexie {
-  public data!: Table<{
-    id?: number
-    type: string
-    data: any
-  }>
-
+  public data;
   constructor() {
     super('data')
     this.version(2).stores({

@@ -4,21 +4,17 @@
 
 <script lang="ts" setup>
 import { useEchart } from '../../hooks'
-import type WaveChartComponent from './config'
 import { useProp, useData } from '@/resource/hooks'
 import 'echarts-liquidfill'
-import type { WaveChartType } from './type'
-import type { DataType } from '@/resource/models'
-import type { RequestResponse } from '@/resource/models/type'
 
 const props = defineProps<{
-  component: WaveChartComponent
+  component: any
 }>()
 
 const chartEl = ref(null)
 const { updateEchart, resizeHandler } = useEchart(chartEl)
 const chartData = ref(0)
-const dataChange = (resp: any, _: DataType) => {
+const dataChange = (resp: any, _: any) => {
   if (resp.status >= 0) {
     chartData.value = resp.afterData
   }
@@ -27,7 +23,7 @@ const dataChange = (resp: any, _: DataType) => {
 }
 useData(props.component, dataChange)
 
-const { propValue } = useProp<WaveChartType>(props.component, async () => {
+const { propValue } = useProp<any>(props.component, async () => {
   updateEchart(getOption())
 })
 

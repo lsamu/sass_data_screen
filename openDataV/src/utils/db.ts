@@ -1,13 +1,7 @@
-import type { ComponentData } from '@/types/component'
-import type { Table } from 'dexie'
 import Dexie from 'dexie'
 
-export interface StoreComponentData extends ComponentData {
-  id?: number
-}
-
 export class SnapShotDexie extends Dexie {
-  snapshot!: Table<StoreComponentData>
+  snapshot!: any
 
   constructor() {
     super('snapshot')

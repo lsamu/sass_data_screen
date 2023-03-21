@@ -1,15 +1,10 @@
 import { defineComponent, ref, computed, onMounted, onErrorCaptured, watch } from 'vue'
 import { useBasicStoreWithOut } from '@/store/modules/basic'
 import { useComposeStoreWithOut } from '@/store/modules/compose'
-import type { ComponentPublicInstance, PropType } from 'vue'
 import { mod360, copyText, throttleFrame } from '@/utils/utils'
 import { eventBus, StaticKey } from '@/bus'
-import type { Vector } from '@/types/common'
-import type { ContextmenuItem } from '@/plugins/directive/contextmenu/types'
 import { useCopyStoreWithOut } from '@/store/modules/copy'
-import type { ComponentStyle } from '@/types/component'
 import { stretchedComponents } from '@/utils/component'
-import type { BaseComponent } from '@/resource/models'
 import styles from './shape.module.less'
 import { XIcon } from '@/plugins/xicon'
 
@@ -23,8 +18,8 @@ export default defineComponent({
       type: Boolean,
       default: false
     },
-    info: Object as PropType<BaseComponent>,
-    defaultStyle: Object as PropType<ComponentStyle>,
+    info: Object as any,
+    defaultStyle: Object as any,
     index: Number
   },
   setup(props, { slots }) {
@@ -68,7 +63,7 @@ export default defineComponent({
       basicStore.decompose()
     }
 
-    const contextmenus = (_: HTMLDivElement, event: MouseEvent): Optional<ContextmenuItem[]> => {
+    const contextmenus = (_: HTMLDivElement, event: MouseEvent): Optional<any[]> => {
       // 如果当前有选中组件，并且接受到contextmenu事件的组件正是当前组件，就停止事件冒泡
       if (basicStore.curComponent && basicStore.curComponent.id === props.info!.id) {
         event.stopPropagation()
@@ -276,7 +271,7 @@ export default defineComponent({
       const move = throttleFrame((moveEvent: MouseEvent) => {
         // 第一次点击时也会触发 move，所以会有“刚点击组件但未移动，组件的大小却改变了”的情况发生
         // 因此第一次点击时不触发 move 事件
-        const curPositon: Vector = {
+        const curPositon = {
           x: (moveEvent.clientX - editorRectInfo.left) / basicStore.scale,
           y: (moveEvent.clientY - editorRectInfo.top) / basicStore.scale
         }
@@ -373,7 +368,7 @@ export default defineComponent({
         { start: 248, end: 293, cursor: 'sw' },
         { start: 293, end: 338, cursor: 'w' }
       ]
-      const initialAngle: Recordable<number> = {
+      const initialAngle: any = {
         // 每个点对应的初始角度
         lt: 0,
         t: 45,
@@ -495,7 +490,7 @@ export default defineComponent({
 
     watch(
       () => basicStore.curComponent,
-      (newValue: BaseComponent | undefined) => {
+      (newValue) => {
         if (newValue && props.info!.id === newValue.id) {
           document.addEventListener('keydown', keyDown)
         } else {
@@ -504,13 +499,7 @@ export default defineComponent({
       }
     )
 
-    interface PointRenderType {
-      top: string
-      left: string
-      direction: string
-    }
-
-    const pointRenderData: PointRenderType[] = [
+    const pointRenderData: any[] = [
       {
         top: '0%',
         left: '0%',

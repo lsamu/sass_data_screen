@@ -1,5 +1,3 @@
-import type { Vector, Position } from '@/types/common'
-import type { DOMRectStyle } from '@/types/component'
 import { rotatePoint } from './utils'
 
 const funcs = {
@@ -13,7 +11,7 @@ const funcs = {
   l: calculateLeft
 }
 
-function getComponentCenter(style: DOMRectStyle): Vector {
+function getComponentCenter(style: any): any {
   const { top, left, height, width } = style
   return {
     y: top + height / 2,
@@ -29,7 +27,7 @@ function getComponentCenter(style: DOMRectStyle): Vector {
  * @param x x坐标
  * @returns y坐标
  */
-export function lineEquationY(k, p1: Vector, x: number): number {
+export function lineEquationY(k, p1: any, x: number): number {
   return k * (x - p1.x) + p1.y
 }
 
@@ -41,7 +39,7 @@ export function lineEquationY(k, p1: Vector, x: number): number {
  * @param y y坐标
  * @returns x坐标
  */
-export function lineEquationX(k, p1: Vector, y: number): number {
+export function lineEquationX(k, p1: any, y: number): number {
   return p1.x - (p1.y - y) / k
 }
 
@@ -51,22 +49,22 @@ export function lineEquationX(k, p1: Vector, y: number): number {
  * @param toPoint 被拖拽点最终的坐标
  * @returns
  */
-export function calculateLeftTop(style: DOMRectStyle, toPoint: Vector): Position {
+export function calculateLeftTop(style: any, toPoint: any): any {
   const { top, left, rotate, width, height } = style
-  const center: Vector = getComponentCenter(style)
+  const center: any = getComponentCenter(style)
 
   // 不动点旋转前的坐标
-  const freezePoint: Vector = { x: left + width, y: top + height }
-  const afterfreezePoint: Vector = rotatePoint(freezePoint, center, rotate)
+  const freezePoint: any = { x: left + width, y: top + height }
+  const afterfreezePoint: any = rotatePoint(freezePoint, center, rotate)
 
   //  拖拽之后的新的组件中点
-  const newCenter: Vector = {
+  const newCenter: any = {
     x: (afterfreezePoint.x + toPoint.x) / 2,
     y: (afterfreezePoint.y + toPoint.y) / 2
   }
   // 反向旋转被拖拽的点，找的画布中的坐标
-  const realPoint: Vector = rotatePoint(toPoint, newCenter, -rotate)
-  const newfreezePoint: Vector = rotatePoint(afterfreezePoint, newCenter, -rotate)
+  const realPoint: any = rotatePoint(toPoint, newCenter, -rotate)
+  const newfreezePoint: any = rotatePoint(afterfreezePoint, newCenter, -rotate)
   const realHeight = newfreezePoint.y - realPoint.y
   const realWidth = newfreezePoint.x - realPoint.x
 
@@ -79,13 +77,13 @@ export function calculateLeftTop(style: DOMRectStyle, toPoint: Vector): Position
  * @param toPoint 被拖拽点最终的坐标
  * @returns
  */
-function calculateLeft(style: DOMRectStyle, toPoint: Vector): Position {
+function calculateLeft(style: any, toPoint: any): any {
   const { left, rotate, width, height, top } = style
-  const center: Vector = getComponentCenter(style)
+  const center: any = getComponentCenter(style)
   // 不动点旋转前的坐标
 
-  const freezePoint: Vector = { x: left + width, y: top + height / 2 }
-  const afterfreezePoint: Vector = rotatePoint(freezePoint, center, rotate)
+  const freezePoint: any = { x: left + width, y: top + height / 2 }
+  const afterfreezePoint: any = rotatePoint(freezePoint, center, rotate)
   if (rotate % 180 != 90) {
     const k = (center.y - afterfreezePoint.y) / (center.x - afterfreezePoint.x)
     const y = lineEquationY(k, center, toPoint.x)
@@ -94,14 +92,14 @@ function calculateLeft(style: DOMRectStyle, toPoint: Vector): Position {
     toPoint.x = center.x
   }
   //  拖拽之后的新的组件中点
-  const newCenter: Vector = {
+  const newCenter: any = {
     x: (afterfreezePoint.x + toPoint.x) / 2,
     y: (afterfreezePoint.y + toPoint.y) / 2
   }
   // 反向旋转被拖拽的点，找的画布中的坐标
-  const realPoint: Vector = rotatePoint(toPoint, newCenter, -rotate)
+  const realPoint: any = rotatePoint(toPoint, newCenter, -rotate)
   // 反向旋转不懂的点，找的画布中的坐标
-  const newfreezePoint: Vector = rotatePoint(afterfreezePoint, newCenter, -rotate)
+  const newfreezePoint: any = rotatePoint(afterfreezePoint, newCenter, -rotate)
   const realWidth = newfreezePoint.x - realPoint.x
   return { top: newCenter.y - height / 2, left: realPoint.x, width: realWidth, height: height }
 }
@@ -112,32 +110,32 @@ function calculateLeft(style: DOMRectStyle, toPoint: Vector): Position {
  * @param toPoint 被拖拽点最终的坐标
  * @returns
  */
-function calculateLeftBottom(style: DOMRectStyle, toPoint: Vector): Position {
+function calculateLeftBottom(style: any, toPoint: any): any {
   const { top, left, rotate, width } = style
-  const center: Vector = getComponentCenter(style)
-  const freezePoint: Vector = { x: left + width, y: top }
-  const afterfreezePoint: Vector = rotatePoint(freezePoint, center, rotate)
+  const center: any = getComponentCenter(style)
+  const freezePoint: any = { x: left + width, y: top }
+  const afterfreezePoint: any = rotatePoint(freezePoint, center, rotate)
 
   //  拖拽之后的新的组件中点
-  const newCenter: Vector = {
+  const newCenter: any = {
     x: (afterfreezePoint.x + toPoint.x) / 2,
     y: (afterfreezePoint.y + toPoint.y) / 2
   }
   // 反向旋转被拖拽的点，找的画布中的坐标
-  const realPoint: Vector = rotatePoint(toPoint, newCenter, -rotate)
+  const realPoint: any = rotatePoint(toPoint, newCenter, -rotate)
   // 反向旋转不懂的点，找的画布中的坐标
-  const newfreezePoint: Vector = rotatePoint(afterfreezePoint, newCenter, -rotate)
+  const newfreezePoint: any = rotatePoint(afterfreezePoint, newCenter, -rotate)
   const realHeight = realPoint.y - newfreezePoint.y
   const realWidth = newfreezePoint.x - realPoint.x
 
   return { top: realPoint.y - realHeight, left: realPoint.x, width: realWidth, height: realHeight }
 }
 
-function calculateBottom(style: DOMRectStyle, toPoint: Vector): Position {
+function calculateBottom(style: any, toPoint: any): any {
   const { top, left, rotate, width } = style
-  const center: Vector = getComponentCenter(style)
-  const freezePoint: Vector = { x: left + width / 2, y: top }
-  const afterfreezePoint: Vector = rotatePoint(freezePoint, center, rotate)
+  const center: any = getComponentCenter(style)
+  const freezePoint: any = { x: left + width / 2, y: top }
+  const afterfreezePoint: any = rotatePoint(freezePoint, center, rotate)
   if (rotate % 180 != 90) {
     //  组件未旋转 斜率为无穷大
     const k = (center.y - afterfreezePoint.y) / (center.x - afterfreezePoint.x)
@@ -148,23 +146,23 @@ function calculateBottom(style: DOMRectStyle, toPoint: Vector): Position {
   }
 
   //  拖拽之后的新的组件中点
-  const newCenter: Vector = {
+  const newCenter: any = {
     x: (afterfreezePoint.x + toPoint.x) / 2,
     y: (afterfreezePoint.y + toPoint.y) / 2
   }
   // 反向旋转被拖拽的点，找的画布中的坐标
-  const realPoint: Vector = rotatePoint(toPoint, newCenter, -rotate)
+  const realPoint: any = rotatePoint(toPoint, newCenter, -rotate)
   // 反向旋转不懂的点，找的画布中的坐标
-  const newfreezePoint: Vector = rotatePoint(afterfreezePoint, newCenter, -rotate)
+  const newfreezePoint: any = rotatePoint(afterfreezePoint, newCenter, -rotate)
   const realHeight = realPoint.y - newfreezePoint.y
   return { top: realPoint.y - realHeight, left: newCenter.x - width / 2, width, height: realHeight }
 }
 
-function calculateTop(style: DOMRectStyle, toPoint: Vector): Position {
+function calculateTop(style: any, toPoint: any): any {
   const { top, left, rotate, width, height } = style
-  const center: Vector = getComponentCenter(style)
-  const freezePoint: Vector = { x: left + width / 2, y: top + height }
-  const afterfreezePoint: Vector = rotatePoint(freezePoint, center, rotate)
+  const center: any = getComponentCenter(style)
+  const freezePoint: any = { x: left + width / 2, y: top + height }
+  const afterfreezePoint: any = rotatePoint(freezePoint, center, rotate)
   if (rotate % 180 != 90) {
     //  组件未旋转 斜率为无穷大
     const k = (center.y - afterfreezePoint.y) / (center.x - afterfreezePoint.x)
@@ -174,63 +172,63 @@ function calculateTop(style: DOMRectStyle, toPoint: Vector): Position {
     toPoint.y = center.y
   }
   //  拖拽之后的新的组件中点
-  const newCenter: Vector = {
+  const newCenter: any = {
     x: (afterfreezePoint.x + toPoint.x) / 2,
     y: (afterfreezePoint.y + toPoint.y) / 2
   }
   // 反向旋转被拖拽的点，找的画布中的坐标
-  const realPoint: Vector = rotatePoint(toPoint, newCenter, -rotate)
+  const realPoint: any = rotatePoint(toPoint, newCenter, -rotate)
   // 反向旋转不懂的点，找的画布中的坐标
-  const newfreezePoint: Vector = rotatePoint(afterfreezePoint, newCenter, -rotate)
+  const newfreezePoint: any = rotatePoint(afterfreezePoint, newCenter, -rotate)
   const realHeight = newfreezePoint.y - realPoint.y
   return { top: realPoint.y, left: newCenter.x - width / 2, width, height: realHeight }
 }
 
-function calculateRightTop(style: DOMRectStyle, toPoint: Vector): Position {
+function calculateRightTop(style: any, toPoint: any): any {
   const { top, left, rotate, height } = style
-  const center: Vector = getComponentCenter(style)
-  const freezePoint: Vector = { x: left, y: top + height }
-  const afterfreezePoint: Vector = rotatePoint(freezePoint, center, rotate)
+  const center: any = getComponentCenter(style)
+  const freezePoint: any = { x: left, y: top + height }
+  const afterfreezePoint: any = rotatePoint(freezePoint, center, rotate)
 
   //  拖拽之后的新的组件中点
-  const newCenter: Vector = {
+  const newCenter: any = {
     x: (afterfreezePoint.x + toPoint.x) / 2,
     y: (afterfreezePoint.y + toPoint.y) / 2
   }
   // 反向旋转被拖拽的点，找的画布中的坐标
-  const realPoint: Vector = rotatePoint(toPoint, newCenter, -rotate)
+  const realPoint: any = rotatePoint(toPoint, newCenter, -rotate)
   // 反向旋转不懂的点，找的画布中的坐标
-  const newfreezePoint: Vector = rotatePoint(afterfreezePoint, newCenter, -rotate)
+  const newfreezePoint: any = rotatePoint(afterfreezePoint, newCenter, -rotate)
   const realHeight = newfreezePoint.y - realPoint.y
   const realWidth = realPoint.x - newfreezePoint.x
   return { top: realPoint.y, left: newfreezePoint.x, width: realWidth, height: realHeight }
 }
 
-function calculateRightBottom(style: DOMRectStyle, toPoint: Vector): Position {
+function calculateRightBottom(style: any, toPoint: any): any {
   const { top, left, rotate } = style
-  const center: Vector = getComponentCenter(style)
-  const freezePoint: Vector = { x: left, y: top }
-  const afterfreezePoint: Vector = rotatePoint(freezePoint, center, rotate)
+  const center: any = getComponentCenter(style)
+  const freezePoint: any = { x: left, y: top }
+  const afterfreezePoint: any = rotatePoint(freezePoint, center, rotate)
 
   //  拖拽之后的新的组件中点
-  const newCenter: Vector = {
+  const newCenter: any = {
     x: (afterfreezePoint.x + toPoint.x) / 2,
     y: (afterfreezePoint.y + toPoint.y) / 2
   }
   // 反向旋转被拖拽的点，找的画布中的坐标
-  const realPoint: Vector = rotatePoint(toPoint, newCenter, -rotate)
+  const realPoint: any = rotatePoint(toPoint, newCenter, -rotate)
   // 反向旋转不懂的点，找的画布中的坐标
-  const newfreezePoint: Vector = rotatePoint(afterfreezePoint, newCenter, -rotate)
+  const newfreezePoint: any = rotatePoint(afterfreezePoint, newCenter, -rotate)
   const realHeight = realPoint.y - newfreezePoint.y
   const realWidth = realPoint.x - newfreezePoint.x
   return { top: newfreezePoint.y, left: newfreezePoint.x, width: realWidth, height: realHeight }
 }
 
-function calculateRight(style: DOMRectStyle, toPoint: Vector): Position {
+function calculateRight(style: any, toPoint: any): any {
   const { top, left, rotate, height } = style
-  const center: Vector = getComponentCenter(style)
-  const freezePoint: Vector = { x: left, y: top + height / 2 }
-  const afterfreezePoint: Vector = rotatePoint(freezePoint, center, rotate)
+  const center: any = getComponentCenter(style)
+  const freezePoint: any = { x: left, y: top + height / 2 }
+  const afterfreezePoint: any = rotatePoint(freezePoint, center, rotate)
   if (rotate % 180 != 90) {
     const k = (center.y - afterfreezePoint.y) / (center.x - afterfreezePoint.x)
     const y = lineEquationY(k, center, toPoint.x)
@@ -239,19 +237,19 @@ function calculateRight(style: DOMRectStyle, toPoint: Vector): Position {
     toPoint.x = center.x
   }
   //  拖拽之后的新的组件中点
-  const newCenter: Vector = {
+  const newCenter: any = {
     x: (afterfreezePoint.x + toPoint.x) / 2,
     y: (afterfreezePoint.y + toPoint.y) / 2
   }
   // 反向旋转被拖拽的点，找的画布中的坐标
-  const realPoint: Vector = rotatePoint(toPoint, newCenter, -rotate)
+  const realPoint: any = rotatePoint(toPoint, newCenter, -rotate)
   // 反向旋转不懂的点，找的画布中的坐标
-  const newfreezePoint: Vector = rotatePoint(afterfreezePoint, newCenter, -rotate)
+  const newfreezePoint: any = rotatePoint(afterfreezePoint, newCenter, -rotate)
   const realWidth = realPoint.x - newfreezePoint.x
   return { top: newfreezePoint.y - height / 2, left: newfreezePoint.x, width: realWidth, height }
 }
 
-export function stretchedComponents(point: string, style: DOMRectStyle, toPoint: Vector): Position {
+export function stretchedComponents(point: string, style: any, toPoint: any): any {
   const { top, left, width, height } = funcs[point](style, toPoint)
   return {
     top: Math.round(top),

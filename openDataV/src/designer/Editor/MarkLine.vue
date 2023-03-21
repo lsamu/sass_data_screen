@@ -15,8 +15,6 @@
 import { useBasicStoreWithOut } from '@/store/modules/basic'
 import { useEventBus, StaticKey } from '@/bus'
 import { calcComponentAxis } from '@/utils/utils'
-import type { BaseComponent } from '@/resource/models'
-import type { Position } from '@/types/common'
 
 const basicStore = useBasicStoreWithOut()
 
@@ -43,27 +41,22 @@ const hideLine = () => {
   })
 }
 
-interface EventParams {
-  isDownward: boolean
-  isRightward: boolean
-}
-
 useEventBus('move', (event) => {
-  showLine((event as EventParams).isDownward, (event as EventParams).isRightward)
+  showLine((event as any).isDownward, (event as any).isRightward)
 })
 useEventBus(StaticKey.DRAG_STOP, () => {
   hideLine()
 })
 
 const showLine = (isDownward, isRightward) => {
-  const components = basicStore.componentData as Array<BaseComponent>
+  const components = basicStore.componentData as any
   if (basicStore.curComponent) {
     const {
       top: mytop,
       left: myleft,
       right: myright,
       bottom: mybottom
-    }: Position = calcComponentAxis(basicStore.curComponent.positionStyle)
+    } = calcComponentAxis(basicStore.curComponent.positionStyle)
     const curComponentHalfwidth = (myright - myleft) / 2
     const curComponentHalfHeight = (mybottom - mytop) / 2
 

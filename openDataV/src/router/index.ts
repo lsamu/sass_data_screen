@@ -1,5 +1,4 @@
 import { LOGIN_URL, NoAuth, RouteMode } from '@/enum'
-import type { AppRouteRecordRaw, MenuType } from './types'
 import NProgress from '@/utils/progress'
 import { useUserStoreWithOut } from '@/store/modules/user'
 import { createWebHistory, createWebHashHistory,Router,createRouter,RouteLocationNormalized,NavigationGuardNext } from 'vue-router'
@@ -25,14 +24,14 @@ class RouteView {
   }
 
   // 动态获取 modules 目录下的所有 .ts 文件生成基础路由
-  private createBasicRoutes = (): AppRouteRecordRaw[] => {
+  private createBasicRoutes = (): any[] => {
     const moduleFiles: Recordable<{ [key: string]: any }> = import.meta.glob('./modules/**/*.ts', {
       eager: true
     })
-    const routeModuleList: AppRouteRecordRaw[] = []
+    const routeModuleList: any[] = []
     Object.keys(moduleFiles).forEach((key) => {
       const mod: { [key: string]: any } = moduleFiles[key].default || {}
-      const modList: AppRouteRecordRaw[] = Array.isArray(mod) ? [...mod] : [mod]
+      const modList: any[] = Array.isArray(mod) ? [...mod] : [mod]
       routeModuleList.push(...modList)
     })
 
@@ -129,7 +128,7 @@ class RouteView {
   }
 
   // 获取所有子路由
-  private getChildRoutes(route: AppRouteRecordRaw): string[] {
+  private getChildRoutes(route: any): string[] {
     const childList: string[] = []
     if (!route.children?.length) {
       return childList
@@ -142,7 +141,7 @@ class RouteView {
     return childList
   }
 
-  private getNormalRoutes(): AppRouteRecordRaw[] {
+  private getNormalRoutes(): any[] {
     if (!this.router) {
       return []
     }
@@ -151,7 +150,7 @@ class RouteView {
     const routes = this.router?.getRoutes()
     const childRoutes: string[] = []
     for (const route of routes) {
-      childRoutes.push(...this.getChildRoutes(route as unknown as AppRouteRecordRaw))
+      childRoutes.push(...this.getChildRoutes(route as unknown as any))
     }
 
     // 去重重复路径
@@ -162,10 +161,10 @@ class RouteView {
         return false
       }
       return true
-    }) as unknown as AppRouteRecordRaw[]
+    }) as unknown as any[]
   }
 
-  private formatRouteToMenu(routes: Optional<AppRouteRecordRaw[]>, menus: MenuType[]): void {
+  private formatRouteToMenu(routes: Optional<any[]>, menus: any[]): void {
     if (!routes) {
       return
     }
@@ -178,7 +177,7 @@ class RouteView {
     })
 
     for (const item of menuRoutes) {
-      const children: MenuType[] = []
+      const children: any[] = []
       item.children && this.formatRouteToMenu(item.children, children)
       menus.push({
         name: item.name,
@@ -192,7 +191,7 @@ class RouteView {
   // 生成路由菜单
   public generatorMenu() {
     const routes = this.getNormalRoutes()
-    const menus: MenuType[] = []
+    const menus: any[] = []
     this.formatRouteToMenu(routes, menus)
     return menus
   }

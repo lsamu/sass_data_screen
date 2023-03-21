@@ -1,11 +1,9 @@
 import Group from '@/components/Group'
-import type { BaseComponent } from '@/resource/models'
-
 // 编辑器左侧组件列表
 const componentList: Record<string, any> = {}
 
 const AsyncComponent = {
-  install: (app: App) => {
+  install: (app: any) => {
     // 注册Group组件
     componentList[Group.componentName] = Group.config
     const AsyncComp = defineAsyncComponent(Group.component)
@@ -18,7 +16,7 @@ const AsyncComponent = {
       const componentOptions = moduleFilesTs[key]?.default
 
       if (componentOptions) {
-        componentList[componentOptions.componentName] = componentOptions.config as BaseComponent
+        componentList[componentOptions.componentName] = componentOptions.config as any
 
         // 注册异步组件
         const asyncComp = defineAsyncComponent(componentOptions.component)

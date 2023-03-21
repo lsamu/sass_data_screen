@@ -1,38 +1,9 @@
 import { defineStore } from 'pinia'
 import store from '@/store'
 
-export interface IheaderSetting {
-  fixed: boolean
-  isReload: boolean
-}
-
-export interface ImenuSetting {
-  minMenuWidth: number
-  menuWidth: number
-  fixed: boolean
-  collapsed: boolean
-}
-
-export interface IcrumbsSetting {
-  show: boolean
-}
-
-export interface ProjectSettingState {
-  appTheme: string
-  navTheme: string //导航风格
-  headerSetting: IheaderSetting //顶部设置
-  showFooter: boolean //页脚
-  menuSetting: ImenuSetting //多标签
-  crumbsSetting: IcrumbsSetting //面包屑
-  isPageAnimate: boolean //是否开启路由动画
-  pageAnimateType: string //路由动画类型
-  darkTheme: boolean
-  enableCloseAlert: boolean // 是否启用离开编辑界面提醒功能
-}
-
 const useProjectSettingStore = defineStore({
   id: 'app-project-setting',
-  state: (): ProjectSettingState => ({
+  state: (): any => ({
     appTheme: '#2d8cf0',
     navTheme: 'dark',
     darkTheme: true,

@@ -5,7 +5,6 @@
 </template>
 
 <script setup lang="ts">
-import type { ToolBarItemType } from '@/components/ToolBar'
 import {
   undo,
   recoveryDraft,
@@ -26,7 +25,7 @@ const basicStore = useBasicStoreWithOut()
 const router = useRouter()
 const route = useRoute()
 
-const toolBars: ToolBarItemType[] = [
+const toolBars: any[] = [
   {
     label: '首页',
     action: async (_e: MouseEvent) => {

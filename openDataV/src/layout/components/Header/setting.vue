@@ -124,7 +124,6 @@
 </template>
 
 <script lang="ts" setup>
-import type { ProjectSettingState } from '@/store/modules/projectSetting'
 import { useProjectSettingStoreWithOut } from '@/store/modules/projectSetting'
 import {
   NDrawer,
@@ -136,7 +135,6 @@ import {
   NTooltip,
   NBadge
 } from 'naive-ui'
-import type { DrawerPlacement } from 'naive-ui'
 import NavThemeDark from '@/assets/images/nav-theme-dark.svg'
 import NavThemeLight from '@/assets/images/nav-theme-light.svg'
 import HeaderThemeDark from '@/assets/images/header-theme-dark.svg'

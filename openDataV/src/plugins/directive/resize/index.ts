@@ -2,12 +2,9 @@
 
 const RESIZE_OBSERVE = 'RESIZE_OBSERVE'
 
-interface CustomResizeObserverCallback {
-  (entry): void
-}
 
-const resizeDOM = (el: HTMLElement, binding: DirectiveBinding) => {
-  const resizeHandler: CustomResizeObserverCallback = binding.value
+const resizeDOM = (el: HTMLElement, binding: any) => {
+  const resizeHandler: any = binding.value
   const resizeObserver = new ResizeObserver((entries: ResizeObserverEntry[]) => {
     entries.length > 0 && resizeHandler(entries[0])
   })
@@ -15,7 +12,7 @@ const resizeDOM = (el: HTMLElement, binding: DirectiveBinding) => {
   return resizeObserver
 }
 
-const ResizeDomDirective: Directive = {
+const ResizeDomDirective: any = {
   mounted(el: HTMLElement, binding) {
     el[RESIZE_OBSERVE] = resizeDOM(el, binding)
   },

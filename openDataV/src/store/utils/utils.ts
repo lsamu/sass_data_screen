@@ -1,12 +1,10 @@
-import type { Position } from '@/types/common'
-import type { BaseComponent } from '@/resource/models'
 import { calcComponentAxis } from '@/utils/utils'
 
 export const getSelectComponents = (
-  rect: Position,
-  componentData: BaseComponent[]
-): { components: Array<BaseComponent>; rect: Position } | undefined => {
-  const selectedComponents: Array<BaseComponent> = []
+  rect: any,
+  componentData: any[]
+): { components: Array<any>; rect: any } | undefined => {
+  const selectedComponents: Array<any> = []
   const leftSet: Set<number> = new Set()
   const topSet: Set<number> = new Set()
   const rightSet: Set<number> = new Set()
@@ -16,7 +14,7 @@ export const getSelectComponents = (
   componentData.forEach((component) => {
     // 获取位置大小信息：left, top, width, height
     const { width, height, left, top, rotate } = component.style
-    const componentRect: Position = calcComponentAxis({
+    const componentRect: any = calcComponentAxis({
       width,
       height,
       left,

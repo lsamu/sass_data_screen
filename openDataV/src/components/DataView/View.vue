@@ -10,16 +10,11 @@
 
 <script lang="ts" setup>
 import CodeEditor from '@/components/CodeEditor'
-import type { CodemirrorOption } from '@/components/CodeEditor/type'
 import { useProjectSettingStoreWithOut } from '@/store/modules/projectSetting'
 
 const projectStore = useProjectSettingStoreWithOut()
 const props = withDefaults(
-  defineProps<{
-    content?: string
-    disable?: boolean
-    config?: CodemirrorOption
-  }>(),
+  defineProps(),
   {
     content: '',
     disabled: false,
@@ -33,12 +28,12 @@ const props = withDefaults(
       }
     }
   }
-)
+) as any
 const curConfig = computed(() => {
   return { ...props.config, disabled: props.disable || false }
 })
 
-const emits = defineEmits()
+const emits = defineEmits(["change","update:content"])
 
 const formChange = (value) => {
   emits('change', value)

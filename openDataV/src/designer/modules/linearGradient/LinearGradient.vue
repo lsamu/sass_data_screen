@@ -25,11 +25,10 @@
 <script setup lang="ts">
 import { NColorPicker, NSlider } from 'naive-ui'
 import { GlobalColorSwatches } from '@/enum'
-import type { Gradient } from './type'
 
 const props = withDefaults(
   defineProps<{
-    value: Gradient
+    value: any
   }>(),
   {
     value: () => ({

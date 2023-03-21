@@ -42,15 +42,11 @@
 </template>
 
 <script lang="ts" setup>
-import type { SelectOption, UploadCustomRequestOptions } from 'naive-ui'
 import { NForm, NFormItem, NInput, NSelect, NUpload, NButton } from 'naive-ui'
-import type { BackgroundImage } from '@/types/common'
 import { cloneDeep } from 'lodash-es'
 import { uploadImageFileApi } from '@/api/images'
 
-const props = defineProps<{
-  value: BackgroundImage
-}>()
+const props = defineProps(["value"])
 
 const emits = defineEmits(["update:value"])
 
@@ -64,7 +60,7 @@ const data = computed(() => {
   }
 })
 
-const customRequest = async ({ file, onFinish, onError }: UploadCustomRequestOptions) => {
+const customRequest = async ({ file, onFinish, onError }) => {
   try {
     const formData = new FormData()
     formData.append('file', file.file as File)
@@ -78,7 +74,7 @@ const customRequest = async ({ file, onFinish, onError }: UploadCustomRequestOpt
   }
 }
 
-const repeatOptions: SelectOption[] = [
+const repeatOptions: any[] = [
   {
     label: '横向平铺',
     value: 'repeat-x'
@@ -105,7 +101,7 @@ const repeatOptions: SelectOption[] = [
   }
 ]
 
-const attachmentOptions: SelectOption[] = [
+const attachmentOptions: any[] = [
   {
     label: '固定位置',
     value: 'fixed'
@@ -120,7 +116,7 @@ const attachmentOptions: SelectOption[] = [
   }
 ]
 
-const positionOptions: SelectOption[] = [
+const positionOptions: any[] = [
   {
     label: '水平垂直居中',
     value: 'center'
@@ -143,7 +139,7 @@ const positionOptions: SelectOption[] = [
   }
 ]
 
-const sizeOptions: SelectOption[] = [
+const sizeOptions: any[] = [
   {
     label: '真实大小',
     value: 'auto'
@@ -158,7 +154,7 @@ const sizeOptions: SelectOption[] = [
   }
 ]
 const handleChange = (value: string, type) => {
-  const background: BackgroundImage = cloneDeep(data.value)
+  const background: any = cloneDeep(data.value)
   switch (type) {
     case 'backgroundImage':
       background.backgroundImage = value

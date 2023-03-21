@@ -1,15 +1,11 @@
 import { defineStore } from 'pinia'
 import store from '@/store'
 import { cloneDeep } from 'lodash-es'
-import type { CanvasStyleData, SnapData } from '@/types/storeTypes'
-import type { StoreComponentData } from '@/utils/db'
 import { snapshotDb } from '@/utils/db'
-import type { BaseComponent } from '@/resource/models'
-import type { ComponentDataType } from '@/types/component'
 
 const useSnapShotStore = defineStore({
   id: 'snapshot',
-  state: (): SnapData => ({
+  state: (): any => ({
     latestSnapshot: undefined,
     snapshotMax: 10,
     timeHandler: undefined,
@@ -24,7 +20,7 @@ const useSnapShotStore = defineStore({
      * @returns 快照
      */
     async lastRecord() {
-      let snapshot: StoreComponentData | undefined
+      let snapshot: any | undefined
       if (this.cursor) {
         snapshot = await snapshotDb.snapshot.get(this.cursor - 1)
       } else {
@@ -41,7 +37,7 @@ const useSnapShotStore = defineStore({
      * @returns 快照
      */
     async nextRecord() {
-      let snapshot: StoreComponentData | undefined
+      let snapshot: any | undefined
       if (this.cursor) {
         snapshot = await snapshotDb.snapshot.get(this.cursor + 1)
       } else {
@@ -58,7 +54,7 @@ const useSnapShotStore = defineStore({
      * @param canvasData 组件数据
      * @param canvasStyle 画布样式
      */
-    recordSnapshot(canvasData: Array<BaseComponent>, canvasStyle: CanvasStyleData) {
+    recordSnapshot(canvasData: Array<any>, canvasStyle: any) {
       // 改变值
       this.latestSnapshot = {
         canvasData: cloneDeep(canvasData),
@@ -67,9 +63,9 @@ const useSnapShotStore = defineStore({
       snapshotDb.snapshot.add(cloneDeep(this.latestSnapshot)).then(async (_) => {
         const count: number = await snapshotDb.snapshot.count()
         if (count > this.snapshotMax) {
-          const snapshot: StoreComponentData = (await snapshotDb.snapshot
+          const snapshot: any = (await snapshotDb.snapshot
             .orderBy('id')
-            .first()) as StoreComponentData
+            .first()) as any
           await snapshotDb.snapshot.delete(snapshot!.id!)
         }
         const snapshot = await snapshotDb.snapshot.orderBy('id').last()
@@ -91,7 +87,7 @@ const useSnapShotStore = defineStore({
      * @param canvasData 组件数据
      * @param canvasStyle 组件样式
      */
-    saveSnapshot(canvasData: ComponentDataType[], canvasStyle: CanvasStyleData) {
+    saveSnapshot(canvasData: any[], canvasStyle: any) {
       if (this.timeHandler) {
         clearTimeout(this.timeHandler)
       }

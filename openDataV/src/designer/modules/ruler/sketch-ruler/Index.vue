@@ -39,20 +39,18 @@
 
 <script lang="ts" setup>
 import RulerWrapper from './RulerWrapper.vue'
-import type { PaletteType, ShadowType } from '../index-types'
-import type { ContextmenuItem } from '@/plugins/directive/contextmenu/types'
 
 const props = withDefaults(
   defineProps<{
     scale: number
     ratio?: number
     thick: number
-    palette?: PaletteType
+    palette?: any
     startX: number
     startY: number
     width?: number
     height?: number
-    shadow?: ShadowType
+    shadow?: any
   }>(),
   {
     vertical: true,
@@ -75,7 +73,7 @@ const clearLines = () => {
   isShowReferLine.value = true
 }
 
-const ruleContextMenus = (): ContextmenuItem[] => {
+const ruleContextMenus = (): any[] => {
   return [
     {
       text: '显示辅助线',

@@ -18,10 +18,9 @@
 
 <script lang="ts" setup>
 import { NForm, NFormItem, NInputNumber, NColorPicker } from 'naive-ui'
-import type { RowType } from './type'
 
 const props = defineProps<{
-  value: RowType
+  value: any
   args: any
 }>()
 

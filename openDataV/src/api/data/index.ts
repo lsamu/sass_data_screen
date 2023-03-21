@@ -12,7 +12,6 @@ import {
   createRestDataApi,
   deleteRestDataApi
 } from './restData'
-import type { StaticDataDetail } from './type'
 export {
   getStaticDataApi,
   getStaticDataListApi,
@@ -25,4 +24,3 @@ export {
   createRestDataApi,
   deleteRestDataApi
 }
-export type { StaticDataDetail }

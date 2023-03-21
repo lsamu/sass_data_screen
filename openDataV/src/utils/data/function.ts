@@ -1,6 +1,5 @@
 import { ScriptType } from '@/enum'
 import { notification } from '../message'
-import type { CallbackType } from './type'
 
 /**
  * 创建函数
@@ -14,16 +13,16 @@ export function makeFunction(
   code: string,
   args: string[],
   isDebug?: boolean
-): CallbackType | undefined {
+): any | undefined {
   switch (type) {
     case ScriptType.Javascript:
       return makeJavaScriptsFunction(code, args, isDebug)
   }
 }
 
-function makeJavaScriptsFunction(code: string, args: string[], isDebug?: boolean): CallbackType {
+function makeJavaScriptsFunction(code: string, args: string[], isDebug?: boolean): any {
   try {
-    const handler = new Function(...args, code) as (resp: any, options: Recordable) => any
+    const handler = new Function(...args, code) as (resp: any, options: any) => any
     return { handler }
   } catch (err: any) {
     if (isDebug) {

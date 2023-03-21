@@ -29,7 +29,6 @@
 
 <script lang="ts" setup>
 import CodeEditor from '@/components/CodeEditor'
-import type { CodemirrorOption } from '@/components/CodeEditor/type'
 import { useProjectSettingStoreWithOut } from '@/store/modules/projectSetting'
 import { message } from '@/utils/message'
 
@@ -73,7 +72,7 @@ const handleUndo = () => {
   }
 }
 
-const emits = defineEmits()
+const emits = defineEmits(["update:content"])
 
 const contentRef = ref(JSON.stringify(props.content, null, '\t'))
 

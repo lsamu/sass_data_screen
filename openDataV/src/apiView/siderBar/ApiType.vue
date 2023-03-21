@@ -13,8 +13,6 @@
 
 <script setup lang="ts">
 import { NMenu } from 'naive-ui'
-import type { MenuOption } from 'naive-ui'
-
 import TypeItem from './modules/TypeItem.vue'
 const apiTypes = [
   {
@@ -40,14 +38,14 @@ const apiTypes = [
 ]
 
 const activeItem = ref('REST')
-const emits = defineEmits()
+const emits = defineEmits(["change"])
 const menuChange = (value) => {
   activeItem.value = value
   emits('change', value)
 }
 
 const menuOptions = computed(() => {
-  const menus: MenuOption[] = []
+  const menus:any[] = []
   apiTypes.forEach((item) => {
     menus.push({
       key: item.key,

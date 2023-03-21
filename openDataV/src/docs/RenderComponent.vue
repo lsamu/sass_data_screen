@@ -33,12 +33,11 @@ import { NCard, NTabs, NTabPane } from 'naive-ui'
 import { getComponentStyle } from '@/utils/utils'
 import { uuid } from '@/utils/utils'
 import StaticDataView from '@/components/StaticDataView'
-import type { BaseComponent } from '@/resource/models'
 
 const props = withDefaults(
   defineProps<{
-    config: new (id?: string, name?) => BaseComponent
-    component: ConcreteComponent
+    config: new (id?: string, name?) => any
+    component: any
     propValue: Recordable
     style: Recordable
     title: string

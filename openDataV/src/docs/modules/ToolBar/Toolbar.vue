@@ -6,7 +6,6 @@
 import { toggleTheme } from './modules/actions'
 import ThemeIcon from './modules/themeSwitch/ThemeIcon.vue'
 import { ToolBar } from '@/components/ToolBar'
-import type { ToolBarItemType } from '@/components/ToolBar'
 import ActionDetail from './modules/ActionDetail.vue'
 import Logo from './modules/Logo.vue'
 import docsRouters from '@/router/modules/docs'
@@ -14,7 +13,7 @@ import docsRouters from '@/router/modules/docs'
 const router = useRouter()
 const emits = defineEmits(["change"])
 
-const leftBars: ToolBarItemType[] = docsRouters[0].children.map((el) => {
+const leftBars: any[] = docsRouters[0].children.map((el) => {
   return {
     label: el.meta.title,
     action: async () => {
@@ -31,7 +30,7 @@ const leftBars: ToolBarItemType[] = docsRouters[0].children.map((el) => {
     location: 'left'
   }
 })
-const toolBars: ToolBarItemType[] = [
+const toolBars: any[] = [
   {
     label: '首页',
     action: async (_e: MouseEvent) => {

@@ -25,7 +25,6 @@
   </div>
 </template>
 <script lang="ts" setup>
-import type { BaseComponent } from '@/resource/models'
 import { DataType } from '@/resource/models'
 import { NForm, NFormItem, NSelect, NDescriptions, NDescriptionsItem, NEmpty } from 'naive-ui'
 import StaticData from './StaticData'
@@ -34,7 +33,7 @@ import DemoData from './DemoData'
 import { DataIntegrationMode } from '@/resource/models/data'
 
 const props = defineProps<{
-  curComponent: BaseComponent
+  curComponent: any
 }>()
 
 const dataType = ref(DataType.DEMO)
@@ -70,7 +69,7 @@ onMounted(() => {
 
 watch(
   () => props.curComponent,
-  async (value: BaseComponent) => {
+  async (value: any) => {
     if (value) {
       const dataConfig = props.curComponent.dataConfig
       if (dataConfig) {

@@ -28,7 +28,6 @@
 import { NInput, NCard, NTabs, NTabPane, NOl, NLi, NGradientText } from 'naive-ui'
 import { eventBus, StaticKey } from '@/bus'
 import { getAfterScriptListApi } from '@/api/data/afterScript'
-import type { AfterScriptDetail } from '@/api/data/type'
 import { ScriptType } from '@/enum'
 
 const dataList = ref([])

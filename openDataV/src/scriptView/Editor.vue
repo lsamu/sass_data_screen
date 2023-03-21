@@ -37,23 +37,19 @@
 
 <script lang="ts" setup>
 import { NSelect } from 'naive-ui'
-import type { SelectOption } from 'naive-ui'
 import { python } from '@codemirror/lang-python'
 import { javascript } from '@codemirror/lang-javascript'
 import { useProjectSettingStoreWithOut } from '@/store/modules/projectSetting'
-/* eslint-disable-next-line @typescript-eslint/consistent-type-imports */
 import CodeEditor from '@/components/CodeEditor'
-import type { CodemirrorOption } from '@/components/CodeEditor/type'
 import { ScriptType } from '@/enum'
-import type { AfterScript } from '@/types/component'
 
 const projectStore = useProjectSettingStoreWithOut()
 const savedStatus = ref(true)
 const isShow = ref(false)
 const props = withDefaults(
   defineProps<{
-    data: AfterScript
-    config?: CodemirrorOption
+    data: any
+    config?: any
     mode?: 'use' | 'debug'
   }>(),
   {

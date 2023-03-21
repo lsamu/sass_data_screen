@@ -1,11 +1,13 @@
-import type { UserConfigExport, ConfigEnv, ProxyOptions } from 'vite'
+import type { UserConfigExport, ConfigEnv } from 'vite'
 import { loadEnv } from 'vite'
 import vue from '@vitejs/plugin-vue'
-import MarkDownPlugin from 'vite-plugin-vue-markdown'
 import { viteMockServe } from 'vite-plugin-mock'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import { resolve } from 'path'
 import AutoImport from "unplugin-auto-import/vite"
+import Components from 'unplugin-vue-components/vite'
+import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
+
 
 // https://vitejs.dev/config/
 export default ({ mode, command }: ConfigEnv): UserConfigExport => {
@@ -28,13 +30,13 @@ export default ({ mode, command }: ConfigEnv): UserConfigExport => {
         setupProdMockServer();
       `
       }),
-      // MarkDownPlugin({
-      //   markdownItSetup(md) {
-      //     md.use(require('./build/toc.js'))
-      //   }
-      // })
-      AutoImport ({
+      AutoImport({
         imports: ["vue", "vue-router"], // 自动导入vue和vue-router相关函数
+      }),
+      Components({
+        resolvers: [ElementPlusResolver()],
+        dts: true,
+        include: [/\.vue$/, /\.vue\?vue/, /\.md$/]
       })
     ],
     base: './',
@@ -43,17 +45,6 @@ export default ({ mode, command }: ConfigEnv): UserConfigExport => {
         '@': resolve(__dirname, 'src')
       },
       extensions: ['.js', '.ts']
-    },
-    build: {
-      // target: 'es2015',
-      // chunkSizeWarningLimit: 1500,
-      // terserOptions: {
-      //   compress: {
-      //     keep_infinity: true,
-      //     // Used to delete console in production environment
-      //     drop_console: true
-      //   }
-      // }
     },
     css: {
       preprocessorOptions: {

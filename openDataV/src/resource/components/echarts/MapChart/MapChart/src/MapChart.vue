@@ -4,24 +4,17 @@
 
 <script setup lang="ts">
 import { useData, useProp } from '@/resource/hooks'
-import type MapChartComponent from '../config'
-import type { MapChart } from '../type'
-import type { EChartsOption } from 'echarts'
 import { graphic, registerMap } from 'echarts'
 import { useEchart } from '../../../hooks'
-import type { DataType } from '@/resource/models'
-import type { RequestResponse } from '@/resource/models/type'
 import chinaMap from './assets/china.json'
 
 const chartEl = ref(null)
-let globalOption: EChartsOption
+let globalOption: any
 const props = defineProps<{
-  component: MapChartComponent
+  component: any
 }>()
-let chartData:
-  | Array<{ label: string; value: number }>
-  | RequestResponse<Array<{ label: string; value: number }>>['afterData'] = []
-const dataChange = (resp: any, _: DataType) => {
+let chartData:any
+const dataChange = (resp: any, _: any) => {
   if (resp.status >= 0) {
     chartData = resp.afterData
     updateData(chartData)
@@ -35,7 +28,7 @@ const propValueChange = () => {
 }
 
 const { updateEchart, resizeHandler } = useEchart(chartEl)
-const { propValue } = useProp<MapChart>(props.component, propValueChange)
+const { propValue } = useProp<any>(props.component, propValueChange)
 
 onMounted(async () => {
   globalOption = getOption()
@@ -47,7 +40,7 @@ registerMap('china', chinaMap as any)
 let planePath =
   'path://M1705.06,1318.313v-89.254l-319.9-221.799l0.073-208.063c0.521-84.662-26.629-121.796-63.961-121.491c-37.332-0.305-64.482,36.829-63.961,121.491l0.073,208.063l-319.9,221.799v89.254l330.343-157.288l12.238,241.308l-134.449,92.931l0.531,42.034l175.125-42.917l175.125,42.917l0.531-42.034l-134.449-92.931l12.238-241.308L1705.06,1318.313z'
 const getOption = () => {
-  const option: EChartsOption = {
+  const option: any = {
     grid: {
       top: '10%',
       left: '3%',
@@ -179,7 +172,7 @@ const getOption = () => {
       data: []
     }
   ]
-  return option as EChartsOption
+  return option as any
 }
 
 const updateData = (resp: Array<{ label: string; value: number }>) => {

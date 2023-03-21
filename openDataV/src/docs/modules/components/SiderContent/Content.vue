@@ -14,12 +14,10 @@
 
 <script setup lang="ts">
 import { NUl, NLi } from 'naive-ui'
-import type { MenuItem } from './type'
-
 const router = useRouter()
 withDefaults(
   defineProps<{
-    menus: Array<MenuItem>
+    menus: Array<any>
   }>(),
   {
     menus: () => []

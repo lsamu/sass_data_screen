@@ -4,26 +4,18 @@
 
 <script setup lang="ts">
 import { useProp, useData } from '@/resource/hooks'
-import type BasicLineChartComponent from './config'
-import type { BasicLineChart } from './type'
-import type { PieSeriesOption, EChartsOption } from 'echarts'
 import { compareResetValue } from '../../utils'
 import { useEchart } from '../../hooks'
-import type { DataType } from '@/resource/models'
-import type { RequestResponse } from '@/resource/models/type'
-
 const chartEl = ref(null)
 
-let globalOption: EChartsOption
+let globalOption: any
 const props = defineProps<{
-  component: BasicLineChartComponent
+  component: any
 }>()
 
 const { updateEchart, resizeHandler } = useEchart(chartEl)
-let chartData:
-  | Array<{ label: string; value: number }>
-  | RequestResponse<Array<{ label: string; value: number }>>['afterData'] = []
-const dataChange = (resp: any, _: DataType) => {
+let chartData:any
+const dataChange = (resp: any, _: any) => {
   if (resp.status >= 0) {
     chartData = resp.afterData
     updateData(chartData)
@@ -36,14 +28,14 @@ const propValueChange = () => {
   updateData(chartData)
 }
 
-const { propValue } = useProp<BasicLineChart>(props.component, propValueChange)
+const { propValue } = useProp<any>(props.component, propValueChange)
 
 onMounted(async () => {
   globalOption = getOption()
   updateEchart(globalOption)
 })
 const getOption = () => {
-  const option: EChartsOption = {
+  const option: any = {
     grid: {
       top: '10%',
       left: '3%',
@@ -61,7 +53,7 @@ const getOption = () => {
     },
     series: []
   }
-  let series: PieSeriesOption[] = [
+  let series: any[] = [
     {
       type: 'pie',
       radius: [`${propValue.series.radiusMin || 0}%`, `${propValue.series.radiusMax || 100}%`],
@@ -95,7 +87,7 @@ const getOption = () => {
     }
   ]
   option.series = series
-  return option as EChartsOption
+  return option as any
 }
 
 const updateData = (resp: Array<{ label: string; value: number }>) => {

@@ -1,18 +1,7 @@
 import { cloneDeep } from 'lodash-es'
-import type { ComponentGroup } from '@/enum'
 import { FormType } from '@/enum'
 import { mod360, rotatePoint, uuid } from '@/utils/utils'
-import type {
-  ComponentDataType,
-  ComponentStyle,
-  ComponentType,
-  DOMRectStyle,
-  GroupStyle,
-  PropsType
-} from '@/types/component'
-import type { Vector } from '@/types/common'
 import { cssTransfer } from './styleToCss'
-import type { RequestData } from './data'
 import {
   DataIntegrationMode,
   DataType,
@@ -21,16 +10,10 @@ import {
   StaticRequestData
 } from './data'
 
-interface DataConfig {
-  type: DataType
-  requestConfig: RequestData
-  otherConfig: Recordable
-}
-
 export abstract class BaseComponent {
   id: string
   component: string
-  group: ComponentGroup
+  group: any
   name: string
   icon = ''
   locked = false
@@ -48,22 +31,22 @@ export abstract class BaseComponent {
   styleIsChange = true
 
   // form表单中使用
-  _prop: PropsType[] = []
-  _style: PropsType[] = []
-  extraStyle: Recordable<string | number | boolean> = {}
-  groupStyle?: GroupStyle
-  positionStyle: DOMRectStyle = { left: 0, top: 0, width: 0, height: 0, rotate: 0 }
+  _prop: any[] = []
+  _style: any[] = []
+  extraStyle: any = {}
+  groupStyle?: any
+  positionStyle: any = { left: 0, top: 0, width: 0, height: 0, rotate: 0 }
 
   parent?: BaseComponent
   subComponents: BaseComponent[] = []
 
-  _propValue: Recordable = {}
-  _styleValue: ComponentStyle = {
+  _propValue: any = {}
+  _styleValue: any = {
     ...this.positionStyle
   }
-  dataConfig?: DataConfig
+  dataConfig?: any
 
-  protected constructor(detail: ComponentType) {
+  protected constructor(detail: any) {
     if (detail.id) {
       this.id = detail.id
     } else {
@@ -81,8 +64,8 @@ export abstract class BaseComponent {
     this.dataIntegrationMode = detail.dataIntegrationMode || DataIntegrationMode.SELF
   }
 
-  get propFromValue(): PropsType[] {
-    const common: PropsType = {
+  get propFromValue(): any[] {
+    const common: any = {
       label: '公共属性',
       prop: 'common',
       children: [
@@ -117,9 +100,9 @@ export abstract class BaseComponent {
     return [common, ...this._prop]
   }
 
-  get styleFormValue(): PropsType[] {
+  get styleFormValue(): any[] {
     if (!this._style.find((item) => item.prop === 'position')) {
-      const common: PropsType = {
+      const common: any = {
         label: '位置大小',
         prop: 'position',
         children: [
@@ -193,10 +176,10 @@ export abstract class BaseComponent {
     return this._propValue
   }
 
-  get style(): ComponentStyle {
+  get style(): any {
     if (this.styleIsChange) {
-      const customStyle: Recordable[] = []
-      let transferStyle: Recordable = {}
+      const customStyle: any[] = []
+      let transferStyle: any = {}
       this.styleFormValue.forEach((item) => {
         item.children.forEach((obj) => {
           if (obj.type === FormType.CUSTOM) {
@@ -227,14 +210,14 @@ export abstract class BaseComponent {
   }
 
   // 自定义样式编辑框数据处理
-  styleToCss(_: Recordable[]): Nullable<Recordable> {
+  styleToCss(_: any[]): any {
     return null
   }
 
   // 生成后端存储需要的Json
-  toJson(): ComponentDataType {
+  toJson(): any {
     const subComponents = this.subComponents.map((item) => item.toJson())
-    const component: ComponentDataType = {
+    const component: any = {
       id: this.id,
       component: this.component,
       name: this.name,
@@ -388,8 +371,8 @@ export abstract class BaseComponent {
     const subComponents = this.subComponents
     const parentStyle = this.positionStyle
     subComponents.forEach((el: BaseComponent) => {
-      const groupStyle: GroupStyle = el.groupStyle!
-      const center: Vector = {
+      const groupStyle: any = el.groupStyle!
+      const center: any = {
         y: parentStyle.top + parentStyle.height / 2,
         x: parentStyle.left + parentStyle.width / 2
       }
@@ -400,12 +383,12 @@ export abstract class BaseComponent {
         width: (parentStyle.width * groupStyle.gwidth) / 100,
         rotate: mod360(parentStyle.rotate + (groupStyle.grotate || 0))
       }
-      const point: Vector = {
+      const point: any = {
         y: top + height / 2,
         x: left + width / 2
       }
 
-      const afterPoint: Vector = rotatePoint(point, center, parentStyle.rotate)
+      const afterPoint: any = rotatePoint(point, center, parentStyle.rotate)
       el.change('top', Math.round(afterPoint.y - height / 2))
       el.change('left', Math.round(afterPoint.x - width / 2))
       el.change('height', Math.round(height))
@@ -413,7 +396,7 @@ export abstract class BaseComponent {
       el.change('rotate', rotate)
     })
   }
-  async changeRequestDataConfig(type: DataType, config: Recordable) {
+  async changeRequestDataConfig(type: DataType, config: any) {
     switch (type) {
       case DataType.STATIC:
         this.dataConfig = {

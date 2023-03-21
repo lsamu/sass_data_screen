@@ -1,5 +1,4 @@
 import { ComponentGroup, FormType } from '@/enum'
-import type { PropsType } from '@/types/component'
 import { BaseComponent } from '@/resource/models'
 
 export const componentName = 'Image'
@@ -15,8 +14,8 @@ class ImageComponent extends BaseComponent {
     })
   }
 
-  _prop: PropsType[] = []
-  _style: PropsType[] = [
+  _prop: any[] = []
+  _style: any[] = [
     {
       label: '背景设置',
       prop: 'background',

@@ -1,22 +1,18 @@
 import Axios from 'axios'
-import type { AxiosInstance, AxiosResponse } from 'axios'
-import type { FinallyResponse, StoreRequestOption } from './type'
 import { cloneDeep } from 'lodash-es'
 import { message } from '@/utils/message'
-import type { CallbackType } from '@/utils/data'
 import { makeFunction } from '@/utils/data'
-import type { AfterScript } from '@/types/component'
 
 export class RestRequest {
-  private axiosInstance: AxiosInstance
+  private axiosInstance: any
   public url: string
   public params: Recordable<string | number> | undefined
   public data: any
-  private callback: CallbackType | undefined
+  private callback: any
   private isNotify = false
   private isDebugMode? = false
 
-  constructor(requestOption: StoreRequestOption, isDebug?: boolean) {
+  constructor(requestOption, isDebug?: boolean) {
     const { headers, method, url, params, data, afterScript } = requestOption
     this.url = url
     this.params = params
@@ -32,12 +28,12 @@ export class RestRequest {
 
     // const resp = await axiosInstance.request({url,params,data})
   }
-  public request<T = any>(args?: Recordable): Promise<FinallyResponse<T>> {
-    return new Promise<FinallyResponse<T>>((resolve, reject) => {
+  public request<T = any>(args?: Recordable) {
+    return new Promise<any>((resolve, reject) => {
       this.axiosInstance
-        .request<any, AxiosResponse>({ url: this.url, params: this.params, data: this.data })
-        .then((resp: AxiosResponse) => {
-          const result = cloneDeep(resp) as FinallyResponse<T>
+        .request({ url: this.url, params: this.params, data: this.data })
+        .then((resp) => {
+          const result = cloneDeep(resp) as any
           if (this.callback) {
             if (this.callback.handler) {
               try {
@@ -67,11 +63,11 @@ export class RestRequest {
     })
   }
 
-  public makeDataHandler(script: AfterScript): CallbackType | undefined {
+  public makeDataHandler(script) {
     return makeFunction(script.type, script.code, ['resp', 'options'], this.isDebugMode)
   }
 }
 
-export default function useRestRequest(requestOption: StoreRequestOption, isDebug?: boolean) {
+export default function useRestRequest(requestOption, isDebug?: boolean) {
   return new RestRequest(requestOption, isDebug)
 }

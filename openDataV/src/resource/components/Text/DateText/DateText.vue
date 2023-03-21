@@ -4,14 +4,12 @@
 
 <script setup lang="ts">
 import dayjs from 'dayjs'
-import type DateTextComponent from './config'
 import { useProp } from '@/resource/hooks'
-import type { DateText } from './type'
 
 const props = defineProps<{
-  component: DateTextComponent
+  component: any
 }>()
-const { propValue } = useProp<DateText>(props.component)
+const { propValue } = useProp<any>(props.component)
 const lineHeight = ref('20px')
 const resizeHandler = (entry) => {
   const { height } = entry.contentRect

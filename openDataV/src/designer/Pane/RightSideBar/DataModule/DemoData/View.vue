@@ -37,7 +37,6 @@ import {
   NCard,
   NFormItem
 } from 'naive-ui'
-import type { BaseComponent, DemoRequestData } from '@/resource/models'
 import { DataType } from '@/resource/models'
 
 import DataView from '@/components/DataView'
@@ -45,7 +44,7 @@ import { cloneDeep } from 'lodash-es'
 import { message } from '@/utils/message'
 
 const props = defineProps<{
-  curComponent: BaseComponent
+  curComponent: any
 }>()
 const isShow = ref(false)
 
@@ -61,7 +60,7 @@ const initData = async () => {
   const dataConfig = props.curComponent.dataConfig
 
   if (dataConfig && dataConfig.type === DataType.DEMO) {
-    const demoRequest = props.curComponent.dataConfig?.requestConfig as DemoRequestData
+    const demoRequest = props.curComponent.dataConfig?.requestConfig as any
     if (props.curComponent.dataConfig) {
       const resp = await demoRequest.getRespData({ propValue: props.curComponent.propValue })
       formData.afterData = JSON.stringify(resp.afterData, null, '\t')
@@ -77,7 +76,7 @@ const initData = async () => {
 
 watch(
   () => props.curComponent,
-  (value: BaseComponent) => {
+  (value: any) => {
     if (value) {
       initData()
     }

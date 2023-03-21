@@ -1,13 +1,11 @@
-import type { AxiosRequestConfig, AxiosInstance, AxiosResponse, AxiosError } from 'axios'
 import Axios from 'axios'
-import type { ResultType } from '@/utils/http/config'
 import { httpConfig } from '@/utils/http/config'
 import { useUserStoreWithOut } from '@/store/modules/user'
 import { useBasicStoreWithOut } from '@/store/modules/basic'
 import { message } from '@/utils/message'
 
 class AxiosHttp {
-  private axiosInstance: AxiosInstance
+  private axiosInstance: any
   private isBlock = false
   constructor(isBlock = false) {
     this.axiosInstance = Axios.create(httpConfig())
@@ -19,7 +17,7 @@ class AxiosHttp {
   // 请求拦截
   private httpHookRequest(): void {
     this.axiosInstance.interceptors.request.use(
-      (config: AxiosRequestConfig) => {
+      (config: any) => {
         const userStore = useUserStoreWithOut()
         // 将 Token 添加到 header 中
         const token: string | undefined = userStore.userToken
@@ -41,10 +39,10 @@ class AxiosHttp {
   // 响应拦截
   private httpHookResponse(): void {
     this.axiosInstance.interceptors.response.use(
-      (response: AxiosResponse) => {
+      (response: any) => {
         return response
       },
-      (error: AxiosError) => {
+      (error: any) => {
         const { response } = error
         if (response) {
           this.errorHandler(response.status, (response.data as any).message)
@@ -65,31 +63,31 @@ class AxiosHttp {
     console.log(status, msg)
   }
 
-  public get<T = any>(config: AxiosRequestConfig): Promise<AxiosResponse<T>> {
+  public get<T = any>(config: any): Promise<any> {
     return this.request({ ...config, method: 'GET' })
   }
 
-  public post<T = any>(config: AxiosRequestConfig): Promise<AxiosResponse<T>> {
+  public post<T = any>(config: any): Promise<any> {
     return this.request({ ...config, method: 'POST' })
   }
 
-  public put<T = any>(config: AxiosRequestConfig): Promise<AxiosResponse<T>> {
+  public put<T = any>(config: any): Promise<any> {
     return this.request({ ...config, method: 'PUT' })
   }
 
-  public patch<T = any>(config: AxiosRequestConfig): Promise<AxiosResponse<T>> {
+  public patch<T = any>(config: any): Promise<any> {
     return this.request({ ...config, method: 'PATCH' })
   }
 
-  public delete<T = any>(config: AxiosRequestConfig): Promise<AxiosResponse<T>> {
+  public delete<T = any>(config: any): Promise<any> {
     return this.request({ ...config, method: 'DELETE' })
   }
 
-  private request<T = any>(config: AxiosRequestConfig): Promise<T> {
+  private request<T = any>(config: any): Promise<T> {
     return new Promise<T>((resolve, reject) => {
       this.axiosInstance
-        .request<any, AxiosResponse<ResultType>>(config)
-        .then((resp: AxiosResponse<ResultType>) => {
+        .request(config)
+        .then((resp: any) => {
           resolve(resp as any)
         })
         .catch((err) => {

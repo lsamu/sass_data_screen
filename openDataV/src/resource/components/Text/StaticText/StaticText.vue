@@ -9,8 +9,6 @@
 
 <script setup lang="ts">
 import { useProp } from '@/resource/hooks'
-import type StaticTextComponent from './config'
-import type { StaticTextType } from './type'
 
 const props = defineProps<{
   component: StaticTextComponent

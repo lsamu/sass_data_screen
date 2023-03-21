@@ -11,15 +11,13 @@
 
 <script lang="ts" setup>
 import flvjs from 'flv.js'
-import type { FlvVideo } from './type'
-import type FlvVideoComponent from './config'
 import { useProp } from '@/resource/hooks'
 
 const props = defineProps<{
-  component: FlvVideoComponent
+  component: any
 }>()
 
-const { propValue } = useProp<FlvVideo>(props.component, () => propChange())
+const { propValue } = useProp<any>(props.component, () => propChange())
 
 const video = ref(null)
 

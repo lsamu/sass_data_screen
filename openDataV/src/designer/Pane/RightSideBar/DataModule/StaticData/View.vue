@@ -34,15 +34,12 @@
 
 <script lang="ts" setup>
 import { NForm, NInput, NInputGroup, NButton, NModal, NCard, NFormItem } from 'naive-ui'
-import type { BaseComponent, StaticRequestData } from '@/resource/models'
 import { DataType } from '@/resource/models'
 import { ScriptType } from '@/enum'
 import Static from '@/apiView/RequestContent/static'
-import type { StaticRequestOptions } from '@/apiView/RequestContent/static/type'
-import type { AfterScript } from '@/types/component'
 import { message } from '@/utils/message'
 const props = defineProps<{
-  curComponent: BaseComponent
+  curComponent: any
 }>()
 const isShow = ref(false)
 
@@ -62,7 +59,7 @@ onMounted(async () => {
 const initData = async () => {
   const dataConfig = props.curComponent.dataConfig
   if (dataConfig && dataConfig.type === DataType.STATIC) {
-    const staticRequest = props.curComponent.dataConfig?.requestConfig as StaticRequestData
+    const staticRequest = props.curComponent.dataConfig?.requestConfig as any
     const result = staticRequest.toJSON()
     formData.dataId = result.dataId
     formData.script = result.script!
@@ -91,7 +88,7 @@ const dataChangeHandler = (id: string, title) => {
   changeHandler()
 }
 
-const scriptChangeHandler = (script: AfterScript) => {
+const scriptChangeHandler = (script: any) => {
   formData.script = script
   changeHandler()
 }

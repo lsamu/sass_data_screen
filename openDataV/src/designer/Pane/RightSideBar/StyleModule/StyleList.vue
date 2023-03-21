@@ -26,10 +26,9 @@ import { useBasicStoreWithOut } from '@/store/modules/basic'
 import { debounce, cloneDeep } from 'lodash-es'
 import FormAttr from '@/designer/modules/form/FormAttr'
 import { NCollapse, NCollapseItem } from 'naive-ui'
-import type { BaseComponent } from '@/resource/models'
 
 const props = defineProps<{
-  curComponent: BaseComponent
+  curComponent: any
 }>()
 const basicStore = useBasicStoreWithOut()
 

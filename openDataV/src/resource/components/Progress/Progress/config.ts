@@ -1,5 +1,4 @@
 import { ComponentGroup, FormType } from '@/enum'
-import type { PropsType } from '@/types/component'
 import { BaseComponent } from '@/resource/models'
 
 export const componentName = 'Progress'
@@ -16,7 +15,7 @@ class ProgressComponent extends BaseComponent {
     })
   }
 
-  _prop: PropsType[] = [
+  _prop: any[] = [
     {
       label: '数据配置',
       prop: 'data',
@@ -143,7 +142,7 @@ class ProgressComponent extends BaseComponent {
       ]
     }
   ]
-  _style: PropsType[] = []
+  _style: any[] = []
 }
 
 export default ProgressComponent

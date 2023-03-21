@@ -50,15 +50,12 @@
 
 <script lang="ts" setup>
 import { useProp, useData } from '@/resource/hooks'
-import type { BaseComponent, DataType } from '@/resource/models'
-import type { ScrollTableType } from './type'
-import type { RequestResponse } from '@/resource/models/type'
 
 const props = defineProps<{
-  component: BaseComponent
+  component: any
 }>()
 
-const { propValue } = useProp<ScrollTableType>(props.component)
+const { propValue } = useProp<any>(props.component)
 
 const comHeight = ref(0)
 const resizeHandler = (entry) => {
@@ -67,7 +64,7 @@ const resizeHandler = (entry) => {
 }
 
 const tableData = ref([])
-const dataChange = (resp: any, _: DataType) => {
+const dataChange = (resp: any, _: any) => {
   if (resp.status >= 0) {
     tableData.value = resp.afterData
   }

@@ -1,9 +1,6 @@
 import { useBasicStoreWithOut } from '@/store/modules/basic'
 import { useProjectSettingStoreWithOut } from '@/store/modules/projectSetting'
 import { useSnapShotStoreWithOut } from '@/store/modules/snapshot'
-import type { ComponentDataType } from '@/types/component'
-import type { CanvasStyleData } from '@/types/storeTypes'
-import type { StoreComponentData } from '@/utils/db'
 import { message } from '@/utils/message'
 import { exportRaw, importRaw } from '@/utils/utils'
 const snapShotStore = useSnapShotStoreWithOut()
@@ -11,10 +8,10 @@ const snapShotStore = useSnapShotStoreWithOut()
 const basicStore = useBasicStoreWithOut()
 const projectStore = useProjectSettingStoreWithOut()
 const undo = async () => {
-  const snapshot: StoreComponentData | undefined = await snapShotStore.lastRecord()
+  const snapshot: any | undefined = await snapShotStore.lastRecord()
   if (snapshot) {
     basicStore.setLayoutData({
-      canvasData: snapshot.canvasData as ComponentDataType[],
+      canvasData: snapshot.canvasData as any[],
       canvasStyle: snapshot.canvasStyle
     })
   } else {
@@ -23,10 +20,10 @@ const undo = async () => {
 }
 
 const recoveryDraft = async () => {
-  const snapshot: StoreComponentData | undefined = await snapShotStore.nextRecord()
+  const snapshot: any | undefined = await snapShotStore.nextRecord()
   if (snapshot) {
     basicStore.setLayoutData({
-      canvasData: snapshot.canvasData as ComponentDataType[],
+      canvasData: snapshot.canvasData as any[],
       canvasStyle: snapshot.canvasStyle
     })
   } else {
@@ -56,7 +53,7 @@ const importCanvas = () => {
 
 const fileHandler = (loadEvent: ProgressEvent<FileReader>) => {
   if (loadEvent.target && loadEvent.target.result) {
-    const layoutComponents: { canvasData: ComponentDataType[]; canvasStyle: CanvasStyleData } =
+    const layoutComponents: { canvasData: any[]; canvasStyle: any } =
       JSON.parse(loadEvent.target.result as string)
     if (layoutComponents) {
       basicStore.setComponentData(layoutComponents.canvasData)

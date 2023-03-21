@@ -39,7 +39,7 @@
 <script lang="ts" setup>
 import RulerLine from './RulerLine.vue'
 import CanvasRuler from '../canvas-ruler/index.vue'
-import type { PaletteType } from '../index-types'
+
 const props = withDefaults(
   defineProps<{
     scale: number
@@ -48,7 +48,7 @@ const props = withDefaults(
     selectStart: number
     selectLength: number
     isShowReferLine: boolean
-    palette: PaletteType
+    palette: any
     canvasHeight?: number
     canvasWidth?: number
     vertical?: boolean

@@ -45,7 +45,6 @@ import { getPageListApi, deletePageApi } from '@/api/pages'
 import defaultImg from '@/assets/default.png'
 import { message } from '@/utils/message'
 import { XIcon } from '@/plugins/xicon'
-import type { DropdownOption } from 'naive-ui'
 import { NCard, NEllipsis, NTooltip, NDropdown, NButton } from 'naive-ui'
 
 const router = useRouter()

@@ -25,21 +25,11 @@
 import { useBasicStoreWithOut } from '@/store/modules/basic'
 import FormAttr from '@/designer/modules/form/FormAttr'
 import { NCollapse, NCollapseItem } from 'naive-ui'
-import type { BaseComponent } from '@/resource/models'
 
 const props = defineProps<{
-  curComponent: BaseComponent
+  curComponent: any
 }>()
 const basicStore = useBasicStoreWithOut()
-
-interface PropData {
-  common: {
-    name: string
-    component: string
-    id: string
-  }
-  [key: string]: any
-}
 
 const formData = ref({
   common: {
@@ -62,7 +52,7 @@ const changed = (form: string, key: string, val: any) => {
 }
 
 const resetFormData = () => {
-  const data: PropData = {
+  const data: any = {
     common: {
       name: props.curComponent.name,
       component: props.curComponent.component,

@@ -219,10 +219,7 @@
 
 <script lang="ts" setup>
 import { useProp } from '@/resource/hooks'
-import type BorderBoxComponent from './config'
 import TinyColor2 from 'tinycolor2'
-
-import type { BorderBox } from './type'
 
 function fade(color, percent) {
   const rgbType = TinyColor2(color)
@@ -231,11 +228,11 @@ function fade(color, percent) {
 }
 
 const props = defineProps<{
-  component: BorderBoxComponent
+  component
 }>()
 
 const textRef = ref()
-const { propValue } = useProp<BorderBox>(props.component)
+const { propValue } = useProp<any>(props.component)
 const filterId = computed(() => props.component.id)
 const titleWidth = computed(() => propValue.base.titleWidth)
 

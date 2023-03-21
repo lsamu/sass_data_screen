@@ -8,16 +8,13 @@
 import { ComponentGroupList } from '@/enum'
 import { componentList } from '@/designer/load'
 import { NMenu } from 'naive-ui'
-import type { MenuOption } from 'naive-ui'
 import ComponentItem from './ComponentItem.vue'
-import type { GroupType } from '@/enum'
 import { XIcon } from '@/plugins/xicon'
-import type { BaseComponent } from '@/resource/models'
 
 const menuOptions = computed(() => {
-  const groups: { group: string; component: BaseComponent[] } | {} = {}
+  const groups: { group: string; component: any[] } | {} = {}
   Object.keys(componentList).forEach((key) => {
-    const component: BaseComponent = new componentList[key]()
+    const component: any = new componentList[key]()
     const group = component.group
     if (!group || !component.show) {
       return
@@ -28,8 +25,8 @@ const menuOptions = computed(() => {
     }
     groups[group].push(component)
   })
-  const menus: MenuOption[] = []
-  ComponentGroupList.forEach((item: GroupType) => {
+  const menus: any[] = []
+  ComponentGroupList.forEach((item: any) => {
     menus.push({
       label: () => item.name,
       key: item.key,

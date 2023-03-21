@@ -40,12 +40,10 @@
 
 <script setup lang="ts">
 import { useProp } from '@/resource/hooks'
-import type DecorationComponent from './config'
-import type { Decoration } from './type'
 import { randomExtend } from './utils'
 
 const props = defineProps<{
-  component: DecorationComponent
+  component: any
 }>()
 const propChange = (prop: string, key: string, value: any) => {
   if (prop === 'base' && key === 'rectWidth') rectWidth.value = value
@@ -55,7 +53,7 @@ const propChange = (prop: string, key: string, value: any) => {
   calcPointsPosition()
 }
 
-const { propValue } = useProp<Decoration>(props.component, propChange)
+const { propValue } = useProp<any>(props.component, propChange)
 
 const width = ref(300)
 const height = ref(35)

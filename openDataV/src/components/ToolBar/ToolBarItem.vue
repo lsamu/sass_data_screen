@@ -1,7 +1,9 @@
 <template>
   <n-tooltip>
     <template #trigger>
-      <n-button quaternary size="small" :title="label" @click="action"> <IconComponent /></n-button>
+      <n-button quaternary size="small" :title="label" @click="action">
+        <IconComponent />
+      </n-button>
     </template>
     <span>{{ label }}</span>
   </n-tooltip>
@@ -9,33 +11,19 @@
 </template>
 <script lang="ts" setup>
 import { NButton, NTooltip, NDivider } from 'naive-ui'
-import type { iconNode, ToolBarItemType } from './type'
 import { XIcon } from '@/plugins/xicon'
-const props = withDefaults(
-  defineProps<{
-    label: string
-    action: (e: MouseEvent) => void
-    disable?: (e: MouseEvent) => void
-    icon: string | Function
-    divider?: boolean | undefined
-    children?: ToolBarItemType[]
-    otherShow?: VNode
-    isButton?: boolean
-  }>(),
-  {
-    disable: () => false,
-    div: false,
-    isButton: true
-  }
-)
+
+const props = defineProps(["disable", "div", "isButton", "icon"]);
+
+const { label, action, divider } = props as any;
 
 const IconComponent = computed(() =>
   typeof props.icon === 'string'
     ? h(XIcon, {
-        name: props.icon,
-        size: 24
-      })
-    : (props.icon as iconNode)()
+      name: props.icon,
+      size: 24
+    })
+    : (props.icon)()
 )
 </script>
 <style lang="less" scoped></style>

@@ -9,15 +9,13 @@
 <script setup lang="ts">
 import { useEventBus } from '@/bus'
 import { http } from '@/utils/http'
-import type { SubTextType } from './type'
 import { useProp } from '@/resource/hooks'
-import type SubTextComponent from './config'
 
 const props = defineProps<{
-  component: SubTextComponent
+  component: any
 }>()
 
-const { propValue } = useProp<SubTextType>(props.component)
+const { propValue } = useProp<any>(props.component)
 const customeText = ref('0')
 
 const lineHeight = ref('20px')

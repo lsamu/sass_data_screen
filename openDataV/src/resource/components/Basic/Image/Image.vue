@@ -4,9 +4,9 @@
 </template>
 
 <script setup lang="ts">
-import type { BaseComponent } from '@/resource/models'
+
 defineProps<{
-  component: BaseComponent
+  component: any
 }>()
 </script>
 

@@ -1,10 +1,9 @@
-import type { BaseComponent } from '@/resource/models'
 
 export const useProp = <T>(
-  component: BaseComponent,
+  component: any,
   callbackProp?: (prop: string, key: string, value: any) => void,
   callbackStyle?: (key: string, value: any) => void
-): { component: BaseComponent; propValue: T } => {
+): { component: any; propValue: T } => {
   if (callbackProp) {
     component.changePropCallback(callbackProp)
   }

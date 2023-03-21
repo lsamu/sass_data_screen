@@ -1,5 +1,4 @@
 import { ComponentGroup, FormType } from '@/enum'
-import type { PropsType } from '@/types/component'
 import { BaseComponent } from '@/resource/models'
 
 export const componentName = 'BorderBox2'
@@ -15,7 +14,7 @@ class BorderBoxComponent extends BaseComponent {
     })
   }
 
-  _prop: PropsType[] = [
+  _prop: any[] = [
     {
       label: '基础配置',
       prop: 'base',
@@ -47,7 +46,7 @@ class BorderBoxComponent extends BaseComponent {
       ]
     }
   ]
-  _style: PropsType[] = []
+  _style: any[] = []
 }
 
 export default BorderBoxComponent

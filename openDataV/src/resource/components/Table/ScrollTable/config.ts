@@ -1,5 +1,4 @@
 import { ComponentGroup, FormType } from '@/enum'
-import type { PropsType } from '@/types/component'
 import { BaseComponent } from '@/resource/models'
 import ScrollTableForm from './Form.vue'
 import { DataIntegrationMode } from '@/resource/models/data'
@@ -19,7 +18,7 @@ class ScrollTableComponent extends BaseComponent {
     })
   }
 
-  _prop: PropsType[] = [
+  _prop: any[] = [
     {
       label: '表头',
       prop: 'header',

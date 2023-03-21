@@ -35,7 +35,6 @@
 
 <script lang="ts" setup>
 import Editor from '@/designer/Editor/Index.vue'
-import type { SelectOption } from 'naive-ui'
 import {
   NLayout,
   NLayoutContent,
@@ -57,7 +56,7 @@ const sliderValue = ref(100)
 const selectValue = ref('100%')
 const scaleValue = ref(1)
 const basicStore = useBasicStoreWithOut()
-const options: SelectOption[] = [
+const options: any[] = [
   {
     value: 200,
     label: '200%'

@@ -1,6 +1,6 @@
-import type { AppRouteRecordRaw } from '@/router/types'
 
-const routes: AppRouteRecordRaw[] = [
+
+const routes: any[] = [
   {
     path: '/login',
     name: 'Login',

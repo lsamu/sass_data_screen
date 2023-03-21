@@ -29,6 +29,7 @@
     "nprogress": "^0.2.0",
     "pinia": "^2.0.0-rc.10",
     "tinycolor2": "^1.5.2",
+    "unplugin-vue-components": "^0.24.1",
     "vite-plugin-mock": "^2.9.6",
     "vue": "^3.2.37",
     "vue-codemirror": "^6.1.1",

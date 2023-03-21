@@ -51,7 +51,6 @@
 
 <script setup lang="ts">
 import { NTabs, NTabPane, NMenu } from 'naive-ui'
-import type { MenuOption } from 'naive-ui'
 import { useBasicStoreWithOut } from '@/store/modules/basic'
 import Canvas from './Canvas.vue'
 import StyleList from './StyleModule' // 右侧属性列表

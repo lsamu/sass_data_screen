@@ -12,9 +12,7 @@
 
 <script lang="ts" setup>
 import { useProjectSettingStoreWithOut } from '@/store/modules/projectSetting'
-import type { MenuType } from '@/router'
 import { routeView } from '@/router'
-import type { MenuOption } from 'naive-ui'
 import { NMenu } from 'naive-ui'
 import { XIcon } from '@/plugins/xicon'
 import { RouterLink} from 'vue-router'
@@ -78,9 +76,9 @@ function renderIcon(icon) {
 function updateMenu() {
   const menuRoutes = routeView.generatorMenu()
 
-  const loopMenu = (route: MenuType): MenuOption => {
+  const loopMenu = (route: any): any => {
     if (route.children) {
-      let children: MenuOption[] = []
+      let children: any[] = []
       for (const child of route.children) {
         children.push(loopMenu(child))
       }
@@ -101,7 +99,7 @@ function updateMenu() {
     }
   }
 
-  const temp: MenuOption[] = []
+  const temp: any[] = []
   menuRoutes.forEach((item) => {
     temp.push(loopMenu(item))
   })

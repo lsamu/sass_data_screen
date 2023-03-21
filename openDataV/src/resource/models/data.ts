@@ -1,12 +1,7 @@
-import type { StaticDataDetail } from '@/api/data'
 import { getStaticDataApi } from '@/api/data'
-import type { RestRequest } from '@/apiView/hooks/http'
 import useRestRequest from '@/apiView/hooks/http'
-import type { StoreRequestOption } from '@/apiView/hooks/http/type'
-import type { AfterScript } from '@/types/component'
 import { makeFunction } from '@/utils/data'
 import { cloneDeep } from 'lodash-es'
-import type { RequestResponse } from './type'
 
 export enum DataType {
   STATIC = 'STATIC',
@@ -21,27 +16,9 @@ export enum DataIntegrationMode {
   GLOBAL = 'GLOBAL'
 }
 
-export interface StaticRequestOptions {
-  dataId: string
-  title?: string
-  type: DataType
-  script?: AfterScript
-}
 
-export interface DemoData<T = any> {
-  data: T
-}
-export interface RestRequestOptions {
-  restOptions: StoreRequestOption
-  type: DataType
-}
 
-interface RequestData {
-  toJSON: () => any | undefined
-  getRespData: (options?: Recordable) => Promise<RequestResponse<any>>
-}
-
-class DemoRequestData implements RequestData {
+class DemoRequestData {
   public data: any
 
   constructor(data: any) {
@@ -51,7 +28,7 @@ class DemoRequestData implements RequestData {
     return undefined
   }
 
-  public async getRespData(_?: Recordable): Promise<RequestResponse<any>> {
+  public async getRespData(_?: any): Promise<any> {
     return {
       status: 0,
       data: this.data,
@@ -60,17 +37,17 @@ class DemoRequestData implements RequestData {
   }
 }
 
-class StaticRequestData implements RequestData {
+class StaticRequestData {
   public dataId?: string
-  public afterScript?: AfterScript
+  public afterScript?: any
   public title?: string
 
-  constructor(id: string | undefined, afterScript?: AfterScript) {
+  constructor(id: string | undefined, afterScript?: any) {
     this.dataId = id
     this.afterScript = afterScript
   }
 
-  public toJSON(): StaticRequestOptions {
+  public toJSON(): any {
     return {
       dataId: this.dataId || '',
       type: DataType.STATIC,
@@ -85,8 +62,8 @@ class StaticRequestData implements RequestData {
   public static loads(data): any | undefined {
     return JSON.parse(data)
   }
-  public async getRespData(options?: Recordable): Promise<RequestResponse<any>> {
-    const response: RequestResponse<any> = {
+  public async getRespData(options?: any): Promise<any> {
+    const response: any= {
       status: -1,
       data: '',
       afterData: '',
@@ -103,7 +80,7 @@ class StaticRequestData implements RequestData {
       const resp = await getStaticDataApi(this.dataId!)
       response.status = resp.status || -1
       if (resp.status < 400) {
-        const data: StaticDataDetail = resp.data
+        const data: any = resp.data
         this.title = data.name
         response.data = data.data
         response.afterData = data.data
@@ -126,20 +103,20 @@ class StaticRequestData implements RequestData {
   }
 }
 
-class RestRequestData implements RequestData {
-  public requestInstance: RestRequest
-  public requestOptions: StoreRequestOption
+class RestRequestData {
+  public requestInstance: any
+  public requestOptions: any
 
-  constructor(options: StoreRequestOption) {
+  constructor(options: any) {
     this.requestOptions = options
     this.requestInstance = useRestRequest(options, false)
   }
 
-  public async getRespData(options?: Recordable): Promise<RequestResponse<any>> {
+  public async getRespData(options?: any): Promise<any> {
     try {
       return await this.requestInstance.request(options || {})
     } catch (err: any) {
-      const response: RequestResponse<any> = {
+      const response: any = {
         status: 0,
         data: '',
         afterData: '',
@@ -154,7 +131,7 @@ class RestRequestData implements RequestData {
     }
   }
 
-  public toJSON(): RestRequestOptions {
+  public toJSON(): any {
     return {
       restOptions: cloneDeep(this.requestOptions),
       type: DataType.REST
@@ -162,4 +139,4 @@ class RestRequestData implements RequestData {
   }
 }
 
-export { StaticRequestData, RestRequestData, RequestData, DemoRequestData }
+export { StaticRequestData, RestRequestData, DemoRequestData }

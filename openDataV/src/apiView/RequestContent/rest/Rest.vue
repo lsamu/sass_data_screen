@@ -95,7 +95,6 @@
   </n-card>
 </template>
 <script setup lang="ts">
-import type { SelectOption } from 'naive-ui'
 import {
   NCard,
   NInput,
@@ -110,12 +109,10 @@ import {
 import DynamicKVForm from '../modules/DynamicKVForm.vue'
 import { uuid } from '@/utils/utils'
 import { RequestHeaderEnum, RequestMethod } from '../requestEnums'
-import type { AxiosResponse } from 'axios'
 import ReponseContentView from './modules/ReponseContentView.vue'
 import useRestRequest from '@/apiView/hooks/http'
 import ScriptsEditor from '../modules/ScriptsEditor'
 import { ScriptType } from '@/enum'
-import type { RequestOption, RequestResponse } from '@/apiView/hooks/http/type'
 import { KVToRecordable, recordabletoKV, requestOptionsToStore } from '@/apiView/hooks/http/utils'
 import { useEventBus, StaticKey } from '@/bus'
 import {
@@ -124,19 +121,14 @@ import {
   getRestDataListApi,
   updateRestDataApi
 } from '@/api/data'
-import type { RestDataDetail } from '@/api/data/type'
 import useDataSnapShot from '@/apiView/hooks/snapshot'
 import { message } from '@/utils/message'
-import type { AfterScript } from '@/types/component'
 const getEmptyParams = () => {
   return [{ key: '', value: '', disable: false, id: uuid() }]
 }
 
 const props = withDefaults(
-  defineProps<{
-    restOptions?: RequestOption
-    mode?: 'debug' | 'use'
-  }>(),
+  defineProps(),
   {
     restOptions: () => {
       return {
@@ -153,14 +145,14 @@ const props = withDefaults(
     },
     mode: 'use'
   }
-)
+) as any
 
 const restDataList = ref([])
 const loadRestList = async () => {
   try {
     const resp = await getRestDataListApi()
     if (resp.status === 200) {
-      restDataList.value = resp.data.map((el: RestDataDetail) => {
+      restDataList.value = resp.data.map((el) => {
         return {
           label: el.name,
           value: el.id
@@ -193,29 +185,7 @@ const clear = () => {
     type: ScriptType.Javascript
   }
 }
-interface ErrorResponse extends Error {
-  config: Recordable
-  code?: number | undefined
-  response: AxiosResponse
-  isAxiosError: boolean
 
-  toJSON?: () => {
-    message: string
-    name: string
-    // Microsoft
-    description?: string
-    number?: string
-    // Mozill
-    fileName?: string
-    lineNumber?: string
-    columnNumber?: string
-    stack?: string
-    // Axios
-    config: Recordable
-    code?: number
-    status?: number
-  }
-}
 let snapShot
 if (props.mode === 'debug') {
   useEventBus(StaticKey.REST_KEY, async (id) => {
@@ -229,7 +199,7 @@ const loadRestData = async (id) => {
   try {
     const resp = await getRestDataApi(id)
     if (resp.status === 200) {
-      const data: RestDataDetail = resp.data
+      const data = resp.data
       formData.method = data.method
       formData.url = data.url
       const body = recordabletoKV(data.data || {})
@@ -246,12 +216,8 @@ const loadRestData = async (id) => {
     return undefined
   }
 }
-const emits = defineEmits()
+const emits = defineEmits(["change","update:restOptions"])
 
-interface RequestDataOption extends RequestOption {
-  title?: string
-  id?: string
-}
 const formData = reactive(props.restOptions)
 const response = ref({
   code: 0,
@@ -269,7 +235,6 @@ const send = async () => {
     response.value.headers = resp.headers
     formData.id && snapShot && snapShot.save(formData)
   } catch (err: any) {
-    err as ErrorResponse
     const result = err.response || (err.toJSON ? err.toJSON() : {})
     response.value.code = result.status
     response.value.data = err.stack || err.message
@@ -282,7 +247,7 @@ const formChange = () => {
   emits('update:restOptions', formData)
 }
 
-const afterScriptChange = (data: AfterScript) => {
+const afterScriptChange = (data) => {
   formData.afterScript = data
   formChange()
 }
@@ -305,7 +270,7 @@ const handleSave = async () => {
       params: params
     })
     if (resp.status === 201) {
-      const data: RestDataDetail = resp.data
+      const data = resp.data
       formData.id = data.id!
       formData.title = data.name
       message.success('数据保存成功')

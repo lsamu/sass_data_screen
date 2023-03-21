@@ -9,7 +9,6 @@
 
 <script lang="ts" setup>
 import CodeEditor from '@/components/CodeEditor'
-import type { CodemirrorOption } from '@/components/CodeEditor/type'
 import { json } from '@codemirror/lang-json'
 import { useProjectSettingStoreWithOut } from '@/store/modules/projectSetting'
 

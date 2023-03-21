@@ -1,17 +1,16 @@
 import { ContentTypeEnum } from '@/enum'
-import type { AxiosRequestConfig, Canceler } from 'axios'
 
 /**
  * 默认配置
  */
-export const defaultConfig: AxiosRequestConfig = {
+export const defaultConfig: any = {
   baseURL: import.meta.env.VITE_APP_BASE_URL ? import.meta.env.VITE_APP_BASE_URL : '',
   //10秒超时
   timeout: 10000,
   headers: { 'Content-Type': ContentTypeEnum.JSON }
 }
 
-export function httpConfig(config?: AxiosRequestConfig): AxiosRequestConfig {
+export function httpConfig(config?: any): any {
   if (!config) {
     return defaultConfig
   }
@@ -37,12 +36,4 @@ export function excludeProps<T extends { [key: string]: any }>(
       res[key] = origin[key]
       return res
     }, {} as { [key: string]: T })
-}
-
-export type CancelTokenType = { cancelKey: string; cancelExecutor: Canceler }
-
-export interface ResultType<T = any> {
-  data: T
-  code: number
-  message: string
 }

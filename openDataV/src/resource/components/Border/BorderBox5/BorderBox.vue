@@ -143,14 +143,12 @@
 <script setup lang="ts">
 import { useProp } from '@/resource/hooks'
 import { uuid } from '@/utils/utils'
-import type BorderBoxComponent from './config'
-import type { BorderBox } from './type'
 
 const props = defineProps<{
-  component: BorderBoxComponent
+  component: any
 }>()
 
-const { propValue } = useProp<BorderBox>(props.component)
+const { propValue } = useProp<any>(props.component)
 const width = ref(150)
 const height = ref(150)
 const gradientId = ref(`border-box-9-gradient-${uuid()}`)

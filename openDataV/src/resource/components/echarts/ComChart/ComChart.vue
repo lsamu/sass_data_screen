@@ -5,17 +5,15 @@
 <script lang="ts" setup>
 import { useEchart } from '../hooks'
 import { useData } from '@/resource/hooks'
-import type ComChartComponent from './config'
-import type { DataType } from '@/resource/models'
 
 const props = defineProps<{
-  component: ComChartComponent
+  component: any
 }>()
 
 const chartEl = ref(null)
 const { updateEchart, resizeHandler } = useEchart(chartEl)
 
-const dataChange = (resp: any, _: DataType) => {
+const dataChange = (resp: any, _: any) => {
   if (!resp || !resp.afterData) {
     return
   }

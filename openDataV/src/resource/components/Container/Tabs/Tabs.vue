@@ -56,11 +56,8 @@ import {
   toPercent,
   uuid
 } from '@/utils/utils'
-import type TabsComponent from './config'
-import type { Tabs } from './type'
 import { useProp } from '@/resource/hooks'
 import Shape from '@/designer/Editor/Shape'
-import type { BaseComponent } from '@/resource/models'
 import { componentList } from '@/designer/load'
 import { useBasicStoreWithOut } from '@/store/modules/basic'
 import { DataIntegrationMode } from '@/resource/models/data'
@@ -68,12 +65,12 @@ import Group from '@/components/Group/Group.vue'
 import GroupComponent from '@/components/Group/config'
 
 const props = defineProps<{
-  component: TabsComponent
+  component: any
 }>()
 
 const basicStore = useBasicStoreWithOut()
 const editMode = computed(() => basicStore.isEditMode)
-const { propValue } = useProp<Tabs>(props.component)
+const { propValue } = useProp<any>(props.component)
 const labels = computed(() => {
   return propValue.label.items || []
 })
@@ -133,7 +130,7 @@ watch(
   }
 )
 
-const getShapeStyle = (item: BaseComponent) => {
+const getShapeStyle = (item: any) => {
   if (item.groupStyle?.gheight) {
     return filterStyle(item.groupStyle, ['gtop', 'gleft', 'gwidth', 'gheight', 'grotate'])
   } else {
@@ -185,7 +182,7 @@ const handleDrop = async (e) => {
   e.stopPropagation()
   const componentName = e.dataTransfer.getData('componentName')
   if (componentName) {
-    const component: BaseComponent = new componentList[componentName]()
+    const component: any = new componentList[componentName]()
     if (component.dataIntegrationMode === DataIntegrationMode.UNIVERSAL) {
       component.loadDemoData()
     }

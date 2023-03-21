@@ -4,13 +4,11 @@
 
 <script setup lang="ts">
 import { useProp } from '@/resource/hooks'
-import type BorderImageComponent from '../config'
-import type { BorderImage } from '../type'
 const props = defineProps<{
-  component: BorderImageComponent
+  component: any
 }>()
 
-const { propValue } = useProp<BorderImage>(props.component)
+const { propValue } = useProp<any>(props.component)
 
 const width = ref(150)
 const height = ref(150)

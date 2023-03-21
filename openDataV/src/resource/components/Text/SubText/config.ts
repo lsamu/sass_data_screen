@@ -1,5 +1,4 @@
 import { ComponentGroup, FormType } from '@/enum'
-import type { PropsType } from '@/types/component'
 import { BaseComponent } from '@/resource/models'
 
 export const componentName = 'SubText'
@@ -16,7 +15,7 @@ class SubTextComponent extends BaseComponent {
     })
   }
 
-  _prop: PropsType[] = [
+  _prop: any[] = [
     {
       label: '基础配置',
       prop: 'base',
@@ -56,7 +55,7 @@ class SubTextComponent extends BaseComponent {
       ]
     }
   ]
-  _style: PropsType[] = [
+  _style: any[] = [
     {
       label: '字体设置',
       prop: 'font',

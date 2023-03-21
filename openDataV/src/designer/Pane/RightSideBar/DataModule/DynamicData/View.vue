@@ -48,17 +48,15 @@ import {
   NFormItem,
   NGradientText
 } from 'naive-ui'
-import type { BaseComponent, RestRequestData } from '@/resource/models'
 import { DataType } from '@/resource/models'
 import Rest from '@/apiView/RequestContent/rest'
-import type { RequestOption } from '@/apiView/hooks/http/type'
 import { RequestMethod } from '@/apiView/RequestContent/requestEnums'
 import { uuid } from '@/utils/utils'
 import { ScriptType } from '@/enum'
 import { requestOptionsToStore, storeOptionToRequestOptions } from '@/apiView/hooks/http/utils'
 import { message } from '@/utils/message'
 const props = defineProps<{
-  curComponent: BaseComponent
+  curComponent: any
 }>()
 
 const isShow = ref(false)
@@ -78,7 +76,7 @@ const formData = reactive({
     }
   }
 }) as any
-const changeHandler = (option: RequestOption) => {
+const changeHandler = (option: any) => {
   formData.restOptions = option
   setDataConfig()
 }
@@ -100,7 +98,7 @@ onMounted(async () => {
 const initData = () => {
   const dataConfig = props.curComponent.dataConfig
   if (dataConfig && dataConfig.type === DataType.REST) {
-    const restRequest = props.curComponent.dataConfig?.requestConfig as RestRequestData
+    const restRequest = props.curComponent.dataConfig?.requestConfig as any
     const otherConfig = props.curComponent.dataConfig?.otherConfig || {}
     const { restOptions } = restRequest.toJSON()
     formData.restOptions = storeOptionToRequestOptions(restOptions)
@@ -128,7 +126,7 @@ const initData = () => {
 
 watch(
   () => props.curComponent,
-  async (value: BaseComponent) => {
+  async (value: any) => {
     if (value) {
       initData()
     }

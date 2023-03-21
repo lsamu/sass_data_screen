@@ -3,25 +3,18 @@
 </template>
 
 <script setup lang="ts">
-import type BasicLineChartComponent from './config'
-import type { BasicLineChart } from './type'
-import type { BarSeriesOption, EChartsOption, XAXisComponentOption } from 'echarts'
 import { compareResetValue } from '../../utils'
 import { useEchart } from '../../hooks'
 import { useProp, useData } from '@/resource/hooks'
-import type { DataType } from '@/resource/models'
-import type { RequestResponse } from '@/resource/models/type'
 
 const chartEl = ref(null)
-let globalOption: EChartsOption
+let globalOption: any
 const props = defineProps<{
-  component: BasicLineChartComponent
+  component: any
 }>()
 
-let chartData:
-  | Array<{ label: string; value: number }>
-  | RequestResponse<Array<{ label: string; value: number }>>['afterData'] = []
-const dataChange = (resp: any, _: DataType) => {
+let chartData:any;
+const dataChange = (resp: any, _: any) => {
   if (resp.status >= 0) {
     chartData = resp.afterData
     updateData(chartData)
@@ -34,7 +27,7 @@ const propValueChange = () => {
 }
 
 const { updateEchart, resizeHandler } = useEchart(chartEl)
-const { propValue } = useProp<BasicLineChart>(props.component, propValueChange)
+const { propValue } = useProp<any>(props.component, propValueChange)
 
 onMounted(async () => {
   globalOption = getOption()
@@ -42,7 +35,7 @@ onMounted(async () => {
 })
 
 const getOption = () => {
-  const option: EChartsOption = {
+  const option: any = {
     grid: {
       top: '10%',
       left: '3%',
@@ -118,14 +111,14 @@ const getOption = () => {
     },
     series: []
   }
-  let series: BarSeriesOption[] = [
+  let series: any[] = [
     {
       data: [],
       type: 'bar'
     }
   ]
   option.series = series
-  return option as EChartsOption
+  return option as any
 }
 
 const updateData = (resp: Array<{ label: string; value: number }>) => {
@@ -142,7 +135,7 @@ const updateData = (resp: Array<{ label: string; value: number }>) => {
   globalOption.xAxis = {
     ...globalOption.xAxis,
     data: data.map((el) => el.label)
-  } as XAXisComponentOption
+  } as any
   updateEchart(globalOption)
 }
 </script>

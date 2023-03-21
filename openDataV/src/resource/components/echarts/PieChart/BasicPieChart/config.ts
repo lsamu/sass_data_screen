@@ -1,5 +1,4 @@
 import { ComponentGroup, FormType } from '@/enum'
-import type { PropsType } from '@/types/component'
 import { BaseComponent } from '@/resource/models'
 import { DataIntegrationMode } from '@/resource/models/data'
 
@@ -18,7 +17,7 @@ class BasicPieChartComponent extends BaseComponent {
     })
   }
 
-  _prop: PropsType[] = [
+  _prop: any[] = [
     {
       label: '数据配置',
       prop: 'data',
@@ -128,7 +127,7 @@ class BasicPieChartComponent extends BaseComponent {
       ]
     }
   ]
-  _style: PropsType[] = []
+  _style: any[] = []
   get exampleData() {
     return [
       { label: '秦', value: Math.round(Math.random() * 100) },
