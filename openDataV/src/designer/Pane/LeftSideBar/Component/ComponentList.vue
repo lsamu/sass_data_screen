@@ -7,7 +7,6 @@
 <script setup lang="ts">
 import { ComponentGroupList } from '@/enum'
 import { componentList } from '@/designer/load'
-import { NMenu } from 'naive-ui'
 import ComponentItem from './ComponentItem.vue'
 import { XIcon } from '@/plugins/xicon'
 

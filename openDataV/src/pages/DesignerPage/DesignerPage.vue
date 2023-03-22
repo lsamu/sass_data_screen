@@ -56,13 +56,12 @@
 </template>
 
 <script setup lang="ts">
-import ToolBar from '@/designer/Pane/Toolbar'
+import ToolBar from '@/designer/Pane/Toolbar/index.vue'
 import LeftSideBar from '@/designer/Pane/LeftSideBar'
 import RightSideBar from '@/designer/Pane/RightSideBar'
 import Canvas from './Canvas.vue'
 import { useBasicStoreWithOut } from '@/store/modules/basic'
 import { getPageApi } from '@/api/pages'
-import { NLayout, NLayoutHeader, NLayoutSider } from 'naive-ui'
 import { useUnloadAlert } from '@/hooks'
 
 useUnloadAlert()

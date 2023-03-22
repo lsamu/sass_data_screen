@@ -6,12 +6,11 @@
 
 <script lang="ts" setup>
 import Logo from '@/assets/logo.png'
-withDefaults(
-  defineProps(["width"]),
-  {
-    width: '60px'
+defineProps({
+  width:{
+    default:"60px"
   }
-)
+})
 </script>
 
 <style lang="less" scoped>

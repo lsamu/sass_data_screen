@@ -36,18 +36,6 @@
 </template>
 
 <script lang="ts" setup>
-import {
-  NForm,
-  NInput,
-  NInputGroup,
-  NButton,
-  NModal,
-  NCard,
-  NSwitch,
-  NInputNumber,
-  NFormItem,
-  NGradientText
-} from 'naive-ui'
 import { DataType } from '@/resource/models'
 import Rest from '@/apiView/RequestContent/rest'
 import { RequestMethod } from '@/apiView/RequestContent/requestEnums'

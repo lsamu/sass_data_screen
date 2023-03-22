@@ -37,7 +37,6 @@
 
 <script setup lang="ts">
 import { useBasicStoreWithOut } from '@/store/modules/basic'
-import { NForm, NFormItem, NInput, NSelect, NInputNumber, NScrollbar, NColorPicker } from 'naive-ui'
 import PixelEnum from '@/enum/pixel'
 import { FormType } from '@/enum'
 import BackItem from '../../modules/backItem'

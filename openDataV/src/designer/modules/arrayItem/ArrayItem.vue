@@ -12,17 +12,25 @@
 </template>
 
 <script lang="ts" setup>
-import { NSpace, NInput } from 'naive-ui'
 import { message } from '@/utils/message'
 
-const props = withDefaults(
-  defineProps(["value", "count", "type", "maxItem", "minItem"]),
-  {
-    count: 1,
-    type: 'static',
-    minItem: 0
-  }
-)
+const props = defineProps({
+  value:{
+    default:null,
+  },
+  count:{
+    default:1,
+  },
+  type:{
+    default:"static",
+  },
+  maxItem:{
+    default:null,
+  },
+  minItem:{
+    default:0,
+  },
+})
 
 const emits = defineEmits(["updateValue"])
 

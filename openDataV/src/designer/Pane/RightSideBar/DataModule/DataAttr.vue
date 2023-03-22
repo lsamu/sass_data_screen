@@ -26,7 +26,6 @@
 </template>
 <script lang="ts" setup>
 import { DataType } from '@/resource/models'
-import { NForm, NFormItem, NSelect, NDescriptions, NDescriptionsItem, NEmpty } from 'naive-ui'
 import StaticData from './StaticData'
 import DynamicData from './DynamicData'
 import DemoData from './DemoData'

@@ -1,34 +1,12 @@
 <template>
   <div :class="rwClassName" :style="rwStyle">
-    <CanvasRuler
-      v-model:valueNum="valueNum"
-      v-model:showIndicator="showIndicator"
-      :vertical="vertical"
-      :scale="scale"
-      :width="width"
-      :height="height"
-      :start="start"
-      :ratio="ratio"
-      :select-start="selectStart"
-      :select-length="selectLength"
-      :palette="palette"
-      @on-add-line="handleNewLine"
-    />
+    <CanvasRuler v-model:valueNum="valueNum" v-model:showIndicator="showIndicator" :vertical="vertical" :scale="scale"
+      :width="width" :height="height" :start="start" :ratio="ratio" :select-start="selectStart"
+      :select-length="selectLength" :palette="palette" @on-add-line="handleNewLine" />
     <div v-show="isShowReferLine" class="lines">
-      <RulerLine
-        v-for="(v, i) in lines"
-        :key="v + i"
-        :index="i"
-        :value="v >> 0"
-        :scale="scale"
-        :start="start"
-        :thick="thick"
-        :palette="palette"
-        :vertical="vertical"
-        :is-show-refer-line="isShowReferLine"
-        @on-remove="handleLineRemove"
-        @on-release="handleLineRelease"
-      />
+      <RulerLine v-for="(v, i) in lines" :key="v + i" :index="i" :value="v >> 0" :scale="scale" :start="start"
+        :thick="thick" :palette="palette" :vertical="vertical" :is-show-refer-line="isShowReferLine"
+        @on-remove="handleLineRemove" @on-release="handleLineRelease" />
     </div>
     <div v-show="showIndicator" class="indicator" :style="indicatorStyle">
       <div class="value">{{ valueNum }}</div>
@@ -40,29 +18,56 @@
 import RulerLine from './RulerLine.vue'
 import CanvasRuler from '../canvas-ruler/index.vue'
 
-const props = withDefaults(
-  defineProps<{
-    scale: number
-    ratio: number
-    thick: number
-    selectStart: number
-    selectLength: number
-    isShowReferLine: boolean
-    palette: any
-    canvasHeight?: number
-    canvasWidth?: number
-    vertical?: boolean
-    width?: number
-    height?: number
-    start?: number
-  }>(),
-  {
-    vertical: true,
-    width: 200,
-    height: 200,
-    start: 0
+const props = defineProps({
+  scale: {
+    default: 1
+  },
+  ratio: {
+    default: 0
+  },
+  thick: {
+    default: 16
+  },
+  palette: {
+    default: null
+  },
+  start:{
+    default:0
+  },
+  startX: {
+    default: 0
+  },
+  startY: {
+    default: 0
+  },
+  width: {
+    default: 200
+  },
+  height: {
+    default: 200
+  },
+  shadow: {
+    default: {} as any
+  },
+  vertical: {
+    default: true
+  },
+  isShowReferLine: {
+    default: false
+  },
+  selectStart: {
+    default: 0
+  },
+  selectLength: {
+    default: 0
+  },
+  canvasHeight: {
+    default: 0
+  },
+  canvasWidth: {
+    default: 0
   }
-)
+})
 
 const showIndicator = ref(false)
 const valueNum = ref(0)
@@ -137,32 +142,41 @@ const handleLineRemove = (index: any) => {
 .line {
   position: absolute;
 }
+
 .h-container,
 .v-container {
   position: absolute;
+
   .lines {
     pointer-events: none;
   }
+
   &:hover .lines {
     pointer-events: auto;
   }
 }
+
 .h-container {
   top: 0;
+
   .line {
     top: 0;
     height: v-bind(realHeight);
     padding-left: 5px;
+
     .action {
       transform: translateX(-24px);
+
       .value {
         margin-left: 4px;
       }
     }
   }
+
   .indicator {
     top: 0;
     height: 100vw;
+
     .value {
       width: auto;
       padding: 0 2px;
@@ -174,20 +188,25 @@ const handleLineRemove = (index: any) => {
 
 .v-container {
   left: 0;
+
   .line {
     left: 0;
     width: v-bind(realWidth);
     padding-top: 5px;
+
     .action {
       transform: translateY(-24px);
       flex-direction: column;
+
       .value {
         margin-top: 4px;
       }
     }
   }
+
   .indicator {
     width: 100vw;
+
     .value {
       left: 0;
       width: auto;

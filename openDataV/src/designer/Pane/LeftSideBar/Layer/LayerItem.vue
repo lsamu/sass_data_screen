@@ -1,11 +1,6 @@
 <template>
-  <div
-    v-contextmenu.stop="contextmenus"
-    draggable="true"
-    @dragstart="handleDragStart($event, index)"
-    @drop="handleDrop($event, index)"
-    @dragover="handleDragOver($event, index, true)"
-  >
+  <div v-contextmenu.stop="contextmenus" draggable="true" @dragstart="handleDragStart($event, index)"
+    @drop="handleDrop($event, index)" @dragover="handleDragOver($event, index, true)">
     <div v-if="component.component === 'Group'" class="layer">
       <span v-show="mode === 'expand'">{{ component.name || '分组' }}</span>
       <x-icon :name="toggleIcon(component.display)" :size="18" />
@@ -23,18 +18,23 @@ import { useBasicStoreWithOut } from '@/store/modules/basic'
 import { cloneDeep } from 'lodash-es'
 import { diffIndex } from '@/utils/utils'
 
-const props = withDefaults(
-  defineProps<{
-    component: any
-    index: string
-    activeKey?: string
-    mode?: string
-    contextmenus: () => any[]
-  }>(),
-  {
-    mode: 'expand'
-  }
-)
+const props = defineProps({
+  component: {
+    default: null
+  },
+  index: {
+    default: null
+  },
+  activeKey: {
+    default: null
+  },
+  mode: {
+    default: "expand"
+  },
+  contextmenus: {
+    default: null
+  },
+})
 
 const emits = defineEmits(["select"])
 const basicStore = useBasicStoreWithOut()

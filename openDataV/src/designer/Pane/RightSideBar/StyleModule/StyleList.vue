@@ -25,7 +25,6 @@
 import { useBasicStoreWithOut } from '@/store/modules/basic'
 import { debounce, cloneDeep } from 'lodash-es'
 import FormAttr from '@/designer/modules/form/FormAttr'
-import { NCollapse, NCollapseItem } from 'naive-ui'
 
 const props = defineProps<{
   curComponent: any

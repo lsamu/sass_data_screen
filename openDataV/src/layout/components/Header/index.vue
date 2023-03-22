@@ -93,7 +93,6 @@
 </template>
 
 <script lang="ts" setup>
-import { NTooltip, NDropdown, NAvatar, NBreadcrumb, NBreadcrumbItem } from 'naive-ui'
 import { useUserStoreWithOut } from '@/store/modules/user'
 import ProjectSetting from './setting.vue'
 import { useProjectSettingStoreWithOut } from '@/store/modules/projectSetting'

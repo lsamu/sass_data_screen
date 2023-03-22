@@ -1,15 +1,8 @@
 <template>
   <n-card>
     <div class="rest-data">
-      <n-select
-        :options="restDataList"
-        :value="formData.id"
-        class="selected"
-        clearable
-        placeholder="请选择数据"
-        @update:value="selectedChange"
-        @clear="clear"
-      />
+      <n-select :options="restDataList" :value="formData.id" class="selected" clearable placeholder="请选择数据"
+        @update:value="selectedChange" @clear="clear" />
       <n-input v-if="mode === 'debug'" v-model:value="formData.title" class="title">
         <template #prefix>
           <x-icon name="api" />
@@ -22,13 +15,8 @@
       </n-space>
     </div>
     <div class="api">
-      <n-select
-        v-model:value="formData['method']"
-        :options="requestMethodOptions"
-        class="method"
-        :show-arrow="true"
-        @update-value="formChange"
-      />
+      <n-select v-model:value="formData['method']" :options="requestMethodOptions" class="method" :show-arrow="true"
+        @update-value="formChange" />
       <n-input v-model:value="formData['url']" class="url" @update-value="formChange" />
       <n-space>
         <n-button-group class="send">
@@ -40,30 +28,18 @@
       <n-tabs type="line" animated>
         <n-tab-pane name="query" tab="请求参数" display-directive="show">
           <div class="params">
-            <DynamicKVForm
-              v-model:value="formData['params']"
-              title="请求参数"
-              @update:value="formChange"
-            />
+            <DynamicKVForm v-model:value="formData['params']" title="请求参数" @update:value="formChange" />
           </div>
         </n-tab-pane>
         <n-tab-pane name="data" tab="请求体" display-directive="show">
           <div class="headers">
-            <DynamicKVForm
-              v-model:value="formData['data']"
-              title="请求体"
-              @update:value="formChange"
-            />
+            <DynamicKVForm v-model:value="formData['data']" title="请求体" @update:value="formChange" />
           </div>
         </n-tab-pane>
         <n-tab-pane name="headers" tab="请求头" display-directive="show">
           <div class="headers">
-            <DynamicKVForm
-              v-model:value="formData['headers']"
-              title="请求头"
-              :options="requestHeaderOptions"
-              @update:value="formChange"
-            />
+            <DynamicKVForm v-model:value="formData['headers']" title="请求头" :options="requestHeaderOptions"
+              @update:value="formChange" />
           </div>
         </n-tab-pane>
       </n-tabs>
@@ -83,29 +59,13 @@
           <ReponseContentView :data="response.data" class="content" />
         </n-tab-pane>
         <n-tab-pane name="scripts" tab="脚本" display-directive="show">
-          <ScriptsEditor
-            :data="formData.afterScript"
-            :mode="mode"
-            class="content"
-            @update:data="afterScriptChange"
-          />
+          <ScriptsEditor :data="formData.afterScript" :mode="mode" class="content" @update:data="afterScriptChange" />
         </n-tab-pane>
       </n-tabs>
     </div>
   </n-card>
 </template>
 <script setup lang="ts">
-import {
-  NCard,
-  NInput,
-  NSelect,
-  NButton,
-  NButtonGroup,
-  NSpace,
-  NTabs,
-  NTabPane,
-  NDivider
-} from 'naive-ui'
 import DynamicKVForm from '../modules/DynamicKVForm.vue'
 import { uuid } from '@/utils/utils'
 import { RequestHeaderEnum, RequestMethod } from '../requestEnums'
@@ -127,25 +87,26 @@ const getEmptyParams = () => {
   return [{ key: '', value: '', disable: false, id: uuid() }]
 }
 
-const props = withDefaults(
-  defineProps(["restOptions","mode"]),
-  {
-    restOptions: () => {
-      return {
-        method: RequestMethod.GET,
-        url: '/getRiskArea',
-        headers: [{ key: '', value: '', disable: false, id: uuid() }],
-        params: [{ key: '', value: '', disable: false, id: uuid() }],
-        data: [{ key: '', value: '', disable: false, id: uuid() }],
-        afterScript: {
-          code: '',
-          type: ScriptType.Javascript
-        }
+const props = defineProps({
+  restOptions: {
+    default: {
+      id: null,
+      title: null,
+      method: RequestMethod.GET,
+      url: '/getRiskArea',
+      headers: [{ key: '', value: '', disable: false, id: uuid() }],
+      params: [{ key: '', value: '', disable: false, id: uuid() }],
+      data: [{ key: '', value: '', disable: false, id: uuid() }],
+      afterScript: {
+        code: '',
+        type: ScriptType.Javascript
       }
-    },
-    mode: 'use'
+    }
+  },
+  mode: {
+    default: "use"
   }
-) as any
+})
 
 const restDataList = ref([])
 const loadRestList = async () => {
@@ -216,7 +177,7 @@ const loadRestData = async (id) => {
     return undefined
   }
 }
-const emits = defineEmits(["change","update:restOptions"])
+const emits = defineEmits(["change", "update:restOptions"])
 
 const formData = reactive(props.restOptions)
 const response = ref({
@@ -314,28 +275,35 @@ onMounted(async () => {
 .rest-data {
   display: flex;
   margin-bottom: 5px;
+
   .selected {
     flex: 4;
   }
+
   .title {
     flex: 8;
   }
 }
+
 .api {
   display: flex;
+
   .method {
     width: 100px;
     flex: 8;
   }
+
   .url {
     flex: 90;
   }
 }
+
 .response {
   .resp-fail {
     color: #f76560;
     margin-left: 10px;
   }
+
   .resp-code.resp-success {
     color: #18a058;
     margin-left: 10px;

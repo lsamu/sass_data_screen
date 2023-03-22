@@ -29,7 +29,6 @@
   </ConfigProvider>
 </template>
 <script lang="ts" setup>
-import { NForm, NInput, NFormItem, NButton, NModal, NSpace } from 'naive-ui'
 import { message } from '@/utils/message'
 import { useBasicStoreWithOut } from '@/store/modules/basic'
 import { savePageApi, updatePageApi } from '@/api/pages'

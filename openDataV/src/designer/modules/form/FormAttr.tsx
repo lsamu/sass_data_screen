@@ -5,15 +5,6 @@ import ArrayItem from '../arrayItem'
 import CustomItem from '../customItem'
 import BackItem from '../backItem'
 import { FormType, GlobalColorSwatches } from '@/enum'
-import type {
-  AttrType,
-  CustomFormSchema,
-  InputFormSchema,
-  InputNumberFormSchema,
-  RadioFormSchema,
-  SelectFormSchema,
-  SwitchFormSchema
-} from '@/types/component'
 import {
   NForm,
   NFormItem,
@@ -48,11 +39,11 @@ export default defineComponent({
       required: true
     },
     children: {
-      type: Array as PropType<AttrType[]>,
+      type: Array as PropType<any[]>,
       required: true
     },
     data: {
-      type: Object as PropType<Recordable>,
+      type: Object as PropType<any>,
       required: true
     }
   },
@@ -65,9 +56,9 @@ export default defineComponent({
     }
 
     const isShowLabel = (showLabel?: boolean) => showLabel !== false
-    const renderItem = (item: AttrType) => {
-      const options: Recordable[] =
-        (item.componentOptions as SelectFormSchema | RadioFormSchema | SwitchFormSchema)?.options ||
+    const renderItem = (item: any) => {
+      const options: any[] =
+        (item.componentOptions as any)?.options ||
         []
 
       /**
@@ -126,8 +117,8 @@ export default defineComponent({
               min={numberMin}
               clearable={true}
               v-slots={{
-                prefix: (item.componentOptions as InputNumberFormSchema).prefix,
-                suffix: (item.componentOptions as InputNumberFormSchema).suffix
+                prefix: (item.componentOptions as any).prefix,
+                suffix: (item.componentOptions as any).suffix
               }}
             />
           )
@@ -164,8 +155,8 @@ export default defineComponent({
             <CustomItem
               v-model:value={formData[item.prop]}
               onUpdateValue={(event) => changed(event, item.prop)}
-              component={(item.componentOptions as CustomFormSchema).componentType}
-              args={(item.componentOptions as CustomFormSchema).args}
+              component={(item.componentOptions as any).componentType}
+              args={(item.componentOptions as any).args}
             />
           )
         default:
@@ -177,8 +168,8 @@ export default defineComponent({
               readonly={item.componentOptions.editable === false}
               disabled={item.componentOptions.disabled}
               v-slots={{
-                prefix: (item.componentOptions as InputFormSchema).prefix,
-                suffix: (item.componentOptions as InputFormSchema).suffix
+                prefix: (item.componentOptions as any).prefix,
+                suffix: (item.componentOptions as any).suffix
               }}
             />
           )

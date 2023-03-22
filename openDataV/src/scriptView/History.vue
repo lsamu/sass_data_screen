@@ -25,7 +25,6 @@
   </n-card>
 </template>
 <script setup lang="ts">
-import { NInput, NCard, NTabs, NTabPane, NOl, NLi, NGradientText } from 'naive-ui'
 import { eventBus, StaticKey } from '@/bus'
 import { getAfterScriptListApi } from '@/api/data/afterScript'
 import { ScriptType } from '@/enum'

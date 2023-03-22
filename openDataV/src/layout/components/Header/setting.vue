@@ -125,31 +125,18 @@
 
 <script lang="ts" setup>
 import { useProjectSettingStoreWithOut } from '@/store/modules/projectSetting'
-import {
-  NDrawer,
-  NDrawerContent,
-  NAlert,
-  NSelect,
-  NSwitch,
-  NDivider,
-  NTooltip,
-  NBadge
-} from 'naive-ui'
 import NavThemeDark from '@/assets/images/nav-theme-dark.svg'
 import NavThemeLight from '@/assets/images/nav-theme-light.svg'
 import HeaderThemeDark from '@/assets/images/header-theme-dark.svg'
 
-withDefaults(
-  defineProps<{
-    title?: string
-    width?: number
-  }>(),
-  {
-    title: '项目配置',
-    width: 280
+defineProps({
+  title:{
+    default:"项目配置"
+  },
+  width:{
+    default:280
   }
-)
-
+})
 const settingStore = useProjectSettingStoreWithOut()
 const currentThemeSettings = computed(() => settingStore)
 const isDrawer = ref(false)

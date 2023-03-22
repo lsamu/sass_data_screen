@@ -32,19 +32,20 @@
 </template>
 <script lang="ts" setup>
 import { uuid } from '@/utils/utils'
-import { NInput, NButton, NInputGroup, NDivider } from 'naive-ui'
 
-const props = withDefaults(defineProps(["title", "value"]), {
-  title: '',
-  value: () => [
-    {
+const props = defineProps({
+  title:{
+    default:""
+  },
+  value:{
+    default:{
       key: '',
       value: '',
       disable: false,
       id: uuid(),
       options: []
     }
-  ]
+  }
 })
 
 const emits = defineEmits(["update:value"])

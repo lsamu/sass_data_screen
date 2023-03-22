@@ -1,66 +1,51 @@
 <template>
   <div id="mb-ruler" v-contextmenu.stop="ruleContextMenus" class="style-ruler mb-ruler">
     <!-- 水平方向 -->
-    <RulerWrapper
-      ref="HRulerWrapperRef"
-      :vertical="false"
-      :width="width"
-      :height="16"
-      :canvas-height="height"
-      :canvas-width="width"
-      :is-show-refer-line="isShowReferLine"
-      :thick="thick"
-      :ratio="ratio"
-      :start="startX"
-      :select-start="shadow?.x || 0"
-      :select-length="shadow?.width || 0"
-      :scale="scale"
-      :palette="paletteCpu"
-    />
+    <RulerWrapper ref="HRulerWrapperRef" :vertical="false" :width="width" :height="16" :canvas-height="height"
+      :canvas-width="width" :is-show-refer-line="isShowReferLine" :thick="thick" :ratio="ratio" :start="startX"
+      :select-start="shadow?.x || 0" :select-length="shadow?.width || 0" :scale="scale" :palette="paletteCpu" />
     <!-- 竖直方向 -->
-    <RulerWrapper
-      ref="VRulerWrapperRef"
-      :vertical="true"
-      :width="16"
-      :height="height"
-      :canvas-height="height"
-      :canvas-width="width"
-      :is-show-refer-line="isShowReferLine"
-      :thick="thick"
-      :ratio="ratio"
-      :start="startY"
-      :select-start="shadow?.y || 0"
-      :select-length="shadow?.height || 0"
-      :scale="scale"
-      :palette="paletteCpu"
-    />
+    <RulerWrapper ref="VRulerWrapperRef" :vertical="true" :width="16" :height="height" :canvas-height="height"
+      :canvas-width="width" :is-show-refer-line="isShowReferLine" :thick="thick" :ratio="ratio" :start="startY"
+      :select-start="shadow?.y || 0" :select-length="shadow?.height || 0" :scale="scale" :palette="paletteCpu" />
   </div>
 </template>
 
 <script lang="ts" setup>
 import RulerWrapper from './RulerWrapper.vue'
 
-const props = withDefaults(
-  defineProps<{
-    scale: number
-    ratio?: number
-    thick: number
-    palette?: any
-    startX: number
-    startY: number
-    width?: number
-    height?: number
-    shadow?: any
-  }>(),
-  {
-    vertical: true,
-    thick: 16,
-    scale: 1,
-    width: 200,
-    height: 200,
-    ratio: 0
-  }
-)
+const props = defineProps({
+  scale: {
+    default: 1
+  },
+  ratio: {
+    default: 0
+  },
+  thick: {
+    default: 16
+  },
+  palette: {
+
+  },
+  startX: {
+    default: 0
+  },
+  startY: {
+    default: 0
+  },
+  width: {
+    default: 200
+  },
+  height: {
+    default: 200
+  },
+  shadow: {
+    default: {} as any
+  },
+  vertical: {
+    default: true
+  },
+})
 
 const VRulerWrapperRef = ref(null)
 const HRulerWrapperRef = ref(null)
@@ -140,16 +125,20 @@ const paletteCpu = computed(() => {
 <style lang="less">
 .style-ruler {
   position: absolute;
-  z-index: 3; /* 需要比resizer高 */
-  width: 100%; /* scrollbar width */
+  z-index: 3;
+  /* 需要比resizer高 */
+  width: 100%;
+  /* scrollbar width */
   height: 100%;
   overflow: hidden;
   font-size: 12px;
   pointer-events: none;
+
   span {
     line-height: 1;
   }
 }
+
 .corner {
   position: absolute;
   top: 0;
@@ -163,6 +152,7 @@ const paletteCpu = computed(() => {
 .indicator {
   position: absolute;
   pointer-events: none;
+
   .value {
     position: absolute;
     background: white;

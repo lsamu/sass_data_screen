@@ -1,12 +1,6 @@
 <template>
-  <CodeEditor
-    ref="cm"
-    v-model:code="form.code"
-    :language="languageType"
-    :config="config"
-    :theme="projectStore.darkTheme ? 'dark' : 'light'"
-    @update:code="formChange"
-  >
+  <CodeEditor ref="cm" v-model:code="form.code" :language="languageType" :config="config"
+    :theme="projectStore.darkTheme ? 'dark' : 'light'" @update:code="formChange">
     <template #tool-bar>
       <div>
         <div class="buttons">
@@ -21,14 +15,8 @@
           {{ savedStatus ? '已保存' : '未保存' }}
         </div>
         <div class="lang" @click="isShow = true">
-          <n-select
-            v-model:value="form.type"
-            :options="languageOptions"
-            class="item language"
-            size="tiny"
-            style="width: 110px"
-            @update:value="formChange"
-          />
+          <n-select v-model:value="form.type" :options="languageOptions" class="item language" size="tiny"
+            style="width: 110px" @update:value="formChange" />
         </div>
       </div>
     </template>
@@ -36,7 +24,6 @@
 </template>
 
 <script lang="ts" setup>
-import { NSelect } from 'naive-ui'
 import { python } from '@codemirror/lang-python'
 import { javascript } from '@codemirror/lang-javascript'
 import { useProjectSettingStoreWithOut } from '@/store/modules/projectSetting'
@@ -46,33 +33,29 @@ import { ScriptType } from '@/enum'
 const projectStore = useProjectSettingStoreWithOut()
 const savedStatus = ref(true)
 const isShow = ref(false)
-const props = withDefaults(
-  defineProps<{
-    data: any
-    config?: any
-    mode?: 'use' | 'debug'
-  }>(),
-  {
-    data: () => {
-      return {
-        code: '',
-        type: ScriptType.Javascript
-      }
-    },
-    config: () => {
-      return {
-        height: '600px',
-        tabSize: 4,
-        indentWithTab: true,
-        autofocus: true,
-        disabled: false
-      }
-    },
-    mode: 'use'
-  }
-)
 
-const emits = defineEmits(["update:data","change"])
+const props = defineProps({
+  data: {
+    default: {
+      code: '',
+      type: ScriptType.Javascript
+    }
+  },
+  config: {
+    default: {
+      height: '600px',
+      tabSize: 4,
+      indentWithTab: true,
+      autofocus: true,
+      disabled: false
+    } as any
+  },
+  mode: {
+    default: "use"
+  }
+})
+
+const emits = defineEmits(["update:data", "change"])
 const languageMap = { Javascript: javascript, Python: python }
 
 const form = reactive(props.data)
@@ -123,12 +106,15 @@ watch(
 <style lang="less" scoped>
 .buttons {
   display: flex;
+
   .item {
     display: block;
     margin: 5px;
+
     &.language {
       width: 120px;
     }
+
     &.button {
       &:hover {
         transform: scale(1.2);
@@ -136,6 +122,7 @@ watch(
     }
   }
 }
+
 .footer {
   display: flex;
   flex-direction: row;
@@ -143,6 +130,7 @@ watch(
   justify-content: flex-end;
   align-items: center;
   align-content: center;
+
   div {
     margin-left: 5px;
     color: #ffff;
@@ -158,6 +146,7 @@ watch(
     &.save {
       background-color: #18a058;
     }
+
     &.unsave {
       background-color: #d03050;
     }

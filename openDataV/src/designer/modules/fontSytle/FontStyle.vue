@@ -10,14 +10,12 @@
 
 <script setup lang="ts">
 import { SYS_FONTS } from '@/enum/font'
-import { NSelect } from 'naive-ui'
 
-const props = withDefaults(
-  defineProps(["value"]),
-  {
-    value: ''
+const props = defineProps({
+  value:{
+    default:""
   }
-)
+})
 
 const font = ref(props.value)
 const fonts = reactive(SYS_FONTS)

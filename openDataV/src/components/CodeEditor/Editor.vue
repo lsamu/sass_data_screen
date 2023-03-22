@@ -4,27 +4,18 @@
       <slot name="tool-bar"> </slot>
     </div>
     <div class="main" :style="{ maxHeight: config.height }">
-      <codemirror
-        :model-value="code"
-        :style="{
-          width: '100%',
-          height: config.height,
-          backgroundColor: '#fff',
-          color: '#333'
-        }"
-        placeholder="Please enter the code."
-        :extensions="extensions"
-        :autofocus="config.autofocus"
-        :disabled="config.disabled"
-        :indent-with-tab="config.indentWithTab"
-        :tab-size="config.tabSize"
-        @ready="handleReady"
-        @focus="log('focus', $event)"
-        @blur="log('blur', $event)"
-        @update:model-value="codeChange"
-      />
+      <codemirror :model-value="code" :style="{
+        width: '100%',
+        height: config.height,
+        backgroundColor: '#fff',
+        color: '#333'
+      }" placeholder="Please enter the code." :extensions="extensions" :autofocus="config.autofocus"
+        :disabled="config.disabled" :indent-with-tab="config.indentWithTab" :tab-size="config.tabSize"
+        @ready="handleReady" @focus="log('focus', $event)" @blur="log('blur', $event)" @update:model-value="codeChange" />
     </div>
-    <div class="footer"><slot name="footer"></slot></div>
+    <div class="footer">
+      <slot name="footer"></slot>
+    </div>
   </div>
 </template>
 
@@ -34,24 +25,29 @@ import { json } from '@codemirror/lang-json'
 import { oneDark } from '@codemirror/theme-one-dark'
 import { redo, undo } from '@codemirror/commands'
 
-const props = withDefaults(
-  defineProps(["code","language","theme","config"]),
-  {
-    config: () => ({
+const props = defineProps({
+  code: {
+    default: ""
+  },
+  language: {
+    default: json as any
+  },
+  theme: {
+    default: "dark"
+  },
+  config: {
+    default: {
       height: '200px',
       tabSize: 4,
       indentWithTab: true,
       autofocus: true,
       disabled: false,
       line: false
-    }),
-    code: '',
-    language: json,
-    theme: 'dark'
+    }
   }
-) as any
+})
 
-const emits = defineEmits(["update:code","change"])
+const emits = defineEmits(["update:code", "change"])
 
 let cmView
 
@@ -99,17 +95,21 @@ defineExpose({ handleRedo, handleUndo })
   .main {
     display: flex;
     overflow: hidden;
+
     ::-webkit-scrollbar {
       /*滚动条整体样式*/
-      width: 6px; /*高宽分别对应横竖滚动条的尺寸*/
+      width: 6px;
+      /*高宽分别对应横竖滚动条的尺寸*/
       height: 6px;
     }
+
     ::-webkit-scrollbar-thumb {
       background-color: #8b8b8b;
       -webkit-border-radius: 2em;
       -moz-border-radius: 2em;
       border-radius: 2em;
     }
+
     ::-webkit-scrollbar-track {
       background-color: #ccc;
     }

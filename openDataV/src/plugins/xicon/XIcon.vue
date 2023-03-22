@@ -10,17 +10,17 @@ import { useProjectSettingStoreWithOut } from '@/store/modules/projectSetting'
 
 const projectStore = useProjectSettingStoreWithOut()
 
-const props = withDefaults(
-  defineProps<{
-    name: string
-    size?: number
-    color?: string
-  }>(),
-  {
-    size: 25,
-    color: ''
+const props = defineProps({
+  name:{
+    default:null
+  },
+  size:{
+    default:25
+  },
+  color:{
+    default:""
   }
-)
+})
 
 const iconColor = computed(() => (props.color ? props.color : projectStore.iconColor))
 const IconComponet = computed(() => {

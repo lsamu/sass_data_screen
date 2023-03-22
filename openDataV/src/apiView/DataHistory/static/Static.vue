@@ -31,7 +31,6 @@
 </template>
 <script setup lang="ts">
 import { deleteStaticDataApi, getStaticDataListApi } from '@/api/data'
-import { NInput, NSpace, NCard, NTabs, NTabPane, NOl, NLi } from 'naive-ui'
 import { eventBus, StaticKey } from '@/bus'
 import useDataSnapShot from '@/apiView/hooks/snapshot'
 

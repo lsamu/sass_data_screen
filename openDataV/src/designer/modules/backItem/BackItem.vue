@@ -20,7 +20,6 @@
 </template>
 
 <script lang="ts" setup>
-import { NSpace, NSelect, NColorPicker } from 'naive-ui'
 import { GlobalColorSwatches } from '@/enum'
 import LinearGradient from '../linearGradient'
 import BackImage from './BackImage.vue'

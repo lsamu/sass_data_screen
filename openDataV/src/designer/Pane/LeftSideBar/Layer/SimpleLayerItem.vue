@@ -1,32 +1,33 @@
 <template>
-  <x-icon
-    v-contextmenu.stop="contextmenus"
-    draggable="true"
-    :size="18"
-    :name="name"
-    @dragstart="handleDragStart($event, index)"
-    @drop="handleDrop($event, index)"
-    @dragover="handleDragOver($event, index, true)"
-  />
+  <x-icon v-contextmenu.stop="contextmenus" draggable="true" :size="18" :name="name"
+    @dragstart="handleDragStart($event, index)" @drop="handleDrop($event, index)"
+    @dragover="handleDragOver($event, index, true)" />
 </template>
 
 <script lang="ts" setup>
 import { eventBus, StaticKey } from '@/bus'
 import { useBasicStoreWithOut } from '@/store/modules/basic'
 
-const props = withDefaults(
-  defineProps<{
-    component: any
-    index: string
-    activeKey?: string
-    mode?: string
-    name: string
-    contextmenus: () => any[]
-  }>(),
-  {
-    mode: 'expand'
-  }
-)
+const props = defineProps({
+  component: {
+    default: null
+  },
+  index: {
+    default: null
+  },
+  activeKey: {
+    default: null
+  },
+  mode: {
+    default: "expand"
+  },
+  name: {
+    default: null
+  },
+  contextmenus: {
+    default: null
+  },
+})
 
 const emits = defineEmits(["select"])
 const basicStore = useBasicStoreWithOut()

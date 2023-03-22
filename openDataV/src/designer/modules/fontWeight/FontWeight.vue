@@ -10,14 +10,12 @@
 
 <script setup lang="ts">
 import { SYS_FONT_WEIGHT } from '@/enum/font'
-import { NSelect } from 'naive-ui'
 
-const props = withDefaults(
-  defineProps(["value"]),
-  {
-    value: 400
+const props = defineProps({
+  value:{
+    default:400
   }
-)
+})
 
 const weight = ref(props.value)
 const weights = reactive(SYS_FONT_WEIGHT)

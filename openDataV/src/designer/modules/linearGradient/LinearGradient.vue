@@ -23,19 +23,17 @@
 </template>
 
 <script setup lang="ts">
-import { NColorPicker, NSlider } from 'naive-ui'
 import { GlobalColorSwatches } from '@/enum'
 
-const props = withDefaults(
-  defineProps(["value"]),
-  {
-    value: () => ({
+const props = defineProps({
+  value:{
+    default:{
       angle: 0,
       color1: '',
       color2: ''
-    })
+    }
   }
-)
+})
 
 const linearGradient = ref({
   angle: props.value.angle || 0,

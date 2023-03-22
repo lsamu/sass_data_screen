@@ -19,7 +19,6 @@
 import { useBasicStoreWithOut } from '@/store/modules/basic'
 import { useCopyStoreWithOut } from '@/store/modules/copy'
 import { uuid } from '@/utils/utils'
-import { NDescriptions, NEmpty, NDescriptionsItem, NMenu } from 'naive-ui'
 import { useEventBus } from '@/bus'
 import LayerItem from './LayerItem.vue'
 import SimpleLayerItem from './SimpleLayerItem.vue'
@@ -29,7 +28,7 @@ import { cloneDeep } from 'lodash-es'
 const basicStore = useBasicStoreWithOut()
 const copyStore = useCopyStoreWithOut()
 
-const iconMap: Recordable<string> = {}
+const iconMap: any = {}
 ComponentGroupList.map((ele) => {
   iconMap[ele.key] = ele.icon
 })
@@ -50,7 +49,7 @@ useEventBus('ActiveMenu', open)
 const handleSelect = (key) => {
   activeKey.value = key
   const indexes: number[] = key.split('-').map((i) => Number(i))
-  const activedComponent: Optional<any> = basicStore.getComponentByIndex(indexes)
+  const activedComponent: any = basicStore.getComponentByIndex(indexes)
   if (activedComponent) {
     basicStore.setCurComponent(activedComponent, key)
   }
@@ -119,7 +118,7 @@ const calcIndex = (index: number, fatherIndex) => {
 
 const copy = (index) => {
   const indexes: number[] = index.split('-').map((i) => Number(i))
-  const component: Optional<any> = cloneDeep(basicStore.getComponentByIndex(indexes))
+  const component:any = cloneDeep(basicStore.getComponentByIndex(indexes))
   if (component) {
     copyStore.copy(component)
   }
@@ -170,8 +169,8 @@ const display = (index) => {
 }
 const cut = (index) => {
   const indexes: number[] = index.split('-').map((i) => Number(i))
-  const cutComponent: Optional<any> = basicStore.getComponentByIndex(indexes)
-  const component: Optional<any> = basicStore.cutComponent(
+  const cutComponent: any = basicStore.getComponentByIndex(indexes)
+  const component: any = basicStore.cutComponent(
     indexes[indexes.length - 1],
     cutComponent?.parent
   )
@@ -182,7 +181,7 @@ const cut = (index) => {
 
 const paste = (index) => {
   const indexes: number[] = index.split('-').map((i) => Number(i))
-  const insertComponent: Optional<any> = basicStore.getComponentByIndex(indexes)
+  const insertComponent: any = basicStore.getComponentByIndex(indexes)
   if (copyStore.copyData) {
     const data = cloneDeep(copyStore.copyData) as any
     data.id = uuid()

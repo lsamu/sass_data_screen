@@ -43,7 +43,6 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { NFormItem, NInput, NButton, NForm } from 'naive-ui'
 
 import { useUserStoreWithOut } from '@/store/modules/user'
 import { message } from '@/utils/message'

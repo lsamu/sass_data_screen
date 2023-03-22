@@ -49,7 +49,6 @@
 </template>
 <script setup lang="ts">
 import { getRestDataListApi, deleteRestDataApi } from '@/api/data'
-import { NInput, NCard, NTabs, NTabPane, NOl, NLi, NGradientText } from 'naive-ui'
 import { eventBus, StaticKey } from '@/bus'
 import useDataSnapShot from '@/apiView/hooks/snapshot'
 import { message } from '@/utils/message'

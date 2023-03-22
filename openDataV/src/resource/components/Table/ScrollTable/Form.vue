@@ -17,7 +17,6 @@
 </template>
 
 <script lang="ts" setup>
-import { NForm, NFormItem, NInputNumber, NColorPicker } from 'naive-ui'
 
 const props = defineProps<{
   value: any

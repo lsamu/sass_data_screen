@@ -30,15 +30,21 @@ import { message } from '@/utils/message'
 const savedStatus = ref(true)
 
 const projectStore = useProjectSettingStoreWithOut()
-const props = withDefaults(
-  defineProps(["content", "title", "mode", "height"]),
-  {
-    content: '',
-    title: '',
-    mode: 'use',
-    height: '600px'
+
+const props = defineProps({
+  content:{
+    default:""
+  },
+  title:{
+    default:""
+  },
+  mode:{
+    default:"use"
+  },
+  height:{
+    default:"600px"
   }
-)
+})
 const config = computed(() => {
   return {
     height: props.height,

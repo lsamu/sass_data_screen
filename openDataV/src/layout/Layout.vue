@@ -49,7 +49,6 @@ import { PageHeader } from './components/Header'
 import { Logo } from './components/Logo'
 import { useLoadingBar } from 'naive-ui'
 import { useProjectSettingStoreWithOut } from '@/store/modules/projectSetting'
-import { NLayout, NLayoutSider, NLayoutHeader, NLayoutContent, NBackTop } from 'naive-ui'
 
 const projectStore = useProjectSettingStoreWithOut()
 const collapsed = ref(false)

@@ -33,7 +33,7 @@
 </template>
 
 <script lang="ts" setup>
-import { NForm, NInput, NInputGroup, NButton, NModal, NCard, NFormItem } from 'naive-ui'
+
 import { DataType } from '@/resource/models'
 import { ScriptType } from '@/enum'
 import Static from '@/apiView/RequestContent/static'

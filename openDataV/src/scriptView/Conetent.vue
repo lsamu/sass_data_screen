@@ -43,7 +43,6 @@
 </template>
 
 <script lang="ts" setup>
-import { NCard, NSpace, NButtonGroup, NButton, NInput, NDivider, NTabs, NTabPane } from 'naive-ui'
 import DataView from '@/components/DataView'
 import { message } from '@/utils/message'
 import Editor from './Editor.vue'

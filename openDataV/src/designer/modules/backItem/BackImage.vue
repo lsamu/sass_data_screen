@@ -42,7 +42,6 @@
 </template>
 
 <script lang="ts" setup>
-import { NForm, NFormItem, NInput, NSelect, NUpload, NButton } from 'naive-ui'
 import { cloneDeep } from 'lodash-es'
 import { uploadImageFileApi } from '@/api/images'
 

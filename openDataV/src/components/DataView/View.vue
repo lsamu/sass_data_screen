@@ -8,22 +8,28 @@ import CodeEditor from '@/components/CodeEditor'
 import { useProjectSettingStoreWithOut } from '@/store/modules/projectSetting'
 
 const projectStore = useProjectSettingStoreWithOut()
-const props = withDefaults(
-  defineProps(["content", "disabled", "config"]),
-  {
-    content: '',
-    disabled: false,
-    config: () => {
-      return {
-        height: '600px',
-        tabSize: 4,
-        indentWithTab: true,
-        autofocus: true,
-        disabled: false
-      }
-    }
+
+const props = defineProps({
+  content: {
+    default: ""
+  },
+  disabled: {
+    default: false
+  },
+  disable: {
+    default: false
+  },
+  config: {
+    default: {
+      height: '600px',
+      tabSize: 4,
+      indentWithTab: true,
+      autofocus: true,
+      disabled: false
+    } as any
   }
-) as any
+})
+
 const curConfig = computed(() => {
   return { ...props.config, disabled: props.disable || false }
 })
@@ -98,4 +104,5 @@ const formChange = (value) => {
       }
     }
   }
-}</style>
+}
+</style>

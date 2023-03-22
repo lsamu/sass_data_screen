@@ -5,22 +5,12 @@
         <Render />
       </n-tab-pane>
       <n-tab-pane name="attr" tab="属性" display-directive="show">
-        <StaticDataView
-          v-model:content="form.propValue"
-          class="content"
-          mode="debug"
-          height="300px"
-          @update:content="propValueChange"
-        />
+        <StaticDataView v-model:content="form.propValue" class="content" mode="debug" height="300px"
+          @update:content="propValueChange" />
       </n-tab-pane>
       <n-tab-pane name="style" tab="样式" display-directive="show">
-        <StaticDataView
-          v-model:content="form.style"
-          class="content"
-          mode="debug"
-          height="300px"
-          @update:content="styleChange"
-        />
+        <StaticDataView v-model:content="form.style" class="content" mode="debug" height="300px"
+          @update:content="styleChange" />
       </n-tab-pane>
     </n-tabs>
   </n-card>
@@ -29,34 +19,42 @@
   </n-card>
 </template>
 <script setup lang="ts">
-import { NCard, NTabs, NTabPane } from 'naive-ui'
 import { getComponentStyle } from '@/utils/utils'
 import { uuid } from '@/utils/utils'
 import StaticDataView from '@/components/StaticDataView'
 
-const props = withDefaults(
-  defineProps<{
-    config: new (id?: string, name?) => any
-    component: any
-    propValue: any
-    style: any
-    title: string
-    mode?: 'view' | 'debug'
-  }>(),
-  {
-    mode: 'view'
-  }
-)
+const props = defineProps({
+  config: {
+    default: null
+  },
+  component: {
+    default: null
+  },
+  propValue: {
+    default: null
+  },
+  style: {
+    default: null
+  },
+  title: {
+    default: null
+  },
+  mode: {
+    default: "view"
+  },
+})
+
+
 // const componentInstance = new props.config(uuid())
 const form = reactive({
   propValue: props.propValue,
   style: props.style
 })
 
-const propValueChange = (value: Recordable) => {
+const propValueChange = (value: any) => {
   form.propValue = value
 }
-const styleChange = (style: Recordable) => {
+const styleChange = (style: any) => {
   form.style = style
 }
 

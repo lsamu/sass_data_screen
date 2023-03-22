@@ -13,7 +13,6 @@
 <script lang="ts" setup>
 import { useProjectSettingStoreWithOut } from '@/store/modules/projectSetting'
 import { routeView } from '@/router'
-import { NMenu } from 'naive-ui'
 import { XIcon } from '@/plugins/xicon'
 import { RouterLink} from 'vue-router'
 

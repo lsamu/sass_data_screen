@@ -30,7 +30,6 @@
 </template>
 
 <script lang="ts" setup>
-import { NTabs, NTabPane, NCard, NSelect, NSpace, NButtonGroup, NButton, NInput } from 'naive-ui'
 import { ScriptType } from '@/enum'
 import ScriptsEdtor from '../modules/ScriptsEditor'
 import DataView from '@/components/DataView'
@@ -46,22 +45,22 @@ import { makeFunction } from '@/utils/data'
 import { useEventBus, StaticKey } from '@/bus'
 import useDataSnapShot from '@/apiView/hooks/snapshot'
 const staticDataList = ref([])
-const props = withDefaults(
-  defineProps(["options", "mode"]),
-  {
-    options: () => {
-      return {
-        dataId: '',
-        title: '',
-        script: {
-          code: '',
-          type: ScriptType.Javascript
-        }
+
+const props = defineProps({
+  options: {
+    default: {
+      dataId: '',
+      title: '',
+      script: {
+        code: '',
+        type: ScriptType.Javascript
       }
-    },
-    mode: 'use'
+    }
+  },
+  mode: {
+    default: "use"
   }
-) as any
+})
 let snapShot
 if (props.mode === 'debug') {
   useEventBus(StaticKey.STATIC_KEY, async (id) => {
@@ -93,7 +92,7 @@ const formData = reactive({
   originData: ''
 })
 
-const emits = defineEmits(["dataChange","scriptChange"])
+const emits = defineEmits(["dataChange", "scriptChange"])
 
 const clear = () => {
   formData.id = undefined

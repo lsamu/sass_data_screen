@@ -50,7 +50,6 @@
 </template>
 
 <script setup lang="ts">
-import { NTabs, NTabPane, NMenu } from 'naive-ui'
 import { useBasicStoreWithOut } from '@/store/modules/basic'
 import Canvas from './Canvas.vue'
 import StyleList from './StyleModule' // 右侧属性列表
@@ -61,12 +60,12 @@ import { XIcon } from '@/plugins/xicon'
 const activeKey = ref('attr')
 
 const basicStore = useBasicStoreWithOut()
-withDefaults(
-  defineProps<{
-    iscollapsed: boolean
-  }>(),
-  { iscollapsed: false }
-)
+
+defineProps({
+  iscollapsed:{
+    default:false
+  }
+})
 
 const emits = defineEmits(["update:iscollapsed"])
 

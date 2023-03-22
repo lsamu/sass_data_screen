@@ -13,16 +13,13 @@
 </template>
 
 <script setup lang="ts">
-import { NUl, NLi } from 'naive-ui'
 const router = useRouter()
-withDefaults(
-  defineProps<{
-    menus: Array<any>
-  }>(),
-  {
-    menus: () => []
+
+defineProps({
+  menus:{
+    default:[]
   }
-)
+})
 
 const goTo = async (key) => {
   await router.push({

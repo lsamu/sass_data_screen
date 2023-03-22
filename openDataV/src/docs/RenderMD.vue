@@ -4,7 +4,6 @@
   </n-card>
 </template>
 <script lang="ts" setup>
-import { NCard } from 'naive-ui'
 import '@/css/markdown.css'
 
 import { useProjectSettingStoreWithOut } from '@/store/modules/projectSetting'

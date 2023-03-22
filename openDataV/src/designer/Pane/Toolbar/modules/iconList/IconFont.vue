@@ -22,7 +22,6 @@
 <script lang="ts" setup>
 import { copyText } from '@/utils/utils'
 import { message } from '@/utils/message'
-import { NModal } from 'naive-ui'
 import ConfigProvider from '@/components/provider/ConfigProvider.vue'
 import iconfontList from '@/assets/directionFonts/iconfont.json'
 

@@ -20,7 +20,6 @@
 </template>
 
 <script lang="ts" setup name="DocContent">
-import { NLayoutSider, NLayoutContent, NScrollbar } from 'naive-ui'
 import ConfigProvider from '@/components/provider/ConfigProvider.vue'
 import RenderMD from '../RenderMD.vue'
 import SiderContent from '../modules/components/SiderContent'

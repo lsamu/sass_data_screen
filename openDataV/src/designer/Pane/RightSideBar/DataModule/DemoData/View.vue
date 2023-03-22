@@ -26,19 +26,7 @@
 </template>
 
 <script lang="ts" setup>
-import {
-  NForm,
-  NInput,
-  NTabs,
-  NTabPane,
-  NInputGroup,
-  NButton,
-  NModal,
-  NCard,
-  NFormItem
-} from 'naive-ui'
 import { DataType } from '@/resource/models'
-
 import DataView from '@/components/DataView'
 import { cloneDeep } from 'lodash-es'
 import { message } from '@/utils/message'

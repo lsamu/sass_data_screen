@@ -12,7 +12,6 @@
 </template>
 
 <script setup lang="ts">
-import { NMenu } from 'naive-ui'
 import TypeItem from './modules/TypeItem.vue'
 const apiTypes = [
   {

@@ -49,7 +49,6 @@ import ApiType from '@/apiView/siderBar/indext'
 import ToolBar from '@/apiView/ToolBar'
 import RequestContent from '@/apiView/RequestContent'
 import DataHistory from '@/apiView/DataHistory'
-import { NLayout, NLayoutContent, NLayoutHeader, NLayoutSider, NScrollbar } from 'naive-ui'
 const collapsedRight = ref(false)
 
 const windowWidth = ref(0)

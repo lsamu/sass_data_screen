@@ -16,16 +16,14 @@
 <script lang="ts" setup>
 import { useProjectSettingStoreWithOut } from '@/store/modules/projectSetting'
 
-withDefaults(
-  defineProps<{
-    notNeedKey?: boolean
-    animate?: boolean
-  }>(),
-  {
-    notNeedKey: false,
-    animate: true
+defineProps({
+  notNeedKey: {
+    default: false
+  },
+  animate: {
+    default: true
   }
-)
+})
 
 const { isPageAnimate, pageAnimateType } = useProjectSettingStoreWithOut()
 

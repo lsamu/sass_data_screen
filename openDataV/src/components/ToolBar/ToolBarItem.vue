@@ -10,7 +10,6 @@
   <n-divider v-if="divider" vertical />
 </template>
 <script lang="ts" setup>
-import { NButton, NTooltip, NDivider } from 'naive-ui'
 import { XIcon } from '@/plugins/xicon'
 
 const props = defineProps(["disable", "div", "isButton", "icon"]);

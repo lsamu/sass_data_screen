@@ -1,23 +1,11 @@
 <template>
-  <CodeEditor
-    ref="cm"
-    v-model:code="form.code"
-    :language="languageType"
-    :config="config"
-    :theme="projectStore.darkTheme ? 'dark' : 'light'"
-    @update:code="formChange"
-  >
+  <CodeEditor ref="cm" v-model:code="form.code" :language="languageType" :config="config"
+    :theme="projectStore.darkTheme ? 'dark' : 'light'" @update:code="formChange">
     <template #tool-bar>
       <div>
         <div class="script">
-          <n-select
-            :options="scriptList"
-            :value="formData.id"
-            class="selected"
-            clearable
-            @update:value="selectedChange"
-            @clear="clear"
-          />
+          <n-select :options="scriptList" :value="formData.id" class="selected" clearable @update:value="selectedChange"
+            @clear="clear" />
           <n-input v-if="mode === 'debug'" v-model:value="formData.title" class="title">
             <template #prefix>
               <x-icon name="code" />
@@ -43,14 +31,8 @@
           {{ savedStatus ? '已保存' : '未保存' }}
         </div>
         <div class="lang" @click="isShow = true">
-          <n-select
-            v-model:value="form.type"
-            :options="languageOptions"
-            class="item language"
-            size="tiny"
-            style="width: 110px"
-            @update:value="formChange"
-          />
+          <n-select v-model:value="form.type" :options="languageOptions" class="item language" size="tiny"
+            style="width: 110px" @update:value="formChange" />
         </div>
       </div>
     </template>
@@ -59,7 +41,6 @@
 
 <script lang="ts" setup>
 import CodeEditor from '@/components/CodeEditor'
-import { NSelect, NInput, NSpace, NButtonGroup, NButton } from 'naive-ui'
 import { python } from '@codemirror/lang-python'
 import { javascript } from '@codemirror/lang-javascript'
 import { useProjectSettingStoreWithOut } from '@/store/modules/projectSetting'
@@ -79,29 +60,29 @@ const savedStatus = ref(true)
 const isShow = ref(false)
 
 const projectStore = useProjectSettingStoreWithOut()
-const props = withDefaults(
-  defineProps(["data","config","mode"]),
-  {
-    data: () => {
-      return {
-        code: '',
-        type: ScriptType.Javascript
-      }
-    },
-    config: () => {
-      return {
-        height: '600px',
-        tabSize: 4,
-        indentWithTab: true,
-        autofocus: true,
-        disabled: false
-      }
-    },
-    mode: 'use'
-  }
-) as any
 
-const emits = defineEmits(["update:data","change"])
+const props = defineProps({
+  data: {
+    default: {
+      code: '',
+      type: ScriptType.Javascript
+    }
+  },
+  config: {
+    default: {
+      height: '600px',
+      tabSize: 4,
+      indentWithTab: true,
+      autofocus: true,
+      disabled: false
+    } as any
+  },
+  mode: {
+    default: "use"
+  }
+})
+
+const emits = defineEmits(["update:data", "change"])
 const languageMap = { Javascript: javascript, Python: python }
 
 const formData = reactive({} as any)
@@ -246,12 +227,15 @@ onMounted(async () => {
 <style lang="less" scoped>
 .buttons {
   display: flex;
+
   .item {
     display: block;
     margin: 5px;
+
     &.language {
       width: 120px;
     }
+
     &.button {
       &:hover {
         transform: scale(1.1);
@@ -259,6 +243,7 @@ onMounted(async () => {
     }
   }
 }
+
 .footer {
   display: flex;
   flex-direction: row;
@@ -266,6 +251,7 @@ onMounted(async () => {
   justify-content: flex-end;
   align-items: center;
   align-content: center;
+
   div {
     margin-left: 5px;
     color: #ffff;
@@ -281,6 +267,7 @@ onMounted(async () => {
     &.save {
       background-color: #18a058;
     }
+
     &.unsave {
       background-color: #d03050;
     }
@@ -290,10 +277,12 @@ onMounted(async () => {
 .script {
   display: flex;
   margin-bottom: 5px;
+
   .selected {
     width: 300px;
     flex: 5;
   }
+
   .title {
     flex: 13;
   }

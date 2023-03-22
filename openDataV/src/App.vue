@@ -2,7 +2,6 @@
 
 import { useBasicStoreWithOut } from '@/store/modules/basic'
 import ConfigProvider from '@/components/provider/ConfigProvider.vue'
-// import { NLoadingBarProvider, NGlobalStyle } from 'naive-ui'
 
 const basicStore = useBasicStoreWithOut()
 

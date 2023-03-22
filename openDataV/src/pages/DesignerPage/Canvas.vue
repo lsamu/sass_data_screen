@@ -35,16 +35,6 @@
 
 <script lang="ts" setup>
 import Editor from '@/designer/Editor/Index.vue'
-import {
-  NLayout,
-  NLayoutContent,
-  NLayoutFooter,
-  NScrollbar,
-  NSlider,
-  NSpace,
-  NSelect,
-  NEl
-} from 'naive-ui'
 import { debounce } from 'lodash-es'
 import { useBasicStoreWithOut } from '@/store/modules/basic'
 
