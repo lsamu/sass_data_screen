@@ -19,18 +19,14 @@
             <n-tooltip trigger="hover">
               <template #trigger>
                 <n-button quaternary @click="handleEdit(item)">
-                  <template #icon>
-                    <x-icon name="edit" />
-                  </template>
+                  新建
                 </n-button>
               </template>
               <span>编辑</span>
             </n-tooltip>
             <n-dropdown trigger="hover" :options="options" :show-arrow="true" @select="(key) => handleSelect(key, item)">
               <n-button quaternary>
-                <template #icon>
-                  <x-icon name="setting" />
-                </template>
+                更多
               </n-button>
             </n-dropdown>
           </div>
@@ -51,26 +47,17 @@ const layoutList = ref([])
 const options: any[] = [
   {
     key: 'preview',
-    label: '预览',
-    icon: renderIcon('previewOpen')
+    label: '预览'
   },
   {
     key: 'delete',
-    label: '删除',
-    icon: renderIcon('delete')
+    label: '删除'
   }
 ]
 
 onMounted(async () => {
   await initUI()
 })
-
-function renderIcon(icon) {
-  return () =>
-    h(XIcon, {
-      name: icon
-    })
-}
 
 const initUI = async () => {
   try {

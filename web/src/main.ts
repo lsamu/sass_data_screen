@@ -9,11 +9,17 @@ import router from '@/router'
 import Directive from '@/plugins/directive'
 import XIcon from '@/plugins/xicon'
 
+//element-plus
+import ElementPlus from "element-plus";
+import "element-plus/dist/index.css";
+
 const app = createApp(App)
 app.use(Directive)
 app.use(XIcon)
 
 app.use(AsyncComponent)
+
+app.use(ElementPlus, { size: "small" });
 
 // 注册状态管理器
 app.use(store)

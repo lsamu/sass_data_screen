@@ -12,7 +12,7 @@
 <script lang="ts" setup>
 import { XIcon } from '@/plugins/xicon'
 
-const props = defineProps(["disable", "div", "isButton", "icon"]);
+const props = defineProps(["disable", "div", "isButton", "icon","label"]);
 
 const { label, action, divider } = props as any;
 
