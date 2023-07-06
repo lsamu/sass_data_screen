@@ -14,14 +14,12 @@
   >
     <n-tab-pane name="components" display-directive="show:lazy">
       <template #tab>
-        <x-icon name="components" />
         <span>组件</span>
       </template>
       <ComponentList />
     </n-tab-pane>
     <n-tab-pane name="layer" display-directive="show:lazy">
       <template #tab>
-        <x-icon name="layers" />
         <span>图层</span>
       </template>
       <Layer />

@@ -2,7 +2,7 @@
   <n-tooltip>
     <template #trigger>
       <n-button quaternary size="small" :title="label" @click="action">
-        <IconComponent />
+        {{ label }}
       </n-button>
     </template>
     <span>{{ label }}</span>

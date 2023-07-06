@@ -14,21 +14,18 @@
     >
       <n-tab-pane name="style" display-directive="show:lazy">
         <template #tab>
-          <x-icon name="textStyle" />
           <span v-show="!iscollapsed">样式</span>
         </template>
         <StyleList :curComponent="curComponent!" />
       </n-tab-pane>
       <n-tab-pane name="attr" display-directive="show:lazy">
         <template #tab>
-          <x-icon name="attr" />
           <span v-show="!iscollapsed">属性</span>
         </template>
         <AttrList :curComponent="curComponent!" />
       </n-tab-pane>
       <n-tab-pane name="data" display-directive="show:lazy">
         <template #tab>
-          <x-icon name="data" />
           <span v-show="!iscollapsed">数据</span>
         </template>
         <DataList :curComponent="curComponent!" />
@@ -37,7 +34,6 @@
     <n-tabs v-else type="line" animated justify-content="center">
       <n-tab-pane name="canvas" display-directive="show:lazy">
         <template #tab>
-          <x-icon name="page" />
           <span v-show="!iscollapsed">画布</span>
         </template>
         <Canvas />

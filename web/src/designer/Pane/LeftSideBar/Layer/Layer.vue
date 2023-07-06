@@ -76,14 +76,14 @@ const getMenuOptions = (
             onclick: () => handleSelect(currentIndex)
           }),
         key: currentIndex,
-        icon: () =>
-          h(SimpleLayerItem, {
-            name: 'container',
-            component: item,
-            index: currentIndex,
-            contextmenus: () => contextmenus(currentIndex),
-            onclick: () => handleSelect(currentIndex)
-          }),
+        // icon: () =>
+        //   h(SimpleLayerItem, {
+        //     name: 'container',
+        //     component: item,
+        //     index: currentIndex,
+        //     contextmenus: () => contextmenus(currentIndex),
+        //     onclick: () => handleSelect(currentIndex)
+        //   }),
         children: getMenuOptions(currentIndex, item.subComponents || [], childrenOptions)
       })
     } else {
@@ -95,14 +95,14 @@ const getMenuOptions = (
             contextmenus: () => contextmenus(currentIndex)
           }),
         key: currentIndex,
-        icon: () =>
-          h(SimpleLayerItem, {
-            name: `${iconMap[item.group!]}`,
-            component: item,
-            index: currentIndex,
-            contextmenus: () => contextmenus(currentIndex),
-            onclick: () => handleSelect(currentIndex)
-          })
+        // icon: () =>
+        //   h(SimpleLayerItem, {
+        //     name: `${iconMap[item.group!]}`,
+        //     component: item,
+        //     index: currentIndex,
+        //     contextmenus: () => contextmenus(currentIndex),
+        //     onclick: () => handleSelect(currentIndex)
+        //   })
       })
     }
   }

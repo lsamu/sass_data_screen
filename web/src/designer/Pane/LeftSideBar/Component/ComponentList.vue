@@ -29,10 +29,10 @@ const menuOptions = computed(() => {
     menus.push({
       label: () => item.name,
       key: item.key,
-      icon: () =>
-        h(XIcon, {
-          name: `${item.icon}`
-        }),
+      // icon: () =>
+      //   h(XIcon, {
+      //     name: `${item.icon}`
+      //   }),
       children: groups[item.key]?.map((el) => {
         return {
           label: () =>
