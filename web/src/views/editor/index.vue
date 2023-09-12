@@ -35,7 +35,7 @@
 
       <el-container>
         <el-main style="padding: 0;position: relative;background: #f2f3f5" ref="refMain">
-          <WidgetContainerVisual></WidgetContainerVisual>
+          <BoxEChartLayout :children="useProject.project.components"></BoxEChartLayout>
         </el-main>
       </el-container>
 
@@ -95,7 +95,7 @@ import { projectStore } from "@@/store/projectStore"
 
 const useProject = projectStore();
 
-const {proxy,appContext} = getCurrentInstance();
+const { proxy, appContext } = getCurrentInstance();
 
 const pp = appContext.app.component("BoxDatagrid")
 
