@@ -28,12 +28,6 @@
             <el-tab-pane label="变量区" name="fourth1">
               <NavVariable></NavVariable>
             </el-tab-pane>
-            <!-- <el-tab-pane label="外部JS" name="fourth2">
-              <NavJavaScript></NavJavaScript>
-            </el-tab-pane> -->
-            <!-- <el-tab-pane label="函数区" name="fourth3">
-              <NavFunction></NavFunction>
-            </el-tab-pane> -->
           </el-tabs>
         </div>
 
@@ -80,36 +74,32 @@
   </el-container>
 </template>
 <script lang="ts" setup>
-import PropEvent from "./prop/event.vue"
-import PropStyle from "./prop/style.vue"
-import PropProp from "./prop/prop.vue"
-import PropCommon from "./prop/common.vue"
+import PropEvent from "@@/views/editor/prop/event.vue"
+import PropStyle from "@@/views/editor/prop/style.vue"
+import PropProp from "@@/views/editor/prop/prop.vue"
+import PropCommon from "@@/views/editor/prop/common.vue"
 
-import NavOutline from "./nav/outline.vue"
-import NavComponent from "./nav/component.vue"
-import NavDataSource from "./nav/data-source.vue"
-import NavSource from "./nav/source.vue"
-import NavVariable from "./nav/variable.vue"
+import NavOutline from "@@/views/editor/nav/outline.vue"
+import NavComponent from "@@/views/editor/nav/component.vue"
+import NavDataSource from "@@/views/editor/nav/data-source.vue"
+import NavSource from "@@/views/editor/nav/source.vue"
+import NavVariable from "@@/views/editor/nav/variable.vue"
 
-import cc from "../../components/components"
+import cc from "@/components/components"
 
-import TopIndex from "./top/index.vue"
+import TopIndex from "@@/views/editor/top/index.vue"
 
-import WidgetContainerVisual from "./widget-container/visual.vue"
+import WidgetContainerVisual from "@@/views/editor/widget-container/visual.vue"
 
-import { projectStore } from "../../store/projectStore"
+import { projectStore } from "@@/store/projectStore"
 
 const useProject = projectStore();
 
 const {proxy,appContext} = getCurrentInstance();
 
-console.log(proxy)
-
 const pp = appContext.app.component("BoxDatagrid")
-console.log(pp)
 
 const aa = resolveComponent("BoxDatagrid123")
-console.log(aa) 
 
 onMounted(() => {
   // const projectJson = localStorage.getItem("lowcode_project_json")
@@ -117,7 +107,6 @@ onMounted(() => {
   //   const json = JSON.parse(projectJson);
   //   useProject.project = json
   // }
-
   useProject.that.visual = true;
 })
 
@@ -144,4 +133,3 @@ const thatOption = reactive({
   overflow: unset;
 }
 </style>
-../../components/big/components

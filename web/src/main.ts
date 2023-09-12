@@ -10,9 +10,13 @@ import "element-plus/dist/index.css";
 // 导入 icon
 import * as ElIconList from '@element-plus/icons-vue'
 
-//big
-import BoxBig from "./components/big/index";
-import OptionBoxBig from "./components/big/option";
+//system
+import SystemUI from "@@/components/system/index";
+
+//echart
+import BoxEChart from "./components/echart/index";
+import OptionBoxEChart from "./components/echart/option";
+import VisualBoxEChart from "./components/echart/visual";
 
 //Vue3DraggableResizable
 import Vue3DraggableResizable from "vue3-draggable-resizable";
@@ -27,10 +31,12 @@ app.use(store);
 app.use(ElementPlus, { size: "small" });
 // 注册icon
 for (const name in ElIconList) {
-    app.component(name, ElIconList[name])
-  }
-app.use(BoxBig);
-app.use(OptionBoxBig);
+  app.component(name, ElIconList[name])
+}
+app.use(SystemUI)
+app.use(BoxEChart);
+app.use(OptionBoxEChart);
+app.use(VisualBoxEChart);
 app.use(Vue3DraggableResizable);
 app.use(pinia)
 app.mount("#app");

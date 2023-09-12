@@ -3,7 +3,7 @@
 </template>
 <script lang="ts" setup>
 
-import BoxWidget from "../editor/widget-container/index.vue"
+import BoxWidget from "@@/views/editor/widget-container/index.vue"
 
 </script>
 <style lang="scss">
