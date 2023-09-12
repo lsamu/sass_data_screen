@@ -1,5 +1,17 @@
-import { createPinia } from 'pinia'
-import { StoragePlugin } from './plugins'
-const store = createPinia()
-store.use(StoragePlugin({ logger: import.meta.env.DEV, activeStores: ['app-project-setting'] }))
+import { createStore } from 'vuex'
+
+// Create a new store instance.
+const store = createStore({
+  state () {
+    return {
+      count: 0
+    }
+  },
+  mutations: {
+    increment (state:any) {
+      state.count++
+    }
+  }
+});
+
 export default store

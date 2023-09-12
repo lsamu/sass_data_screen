@@ -1,0 +1,11 @@
+class loadUtil {
+
+    CSS(){
+
+    }
+
+    JS(){
+        
+    }
+
+}

@@ -1,37 +1,29 @@
 <script setup lang="ts">
 
-import { useBasicStoreWithOut } from '@/store/modules/basic'
-import ConfigProvider from '@/components/provider/ConfigProvider.vue'
-
-const basicStore = useBasicStoreWithOut()
-
-const overflow = ref(
-  (() => {
-    if (!basicStore.isEditMode) {
-      return 'hidden'
-    } else {
-      return 'auto'
-    }
-  })()
-)
-const { currentRoute } = useRouter()
 </script>
 
 <template>
-  <ConfigProvider>
-    <n-loading-bar-provider>
-      <RouterView :key="currentRoute.path" :style="{ overflow }" />
-      <n-global-style />
-    </n-loading-bar-provider>
-  </ConfigProvider>
+    <router-view></router-view>
 </template>
 
-<style lang="less">
-html,
-body,
+<style lang="scss">
+
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+.el-header {
+  padding: 0;
+}
+.el-container {
+  height: 100%;
+}
 #app {
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #2c3e50;
   height: 100vh;
-  width: 100vw;
-  // overflow: hidden;
 }
 </style>

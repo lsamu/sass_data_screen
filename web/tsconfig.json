@@ -1,19 +1,20 @@
 {
   "compilerOptions": {
-    "types": ["node"],
     "target": "esnext",
     "module": "esnext",
     "moduleResolution": "node",
-    //"strict": true,
+    // "strict": true,
     "jsx": "preserve",
     "sourceMap": true,
     "resolveJsonModule": true,
     "esModuleInterop": true,
     "lib": ["esnext", "dom"],
-    "noImplicitAny": false, // 防止对象隐式具有'任何'类型
-    "paths": {
-      "@*":["./src*"]
+    "baseUrl": "./",
+    "allowJs": true,
+    "paths":{
+      "@":["src"],
+      "@/*":["src/*"]
     }
   },
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue", "./auto-imports.d.ts"]
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue","./auto-imports.d.ts", "src/components/ui/table/lib/tool.js"]
 }
