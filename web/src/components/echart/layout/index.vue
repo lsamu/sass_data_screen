@@ -1,7 +1,7 @@
 <template>
     <div class="box-echart-layout">
 
-        <drager rotatable v-for="element, index in componentList" :key="index">
+        <drager rotatable v-for="element, index in componentList" :key="index" :width="100" :height="80">
             <component :ref="element['name'] || element['id']" :is='getComponent(element)' v-bind="element['props']"
                 v-on="getEvents(element['events'])" v-model:children="element['children']" v-model:value="element['value']"
                 v-model="element['value']">

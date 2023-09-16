@@ -6,7 +6,7 @@
 </template>
 <script lang="ts" setup>
 import lodash from "lodash";
-
+import * as echarts from 'echarts';
 
 const props = defineProps(["option", "data", "value"]);
 const emits = defineEmits({});

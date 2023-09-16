@@ -1,6 +1,8 @@
 <template>
-  <div class="box-echart-histogram" ref="refEchart" :style="{ height: currentOption.height }" style="width:100%">
+  <div ref="refParent" class="box-echart-histogram">
+    <div ref="refEchart" :style="{ 'width': thatData.width + 'px', 'height': thatData.height + 'px' }">
 
+    </div>
   </div>
 </template>
 <script lang="ts" setup>
@@ -13,8 +15,12 @@ const emits = defineEmits({})
 const root = getCurrentInstance();
 const that = root.proxy;
 
+const refParent = ref();
+
 const thatData = reactive({
   formData: [],
+  height: 200,
+  width: 200
 });
 
 const thatOption = reactive({
@@ -61,6 +67,15 @@ let myChart = null;
 onMounted(() => {
   myChart = echarts.init(refEchart.value);
   myChart.setOption(thatOption);
+
+  useResizeObserver(refParent, (entries) => {
+    const entry = entries[0]
+    const { width, height } = entry.contentRect
+    thatData.width = width
+    thatData.height = height
+    myChart.resize();
+  })
+
 })
 
 const currentOption = computed(() => {

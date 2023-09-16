@@ -1,8 +1,10 @@
 <template>
-  <div class="box-echart-bar" ref="refEchart" :style="{ height: currentOption.height }" style="width:100%">
-    <!-- <ve-bar :data="currentData" :settings="currentOption" :height="currentOption.height" width="100%"
-      :judge-width="true" ref="refEchart"></ve-bar> -->
+  <div ref="refParent" class="box-echart-bar">
+    <div ref="refEchart" :style="{ 'width':thatData.width+'px','height': thatData.height + 'px' }">
+
+    </div>
   </div>
+
 </template>
 <script lang="ts" setup>
 import * as echarts from 'echarts';
@@ -15,10 +17,20 @@ const that = root.proxy;
 
 const refEchart = ref()
 let myChart = null;
+const refParent = ref();
 
 onMounted(() => {
   myChart = echarts.init(refEchart.value);
   setOption({})
+
+  useResizeObserver(refParent, (entries) => {
+    const entry = entries[0]
+    const { width, height } = entry.contentRect
+    thatData.width = width
+    thatData.height = height
+    myChart.resize();
+  })
+  
 })
 
 const setOption = (tmpOption) => {
@@ -45,6 +57,8 @@ const setOption = (tmpOption) => {
 
 const thatData = reactive({
   formData: [],
+  height: 200,
+  width: 200
 });
 
 const currentOption = computed(() => {
