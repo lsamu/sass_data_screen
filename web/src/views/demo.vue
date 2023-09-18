@@ -1,5 +1,5 @@
 <template>
-    <component :is='is'></component>
+    <!-- <component :is='is'></component> -->
 </template>
 <script lang="ts" setup>
 
@@ -11,7 +11,7 @@
 // 高级表格
 // const is = defineAsyncComponent(()=>import("./demo/datagrid/index.vue"))
 // 拖动
-const is = defineAsyncComponent(()=>import("./demo/resize/index.vue"))
+// const is = defineAsyncComponent(()=>import("./demo/resize/index.vue"))
 // 高级树
 // const is = defineAsyncComponent(()=>import("./demo/tree/index.vue"))
 // 对话框

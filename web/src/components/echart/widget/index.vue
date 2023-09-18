@@ -66,5 +66,9 @@ const onDelete = (item) => {
     position: relative;
     width: 100%;
     height: 100%;
+
+    .es-drager.border {
+        border: none !important;
+    }
 }
 </style>
