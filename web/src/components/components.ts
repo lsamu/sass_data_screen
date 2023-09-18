@@ -206,6 +206,278 @@ export default [
         ]
     },
     {
+        title: "其他组件",
+        icon: "",
+        children: [
+            {
+                title: "按钮",
+                componentName: "dv-button",
+                hidden: false,
+                locked: false,
+            },
+            {
+                title: "锥形柱图",
+                componentName: "dv-conical-column-chart",
+                hidden: false,
+                locked: false,
+                props: {
+                    config: {
+                        data: [
+                            {
+                                name: '周口',
+                                value: 55,
+                            },
+                            {
+                                name: '南阳',
+                                value: 120,
+                            },
+                            {
+                                name: '西峡',
+                                value: 71,
+                            },
+                            {
+                                name: '驻马店',
+                                value: 66,
+                            },
+                            {
+                                name: '新乡',
+                                value: 80,
+                            },
+                            {
+                                name: '信阳',
+                                value: 35,
+                            },
+                            {
+                                name: '漯河',
+                                value: 15,
+                            },
+                        ]
+                    }
+                }
+            },
+            {
+                title: "进度池",
+                componentName: "dv-percent-pond",
+                hidden: false,
+                locked: false,
+                props: {
+                    config: {
+                        value: 66,
+                    }
+                }
+            },
+            {
+                title: "水位图",
+                componentName: "dv-water-level-pond",
+                hidden: false,
+                locked: false,
+                props: {
+                    config: {
+                        data: [66],
+                    }
+                }
+            },
+            {
+                title: "加载",
+                componentName: "dv-loading",
+                hidden: false,
+                locked: false,
+            },
+            {
+                title: "飞线图增强版",
+                componentName: "dv-flyline-chart-enhanced",
+                hidden: false,
+                locked: false,
+            },
+            {
+                title: "飞线图",
+                componentName: "dv-flyline-chart",
+                hidden: false,
+                locked: false,
+            },
+            {
+                title: "排名轮播表",
+                componentName: "dv-scroll-ranking-board",
+                hidden: false,
+                locked: false,
+                props: {
+                    config: {
+                        data: [
+                            {
+                                name: '周口',
+                                value: 55,
+                            },
+                            {
+                                name: '南阳',
+                                value: 120,
+                            },
+                            {
+                                name: '西峡',
+                                value: 78,
+                            },
+                            {
+                                name: '驻马店',
+                                value: 66,
+                            },
+                            {
+                                name: '新乡',
+                                value: 80,
+                            },
+                            {
+                                name: '信阳',
+                                value: 45,
+                            },
+                            {
+                                name: '漯河',
+                                value: 29,
+                            },
+                        ],
+                        unit: '万元',
+                    }
+                }
+            },
+            {
+                title: "轮播表",
+                componentName: "dv-scroll-board",
+                hidden: false,
+                locked: false,
+                props: {
+                    config: {
+                        header: ['列1', '列2', '列3'],
+                        data: [
+                            ['行1列1', '行1列2', '行1列3'],
+                            ['行2列1', '行2列2', '行2列3'],
+                            ['行3列1', '行3列2', '行3列3'],
+                            ['行4列1', '行4列2', '行4列3'],
+                            ['行5列1', '行5列2', '行5列3'],
+                            ['行6列1', '行6列2', '行6列3'],
+                            ['行7列1', '行7列2', '行7列3'],
+                            ['行8列1', '行8列2', '行8列3'],
+                            ['行9列1', '行9列2', '行9列3'],
+                            ['行10列1', '行10列2', '行10列3'],
+                        ],
+                        index: true,
+                        columnWidth: [50],
+                        align: ['center'],
+                    }
+                }
+            },
+            {
+                title: "图表",
+                componentName: "dv-charts",
+                hidden: false,
+                locked: false,
+                props: {
+                    option: {
+                        title: {
+                            text: '剩余油量表',
+                            style: {
+                                fill: '#fff'
+                            }
+                        },
+                        series: [
+                            {
+                                type: 'gauge',
+                                data: [{ name: 'itemA', value: 55 }],
+                                center: ['50%', '55%'],
+                                axisLabel: {
+                                    formatter: '{value}%',
+                                    style: {
+                                        fill: '#fff'
+                                    }
+                                },
+                                axisTick: {
+                                    style: {
+                                        stroke: '#fff'
+                                    }
+                                },
+                                animationCurve: 'easeInOutBack'
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                title: "胶囊柱图",
+                componentName: "dv-capsule-chart",
+                hidden: false,
+                locked: false,
+                props: {
+                    config: {
+                        data: [
+                            {
+                                name: '南阳',
+                                value: 167
+                            },
+                            {
+                                name: '周口',
+                                value: 123
+                            },
+                            {
+                                name: '漯河',
+                                value: 98
+                            },
+                            {
+                                name: '郑州',
+                                value: 75
+                            },
+                            {
+                                name: '西峡',
+                                value: 66
+                            },
+                        ],
+                        colors: ['#e062ae', '#fb7293', '#e690d1', '#32c5e9', '#96bfff'],
+                        unit: '万元'
+                    }
+                }
+            },
+            {
+                title: "动态环图",
+                componentName: "dv-active-ring-chart",
+                hidden: false,
+                locked: false,
+                props: {
+                    config: {
+                        lineWidth: 24,
+                        digitalFlopStyle: {
+                            fill: 'pink',
+                        },
+                        data: [
+                            {
+                                name: '杭州',
+                                value: 98,
+                            },
+                            {
+                                name: '金华',
+                                value: 150,
+                            },
+                            {
+                                name: '宁波',
+                                value: 62,
+                            },
+                            {
+                                name: '太原',
+                                value: 54,
+                            },
+                        ],
+                    }
+                }
+            },
+            {
+                title: "数字翻牌器",
+                componentName: "dv-digital-flop",
+                hidden: false,
+                locked: false,
+                props: {
+                    config: {
+                        number: [100],
+                        content: '{nt}个',
+                    }
+                }
+            },
+        ],
+    },
+    {
         title: "边框",
         icon: "",
         children: [
