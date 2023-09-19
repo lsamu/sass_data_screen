@@ -26,6 +26,16 @@ export default defineConfig({
   },
   build:{
     emptyOutDir:true,
+    rollupOptions:{
+      output:{
+        manualChunks:{
+          'vue':['vue','vue-router','vuex'],
+          'pinia':['pinia'],
+          'element':['element-plus'],
+          'echart':['echarts'],
+        }
+      }
+    }
   },
   server: {
     port: 8081,

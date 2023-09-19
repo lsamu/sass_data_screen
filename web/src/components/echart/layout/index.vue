@@ -1,7 +1,13 @@
 <template>
     <div class="box-echart-layout">
 
-        <drager rotatable v-for="element, index in componentList" :key="index" :width="100" :height="80" >
+        <drager rotatable v-for="element, index in componentList" :key="index" 
+        :width="100" 
+        :height="80"   
+        :selected="useProject.that.component && useProject.that.component.id == element.id"
+        @click="onChoose(element)"
+        @change="onChange"
+        >
             <component :ref="element['name'] || element['id']" :is='getComponent(element)' v-bind="element['props']"
                 v-on="getEvents(element['events'])" v-model:children="element['children']" v-model:value="element['value']"
                 v-model="element['value']">
@@ -15,8 +21,6 @@
 import 'es-drager/lib/style.css'
 import Drager from 'es-drager'
 
-import { Calendar, Search, DocumentCopy, Delete, Rank } from '@element-plus/icons-vue'
-import uuid from "node-uuid";
 import { projectStore } from "@@/store/projectStore"
 
 const useProject = projectStore();
@@ -32,36 +36,17 @@ const componentList = computed({
     }
 })
 
-const getEvents = (events) => {
-    if (!events || JSON.stringify(events) == '{}') {
-        return events
-    }
-    const ret_events = {}
-    for (const key in events) {
-        const event = events[key];
-        const script = useProject.project.events.find(x => x.name == event).script
-        ret_events[key] = eval(script);
-    }
-    return ret_events
-}
-
 const getComponent = (item: any) => {
     return item["componentName"];
 }
 
-const onChoose = (context) => {
-    const item = context.item.__draggable_context.element;
+const onChoose = (item) => {
     useProject.setComponent(item);
 }
 
-const onCopy = (item) => {
-    useProject.copyComponent(item)
+const onChange = (item)=>{
+    useProject.that.component.location = item
 }
-
-const onDelete = (item) => {
-    useProject.deleteComponent(item)
-}
-
 </script>
 <style lang="scss">
 .box-echart-layout {
@@ -69,8 +54,5 @@ const onDelete = (item) => {
     position: relative;
     width: 100%;
     height: 100%;
-    // .es-drager.border {
-    //     border: none !important;
-    // }
 }
 </style>
