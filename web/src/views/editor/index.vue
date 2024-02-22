@@ -95,18 +95,7 @@ import { projectStore } from "@@/store/projectStore"
 
 const useProject = projectStore();
 
-const { proxy, appContext } = getCurrentInstance();
-
-const pp = appContext.app.component("BoxDatagrid")
-
-const aa = resolveComponent("BoxDatagrid123")
-
 onMounted(() => {
-  // const projectJson = localStorage.getItem("lowcode_project_json")
-  // if (projectJson) {
-  //   const json = JSON.parse(projectJson);
-  //   useProject.project = json
-  // }
   useProject.that.visual = true;
 })
 

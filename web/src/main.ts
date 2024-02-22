@@ -28,7 +28,7 @@ import Vue3DraggableResizable from "vue3-draggable-resizable";
 import "vue3-draggable-resizable/dist/Vue3DraggableResizable.css";
 
 // pinia
-import pinia from "./store/pinia";
+import pinia from "@@/store/pinia";
 
 const app = createApp(App);
 app.use(router);

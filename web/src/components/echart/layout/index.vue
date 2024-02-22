@@ -36,6 +36,19 @@ const componentList = computed({
     }
 })
 
+const getEvents = (events) => {
+    if (!events || JSON.stringify(events) == '{}') {
+        return events
+    }
+    const ret_events = {}
+    for (const key in events) {
+        const event = events[key];
+        const script = useProject.project.events.find(x => x.name == event).script
+        ret_events[key] = eval(script);
+    }
+    return ret_events
+}
+
 const getComponent = (item: any) => {
     return item["componentName"];
 }
